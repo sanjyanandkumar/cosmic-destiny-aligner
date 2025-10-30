@@ -36,6 +36,18 @@ const offers = [
 ];
 
 const FeaturedOffers = () => {
+  const { buyNow, processing } = useRazorpay();
+
+  const handleBuyNow = (offer: typeof offers[0]) => {
+    const amountInRupees = parseInt(offer.price.replace(/[^\d]/g, '')) || 0;
+    const amountInPaise = amountInRupees * 100;
+    buyNow({ 
+      amountInPaise, 
+      name: offer.title, 
+      description: offer.description 
+    });
+  };
+
   return (
     <section className="py-24 bg-cosmic-indigo relative">
       <div className="container mx-auto px-4">
@@ -81,9 +93,11 @@ const FeaturedOffers = () => {
                 </div>
 
                 <Button
-                  className="w-full mt-6 bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground font-inter font-semibold transition-all"
+                  onClick={() => handleBuyNow(offer)}
+                  disabled={processing}
+                  className="w-full mt-6 bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground font-inter font-semibold transition-all disabled:opacity-50"
                 >
-                  Learn More
+                  {processing ? "Processing..." : "Buy Now"}
                 </Button>
               </Card>
             );
