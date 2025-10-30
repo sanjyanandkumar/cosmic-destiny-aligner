@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { FileText, Users, BookOpen, Plane } from "lucide-react";
+import { useRazorpay } from "@/hooks/use-razorpay";
 
 const offers = [
   {
