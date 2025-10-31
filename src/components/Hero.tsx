@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Star, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -39,23 +40,25 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-            <Button 
-              size="lg" 
-              className="bg-primary text-primary-foreground hover:bg-primary/90 font-inter font-semibold text-lg px-8 py-6 shadow-cosmic"
-              onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              Enter the Realm
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <Link to="/about">
+              <Button 
+                size="lg" 
+                className="bg-primary text-primary-foreground hover:bg-primary/90 font-inter font-semibold text-lg px-8 py-6 shadow-cosmic"
+              >
+                Enter the Realm
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
             
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="border-primary text-foreground hover:bg-primary/10 font-inter font-semibold text-lg px-8 py-6"
-              onClick={() => document.getElementById('verticals')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              Explore the Divisions
-            </Button>
+            <Link to="/verticals">
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-primary text-foreground hover:bg-primary/10 font-inter font-semibold text-lg px-8 py-6"
+              >
+                Explore the Divisions
+              </Button>
+            </Link>
           </div>
 
           <p className="font-inter text-sm text-muted-foreground pt-2">
