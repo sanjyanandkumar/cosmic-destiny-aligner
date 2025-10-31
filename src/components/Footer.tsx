@@ -22,7 +22,7 @@ const Footer = () => {
               </span>
             </div>
             <p className="font-inter text-muted-foreground">
-              Cosmic intelligence for your style, business, education and journeys.
+              Where Karma Builds Kingdoms. A spiritual architecture for wealth, destiny, and evolution.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
@@ -47,23 +47,23 @@ const Footer = () => {
             </h3>
             <ul className="space-y-2 font-inter text-muted-foreground">
               <li>
-                <a href="#wardrobe" className="hover:text-primary transition-colors">
+                <a href="#verticals" className="hover:text-primary transition-colors">
+                  BrahmaX Consulting
+                </a>
+              </li>
+              <li>
+                <a href="#verticals" className="hover:text-primary transition-colors">
                   BrahmaX Wardrobe
                 </a>
               </li>
               <li>
-                <a href="#business" className="hover:text-primary transition-colors">
-                  Business Dharma
+                <a href="#verticals" className="hover:text-primary transition-colors">
+                  EduSeam
                 </a>
               </li>
               <li>
-                <a href="#stream" className="hover:text-primary transition-colors">
-                  Stream Code
-                </a>
-              </li>
-              <li>
-                <a href="#journeys" className="hover:text-primary transition-colors">
-                  Journeys
+                <a href="#verticals" className="hover:text-primary transition-colors">
+                  BrahmaX Leisure
                 </a>
               </li>
             </ul>
@@ -77,22 +77,17 @@ const Footer = () => {
             <ul className="space-y-2 font-inter text-muted-foreground">
               <li>
                 <a href="#about" className="hover:text-primary transition-colors">
-                  About Us
+                  About BrahmaX
                 </a>
               </li>
               <li>
-                <a href="#founder" className="hover:text-primary transition-colors">
-                  Founder Story
+                <a href="#leadership" className="hover:text-primary transition-colors">
+                  Leadership
                 </a>
               </li>
               <li>
-                <a href="#privacy" className="hover:text-primary transition-colors">
-                  Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a href="#terms" className="hover:text-primary transition-colors">
-                  Terms & Conditions
+                <a href="#contact" className="hover:text-primary transition-colors">
+                  Contact & Collaborate
                 </a>
               </li>
             </ul>
@@ -101,25 +96,26 @@ const Footer = () => {
           {/* Newsletter */}
           <div>
             <h3 className="font-playfair text-lg font-bold text-foreground mb-4">
-              Cosmic Updates
+              Contact
             </h3>
-            <p className="font-inter text-muted-foreground mb-4">
-              Subscribe for celestial insights and exclusive offers
+            <div className="space-y-2 font-inter text-muted-foreground mb-4">
+              <p>Bengaluru, India</p>
+              <p>connect@brahmax.in</p>
+            </div>
+            <p className="font-inter text-sm text-muted-foreground mb-4">
+              "If you've felt the pull, it's already karmic."
             </p>
-            <form onSubmit={handleNewsletterSubmit} className="space-y-2">
-              <Input
-                type="email"
-                placeholder="your@email.com"
-                className="bg-background/50 border-cosmic-blue/30"
-                required
-              />
-              <Button
-                type="submit"
-                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-inter font-semibold"
-              >
-                Subscribe
-              </Button>
-            </form>
+            <div className="flex space-x-4">
+              <a href="https://instagram.com/brahmax.official" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                <Instagram className="h-5 w-5" />
+              </a>
+              <a href="https://linkedin.com/company/kettetalksbyabi" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                <Linkedin className="h-5 w-5" />
+              </a>
+              <a href="mailto:connect@brahmax.in" className="text-muted-foreground hover:text-primary transition-colors">
+                <Mail className="h-5 w-5" />
+              </a>
+            </div>
           </div>
         </div>
 

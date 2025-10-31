@@ -3,41 +3,49 @@ import { Sparkles, Briefcase, GraduationCap, Plane } from "lucide-react";
 
 const verticals = [
   {
-    icon: Sparkles,
-    title: "BrahmaX Wardrobe",
-    description: "Dress like your destiny.",
-    gradient: "from-rose-quartz/20 to-cosmic-gold/20",
-  },
-  {
     icon: Briefcase,
-    title: "Business Dharma",
-    description: "Build the brand your chart supports.",
+    title: "BrahmaX Consulting",
+    subtitle: "The Karmic Business Division",
+    description: "Scaling Destiny, Not Just Business.",
+    fullDescription: "We help founders, investors, and creators unlock the hidden timing and energy behind their ventures. Using astrological intelligence, cosmic strategy, and karmic analytics, we design business frameworks that align with your soul path.",
     gradient: "from-cosmic-gold/20 to-mystic-teal/20",
   },
   {
+    icon: Sparkles,
+    title: "BrahmaX Wardrobe",
+    subtitle: "The Astro-Fashion Division",
+    description: "Wear Your Planets. Live Your Power.",
+    fullDescription: "The world's first karmic fashion and lifestyle platform, curating collections that blend design, astrology, and consciousness. Each piece is energetically aligned — crafted with colors, fabrics, and symbols tuned to your zodiac.",
+    gradient: "from-rose-quartz/20 to-cosmic-gold/20",
+  },
+  {
     icon: GraduationCap,
-    title: "Stream Code",
-    description: "Map education to destiny.",
+    title: "EduSeam",
+    subtitle: "The Passport to Conscious Learning",
+    description: "Education Reimagined as Evolution.",
+    fullDescription: "The learning and mentorship wing of BrahmaX, designed to bridge karmic awareness with real-world knowledge. Each course is an initiation — a journey into discovering your unique dharma.",
     gradient: "from-mystic-teal/20 to-celestial-blue/20",
   },
   {
     icon: Plane,
-    title: "Journeys",
-    description: "Retreats that activate karma.",
+    title: "BrahmaX Leisure",
+    subtitle: "The Karmic Wellness Division",
+    description: "Relaxation, Realigned.",
+    fullDescription: "Redefining luxury wellness through the lens of karma. Each retreat, café, and experiential space blends astrology, spirituality, and indulgence to create transformational environments.",
     gradient: "from-celestial-blue/20 to-rose-quartz/20",
   },
 ];
 
 const VerticalCards = () => {
   return (
-    <section className="py-24 bg-cosmic-black relative">
+    <section id="verticals" className="py-24 bg-cosmic-black relative">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Your Cosmic Verticals
+            Karmic Divisions
           </h2>
           <p className="font-inter text-xl text-muted-foreground max-w-2xl mx-auto">
-            Four pathways aligned with your celestial blueprint
+            Four Paths. One Purpose — to Align Karma with Creation
           </p>
         </div>
 
@@ -58,8 +66,16 @@ const VerticalCards = () => {
                     {vertical.title}
                   </h3>
                   
-                  <p className="font-inter text-muted-foreground">
+                  <p className="font-inter text-sm text-primary/80 mb-2">
+                    {vertical.subtitle}
+                  </p>
+                  
+                  <p className="font-inter font-semibold text-foreground mb-2">
                     {vertical.description}
+                  </p>
+                  
+                  <p className="font-inter text-sm text-muted-foreground">
+                    {vertical.fullDescription}
                   </p>
                 </div>
               </Card>

@@ -28,22 +28,23 @@ const Hero = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <h1 className="font-playfair text-5xl md:text-7xl font-bold text-foreground leading-tight">
-            Designed by the Stars,{" "}
+            Where Karma{" "}
             <span className="bg-gradient-gold bg-clip-text text-transparent">
-              Executed by Strategy
+              Builds Kingdoms
             </span>
           </h1>
           
           <p className="font-inter text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
-            Cosmic intelligence for your style, business, education and journeys.
+            BrahmaX is not just a brand — it's a spiritual architecture for wealth, destiny, and evolution. Born at the intersection of luxury, astrology, and global enterprise, we decode the karmic blueprint behind success.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
             <Button 
               size="lg" 
               className="bg-primary text-primary-foreground hover:bg-primary/90 font-inter font-semibold text-lg px-8 py-6 shadow-cosmic"
+              onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              Get Your Free Karmic Outfit Snapshot
+              Enter the Realm
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             
@@ -51,8 +52,9 @@ const Hero = () => {
               size="lg" 
               variant="outline" 
               className="border-primary text-foreground hover:bg-primary/10 font-inter font-semibold text-lg px-8 py-6"
+              onClick={() => document.getElementById('verticals')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              Explore Verticals
+              Explore the Divisions
             </Button>
           </div>
 
