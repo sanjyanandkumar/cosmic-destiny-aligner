@@ -32,7 +32,7 @@ export function useRazorpay() {
     };
   }, []);
 
-  const buyNow = useCallback(async ({ amountInPaise, name, description }: { amountInPaise: number; name: string; description?: string; }) => {
+  const buyNow = useCallback(async ({ amountInPaise, name, description, buyerDetails }: { amountInPaise: number; name: string; description?: string; buyerDetails?: { name: string; email: string; phone: string; address: string; }; }) => {
     try {
       setProcessing(true);
       await loadRazorpayScript();
@@ -60,6 +60,11 @@ export function useRazorpay() {
         name,
         description,
         order_id: data.order.id,
+        prefill: buyerDetails ? {
+          name: buyerDetails.name,
+          email: buyerDetails.email,
+          contact: buyerDetails.phone,
+        } : undefined,
         handler: async (response: any) => {
           const verify = await supabase.functions.invoke("razorpay-payment", {
             body: { action: "verify", ...response },

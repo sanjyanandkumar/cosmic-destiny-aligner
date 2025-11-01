@@ -2,11 +2,12 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useRazorpay } from "@/hooks/use-razorpay";
+import { useCheckout } from "@/hooks/use-checkout";
+import { CheckoutDialog } from "@/components/CheckoutDialog";
 import careerGuidanceImg from "@/assets/career-guidance.jpg";
 
 const EduSeamPage = () => {
-  const { buyNow, processing } = useRazorpay();
+  const { dialogOpen, currentProduct, processing, startCheckout, handleConfirmCheckout, handleCloseDialog } = useCheckout();
 
   const product = {
     name: "Career Guidance",
@@ -47,20 +48,28 @@ const EduSeamPage = () => {
                     ₹{product.price.toLocaleString()}
                   </p>
                 </div>
-                <Button
-                  size="lg"
-                  onClick={() => buyNow({ amountInPaise: product.price * 100, name: product.name, description: product.description })}
-                  disabled={processing}
-                  className="w-full"
-                >
-                  {processing ? "Processing..." : "Buy Now"}
-                </Button>
+              <Button
+                size="lg"
+                onClick={() => startCheckout({ name: product.name, price: product.price, description: product.description })}
+                disabled={processing}
+                className="w-full"
+              >
+                Buy Now
+              </Button>
               </div>
             </div>
           </Card>
         </div>
       </main>
       <Footer />
+      <CheckoutDialog
+        open={dialogOpen}
+        onOpenChange={handleCloseDialog}
+        productName={currentProduct?.name || ""}
+        price={currentProduct?.price || 0}
+        onConfirm={handleConfirmCheckout}
+        processing={processing}
+      />
     </div>
   );
 };

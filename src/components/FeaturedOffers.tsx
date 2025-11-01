@@ -2,7 +2,8 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { FileText, Users, BookOpen, Plane } from "lucide-react";
-import { useRazorpay } from "@/hooks/use-razorpay";
+import { useCheckout } from "@/hooks/use-checkout";
+import { CheckoutDialog } from "./CheckoutDialog";
 
 const offers = [
   {
@@ -36,14 +37,13 @@ const offers = [
 ];
 
 const FeaturedOffers = () => {
-  const { buyNow, processing } = useRazorpay();
+  const { dialogOpen, currentProduct, processing, startCheckout, handleConfirmCheckout, handleCloseDialog } = useCheckout();
 
   const handleBuyNow = (offer: typeof offers[0]) => {
-    const amountInRupees = parseInt(offer.price.replace(/[^\d]/g, '')) || 0;
-    const amountInPaise = amountInRupees * 100;
-    buyNow({ 
-      amountInPaise, 
+    const price = parseInt(offer.price.replace(/[^\d]/g, '')) || 0;
+    startCheckout({ 
       name: offer.title, 
+      price,
       description: offer.description 
     });
   };
@@ -97,13 +97,21 @@ const FeaturedOffers = () => {
                   disabled={processing}
                   className="w-full mt-6 bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground font-inter font-semibold transition-all disabled:opacity-50"
                 >
-                  {processing ? "Processing..." : "Buy Now"}
+                  Buy Now
                 </Button>
               </Card>
             );
           })}
         </div>
       </div>
+      <CheckoutDialog
+        open={dialogOpen}
+        onOpenChange={handleCloseDialog}
+        productName={currentProduct?.name || ""}
+        price={currentProduct?.price || 0}
+        onConfirm={handleConfirmCheckout}
+        processing={processing}
+      />
     </section>
   );
 };

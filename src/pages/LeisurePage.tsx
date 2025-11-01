@@ -2,12 +2,13 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useRazorpay } from "@/hooks/use-razorpay";
+import { useCheckout } from "@/hooks/use-checkout";
+import { CheckoutDialog } from "@/components/CheckoutDialog";
 import baliTripImg from "@/assets/bali-trip.jpg";
 import karmicMeditationImg from "@/assets/karmic-meditation.jpg";
 
 const LeisurePage = () => {
-  const { buyNow, processing } = useRazorpay();
+  const { dialogOpen, currentProduct, processing, startCheckout, handleConfirmCheckout, handleCloseDialog } = useCheckout();
 
   const products = [
     {
@@ -56,11 +57,11 @@ const LeisurePage = () => {
                 </p>
                 <Button
                   size="lg"
-                  onClick={() => buyNow({ amountInPaise: product.price * 100, name: product.name, description: product.description })}
+                  onClick={() => startCheckout({ name: product.name, price: product.price, description: product.description })}
                   disabled={processing}
                   className="w-full"
                 >
-                  {processing ? "Processing..." : "Buy Now"}
+                  Buy Now
                 </Button>
               </div>
             </Card>
@@ -68,6 +69,14 @@ const LeisurePage = () => {
         </div>
       </main>
       <Footer />
+      <CheckoutDialog
+        open={dialogOpen}
+        onOpenChange={handleCloseDialog}
+        productName={currentProduct?.name || ""}
+        price={currentProduct?.price || 0}
+        onConfirm={handleConfirmCheckout}
+        processing={processing}
+      />
     </div>
   );
 };
