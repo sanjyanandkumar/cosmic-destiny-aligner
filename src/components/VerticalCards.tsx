@@ -7,8 +7,6 @@ const verticals = [
     icon: Sparkles,
     title: "BrahmaX Consulting",
     subtitle: "The Karmic Business Division",
-    description: "Scaling Destiny, Not Just Business.",
-    fullDescription: "BrahmaX Consulting helps founders, investors, and creators unlock the hidden timing and energy behind their ventures. Using astrological intelligence, cosmic strategy, and karmic analytics, we design business frameworks that align with your soul path and planetary cycles.",
     gradient: "from-purple-500/20 to-pink-500/20",
     link: "/consulting",
   },
@@ -16,8 +14,6 @@ const verticals = [
     icon: ShoppingBag,
     title: "BrahmaX Wardrobe",
     subtitle: "The Astro-Fashion Division",
-    description: "Wear Your Planets. Live Your Power.",
-    fullDescription: "BrahmaX Wardrobe is the world's first karmic fashion and lifestyle platform, curating collections that blend design, astrology, and consciousness. Each piece is energetically aligned — crafted with colors, fabrics, and symbols tuned to your zodiac, lagna, and planetary energies.",
     gradient: "from-blue-500/20 to-cyan-500/20",
     link: "/wardrobe",
   },
@@ -25,8 +21,6 @@ const verticals = [
     icon: GraduationCap,
     title: "EduSeam",
     subtitle: "The Passport to Conscious Learning",
-    description: "Education Reimagined as Evolution.",
-    fullDescription: "EduSeam is the learning and mentorship wing of BrahmaX, designed to bridge karmic awareness with real-world knowledge. Its flagship 'Passport Concept' empowers individuals to travel through subjects — from astrology and branding to global culture and purpose-driven entrepreneurship.",
     gradient: "from-amber-500/20 to-orange-500/20",
     link: "/eduseam",
   },
@@ -34,8 +28,6 @@ const verticals = [
     icon: Palmtree,
     title: "BrahmaX Leisure",
     subtitle: "The Karmic Wellness Division",
-    description: "Relaxation, Realigned.",
-    fullDescription: "BrahmaX Leisure redefines luxury wellness through the lens of karma. Each retreat, café, and experiential space blends astrology, spirituality, and indulgence to create transformational environments. Whether it's a karmic spa, astro-luxury retreat, or celestial dining experience, BrahmaX Leisure offers spaces where the soul can rest, realign, and rejuvenate.",
     gradient: "from-green-500/20 to-emerald-500/20",
     link: "/leisure",
   },
@@ -60,7 +52,7 @@ const VerticalCards = () => {
             return (
               <Link key={index} to={vertical.link}>
                 <Card
-                  className={`group p-8 bg-gradient-to-br ${vertical.gradient} backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300 hover:scale-105 cursor-pointer`}
+                  className={`group p-8 bg-gradient-to-br ${vertical.gradient} backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300 hover:scale-105 cursor-pointer h-full`}
                 >
                   <div className="space-y-4">
                     <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -71,16 +63,8 @@ const VerticalCards = () => {
                       {vertical.title}
                     </h3>
                     
-                    <p className="font-inter text-sm text-primary/80 mb-2">
+                    <p className="font-inter text-sm text-primary/80">
                       {vertical.subtitle}
-                    </p>
-                    
-                    <p className="font-inter font-semibold text-foreground mb-2">
-                      {vertical.description}
-                    </p>
-                    
-                    <p className="font-inter text-sm text-muted-foreground">
-                      {vertical.fullDescription}
                     </p>
                   </div>
                 </Card>

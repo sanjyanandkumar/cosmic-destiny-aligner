@@ -6,6 +6,28 @@ import { Card } from "@/components/ui/card";
 import { Star, ArrowRight } from "lucide-react";
 import { toast } from "sonner";
 
+// Enhanced email validation function
+const isValidEmail = (email: string): boolean => {
+  if (!email || email.trim() === "") return false;
+  
+  // More comprehensive email regex pattern
+  // Matches RFC 5322 compliant email addresses
+  const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+  
+  // Additional checks
+  if (email.length > 255) return false;
+  if (email.includes("..")) return false; // No consecutive dots
+  if (email.startsWith(".") || email.endsWith(".")) return false; // No leading/trailing dots
+  if (email.startsWith("@") || email.endsWith("@")) return false; // No leading/trailing @
+  
+  const parts = email.split("@");
+  if (parts.length !== 2) return false;
+  if (parts[0].length > 64) return false; // Local part max 64 chars
+  if (parts[1].length > 255) return false; // Domain part max 255 chars
+  
+  return emailRegex.test(email);
+};
+
 const LeadMagnetCTA = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -14,9 +36,45 @@ const LeadMagnetCTA = () => {
     place: "",
     email: "",
   });
+  const [emailError, setEmailError] = useState<string>("");
+  const [touchedFields, setTouchedFields] = useState<Record<string, boolean>>({});
+
+  const validateEmail = (email: string): string => {
+    if (!email || email.trim() === "") {
+      return "Email is required";
+    }
+    if (!isValidEmail(email)) {
+      return "Please enter a valid email address";
+    }
+    return "";
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setFormData({ ...formData, email: value });
+    
+    // Show validation error if field has been touched
+    if (touchedFields.email) {
+      setEmailError(validateEmail(value));
+    }
+  };
+
+  const handleEmailBlur = () => {
+    setTouchedFields({ ...touchedFields, email: true });
+    setEmailError(validateEmail(formData.email));
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Mark all fields as touched
+    setTouchedFields({
+      name: true,
+      email: true,
+      dob: true,
+      time: true,
+      place: true,
+    });
     
     // Basic validation
     if (!formData.name || !formData.dob || !formData.time || !formData.place || !formData.email) {
@@ -25,9 +83,10 @@ const LeadMagnetCTA = () => {
     }
 
     // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      toast.error("Please enter a valid email address");
+    const emailValidationError = validateEmail(formData.email);
+    if (emailValidationError) {
+      setEmailError(emailValidationError);
+      toast.error(emailValidationError);
       return;
     }
 
@@ -42,6 +101,8 @@ const LeadMagnetCTA = () => {
       place: "",
       email: "",
     });
+    setEmailError("");
+    setTouchedFields({});
   };
 
   return (
@@ -102,9 +163,19 @@ const LeadMagnetCTA = () => {
                     type="email"
                     placeholder="your@email.com"
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="bg-background/50 border-cosmic-blue/30"
+                    onChange={handleEmailChange}
+                    onBlur={handleEmailBlur}
+                    className={`bg-background/50 border-cosmic-blue/30 ${
+                      emailError ? "border-destructive focus-visible:ring-destructive" : ""
+                    }`}
+                    aria-invalid={emailError ? "true" : "false"}
+                    aria-describedby={emailError ? "email-error" : undefined}
                   />
+                  {emailError && (
+                    <p id="email-error" className="text-sm text-destructive mt-1">
+                      {emailError}
+                    </p>
+                  )}
                 </div>
               </div>
 

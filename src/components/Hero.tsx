@@ -50,7 +50,7 @@ const Hero = () => {
               </Button>
             </Link>
             
-            <Link to="/verticals">
+            <Link to="/#verticals">
               <Button 
                 size="lg" 
                 variant="outline" 

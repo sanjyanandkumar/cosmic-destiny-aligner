@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,10 +9,73 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { toast } from "@/hooks/use-toast";
 
+// Enhanced email validation function matching RFC 5322 standards
+const validateEmail = (email: string): boolean => {
+  if (!email || email.trim() === "") return false;
+  
+  // Comprehensive email regex pattern
+  const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+  
+  // Additional checks
+  if (email.length > 255) return false;
+  if (email.includes("..")) return false; // No consecutive dots
+  if (email.startsWith(".") || email.endsWith(".")) return false; // No leading/trailing dots
+  if (email.startsWith("@") || email.endsWith("@")) return false; // No leading/trailing @
+  
+  const parts = email.split("@");
+  if (parts.length !== 2) return false;
+  if (parts[0].length > 64) return false; // Local part max 64 chars
+  if (parts[1].length > 255) return false; // Domain part max 255 chars
+  
+  return emailRegex.test(email);
+};
+
+// Indian mobile phone validation function
+const validateIndianPhone = (phone: string): boolean => {
+  if (!phone || phone.trim() === "") return false;
+  
+  // Remove all spaces and special characters except + and digits
+  const cleaned = phone.replace(/\s+/g, "");
+  
+  // Check if it starts with +91 or 91 and remove country code
+  let phoneNumber = cleaned;
+  if (cleaned.startsWith("+91")) {
+    phoneNumber = cleaned.substring(3);
+  } else if (cleaned.startsWith("91") && cleaned.length > 10) {
+    phoneNumber = cleaned.substring(2);
+  }
+  
+  // Remove any remaining non-digit characters
+  phoneNumber = phoneNumber.replace(/\D/g, "");
+  
+  // Indian mobile numbers must be exactly 10 digits
+  if (phoneNumber.length !== 10) return false;
+  
+  // Must start with 6, 7, 8, or 9 (Indian mobile number series)
+  const firstDigit = phoneNumber.charAt(0);
+  if (!["6", "7", "8", "9"].includes(firstDigit)) return false;
+  
+  // All characters must be digits
+  return /^\d{10}$/.test(phoneNumber);
+};
+
 const checkoutSchema = z.object({
   name: z.string().trim().min(2, "Name must be at least 2 characters").max(100, "Name too long"),
-  email: z.string().trim().email("Invalid email address").max(255, "Email too long"),
-  phone: z.string().trim().min(10, "Phone must be at least 10 digits").max(15, "Phone too long"),
+  email: z
+    .string()
+    .trim()
+    .min(1, "Email is required")
+    .max(255, "Email address is too long")
+    .refine((email) => validateEmail(email), {
+      message: "Please enter a valid email address",
+    }),
+  phone: z
+    .string()
+    .trim()
+    .min(1, "Phone number is required")
+    .refine((phone) => validateIndianPhone(phone), {
+      message: "Please enter a valid 10-digit Indian mobile number (starting with 6, 7, 8, or 9)",
+    }),
   address: z.string().trim().min(10, "Address must be at least 10 characters").max(500, "Address too long"),
 });
 
@@ -42,9 +105,37 @@ export const CheckoutDialog = ({
     reset,
   } = useForm<CheckoutFormData>({
     resolver: zodResolver(checkoutSchema),
+    mode: "onBlur", // Validate on blur for better UX
   });
 
+  // Reset form when dialog closes
+  useEffect(() => {
+    if (!open) {
+      reset();
+    }
+  }, [open, reset]);
+
   const onSubmit = (data: CheckoutFormData) => {
+    // Additional email validation check before submission
+    if (!validateEmail(data.email)) {
+      toast({
+        title: "Invalid Email",
+        description: "Please enter a valid email address",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    // Additional phone validation check before submission
+    if (!validateIndianPhone(data.phone)) {
+      toast({
+        title: "Invalid Phone Number",
+        description: "Please enter a valid 10-digit Indian mobile number",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     onConfirm(data);
   };
 
@@ -79,10 +170,22 @@ export const CheckoutDialog = ({
               type="email"
               {...register("email")}
               placeholder="your.email@example.com"
-              className={errors.email ? "border-destructive" : ""}
+              className={
+                errors.email
+                  ? "border-destructive focus-visible:ring-destructive"
+                  : ""
+              }
+              aria-invalid={errors.email ? "true" : "false"}
+              aria-describedby={errors.email ? "email-error" : undefined}
             />
             {errors.email && (
-              <p className="text-sm text-destructive mt-1">{errors.email.message}</p>
+              <p
+                id="email-error"
+                className="text-sm text-destructive mt-1"
+                role="alert"
+              >
+                {errors.email.message}
+              </p>
             )}
           </div>
 
@@ -90,13 +193,29 @@ export const CheckoutDialog = ({
             <Label htmlFor="phone">Phone Number *</Label>
             <Input
               id="phone"
+              type="tel"
               {...register("phone")}
-              placeholder="+91 XXXXXXXXXX"
-              className={errors.phone ? "border-destructive" : ""}
+              placeholder="+91 9876543210 or 9876543210"
+              className={
+                errors.phone
+                  ? "border-destructive focus-visible:ring-destructive"
+                  : ""
+              }
+              aria-invalid={errors.phone ? "true" : "false"}
+              aria-describedby={errors.phone ? "phone-error" : undefined}
             />
             {errors.phone && (
-              <p className="text-sm text-destructive mt-1">{errors.phone.message}</p>
+              <p
+                id="phone-error"
+                className="text-sm text-destructive mt-1"
+                role="alert"
+              >
+                {errors.phone.message}
+              </p>
             )}
+            <p className="text-xs text-muted-foreground mt-1">
+              Enter 10-digit Indian mobile number (starts with 6, 7, 8, or 9)
+            </p>
           </div>
 
           <div>

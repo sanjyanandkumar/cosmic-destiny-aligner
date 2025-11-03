@@ -67,6 +67,7 @@ export function useCheckout() {
       name: currentProduct.name,
       description: currentProduct.description,
       buyerDetails: details,
+      productId: currentProduct.productId,
     });
 
     setDialogOpen(false);

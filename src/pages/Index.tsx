@@ -1,6 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import HowItWorks from "@/components/HowItWorks";
+import VerticalCards from "@/components/VerticalCards";
 import LeadMagnetCTA from "@/components/LeadMagnetCTA";
 import FeaturedOffers from "@/components/FeaturedOffers";
 import Footer from "@/components/Footer";
@@ -10,6 +11,7 @@ const Index = () => {
     <div className="min-h-screen bg-background font-inter">
       <Navigation />
       <Hero />
+      <VerticalCards />
       <HowItWorks />
       <LeadMagnetCTA />
       <FeaturedOffers />
