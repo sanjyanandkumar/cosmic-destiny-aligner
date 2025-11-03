@@ -29,26 +29,24 @@ const Hero = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <h1 className="font-playfair text-5xl md:text-7xl font-bold text-foreground leading-tight">
-            Where Karma{" "}
+            BrahmaX —{" "}
             <span className="bg-gradient-gold bg-clip-text text-transparent">
-              Builds Kingdoms
+              Designed by the Stars, Executed by Strategy
             </span>
           </h1>
           
           <p className="font-inter text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
-            BrahmaX is not just a brand — it's a spiritual architecture for wealth, destiny, and evolution. Born at the intersection of luxury, astrology, and global enterprise, we decode the karmic blueprint behind success.
+            Cosmic intelligence for your style, business, education and journeys.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-            <Link to="/about">
-              <Button 
-                size="lg" 
-                className="bg-primary text-primary-foreground hover:bg-primary/90 font-inter font-semibold text-lg px-8 py-6 shadow-cosmic"
-              >
-                Enter the Realm
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
+            <Button 
+              size="lg" 
+              className="bg-primary text-primary-foreground hover:bg-primary/90 font-inter font-semibold text-lg px-8 py-6 shadow-cosmic"
+            >
+              Get Your Free Karmic Outfit Snapshot
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
             
             <Link to="/#verticals">
               <Button 
@@ -56,7 +54,7 @@ const Hero = () => {
                 variant="outline" 
                 className="border-primary text-foreground hover:bg-primary/10 font-inter font-semibold text-lg px-8 py-6"
               >
-                Explore the Divisions
+                Explore Verticals
               </Button>
             </Link>
           </div>

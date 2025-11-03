@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
+import TrustProof from "@/components/TrustProof";
 import HowItWorks from "@/components/HowItWorks";
 import VerticalCards from "@/components/VerticalCards";
 import LeadMagnetCTA from "@/components/LeadMagnetCTA";
@@ -11,6 +12,7 @@ const Index = () => {
     <div className="min-h-screen bg-background font-inter">
       <Navigation />
       <Hero />
+      <TrustProof />
       <VerticalCards />
       <HowItWorks />
       <LeadMagnetCTA />
