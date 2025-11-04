@@ -14,6 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
+        sans: ["Indie Flower", "cursive"],
         playfair: ["Playfair Display", "serif"],
         inter: ["Inter", "sans-serif"],
       },

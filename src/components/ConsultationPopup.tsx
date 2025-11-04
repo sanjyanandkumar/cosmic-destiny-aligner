@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,30 +7,17 @@ import { useRazorpay } from "@/hooks/use-razorpay";
 import { useToast } from "@/hooks/use-toast";
 import { Sparkles } from "lucide-react";
 
-const ConsultationPopup = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [hasShown, setHasShown] = useState(false);
+interface ConsultationPopupProps {
+  isOpen: boolean;
+  onOpenChange: (open: boolean) => void;
+}
+
+const ConsultationPopup = ({ isOpen, onOpenChange }: ConsultationPopupProps) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const { buyNow, processing } = useRazorpay();
   const { toast } = useToast();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const windowHeight = window.innerHeight;
-
-      // Show popup after scrolling down 50% of viewport height
-      if (scrollPosition > windowHeight * 0.5 && !hasShown) {
-        setIsOpen(true);
-        setHasShown(true);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [hasShown]);
 
   const handleBookConsultation = async () => {
     if (!name || !email || !phone) {
@@ -59,14 +46,14 @@ const ConsultationPopup = () => {
         title: "Consultation Booked!",
         description: "You will receive confirmation details shortly.",
       });
-      setIsOpen(false);
+      onOpenChange(false);
     } catch (error) {
       console.error("Payment failed:", error);
     }
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md bg-card border-primary/30">
         <DialogHeader>
           <div className="flex items-center justify-center mb-4">
@@ -122,7 +109,7 @@ const ConsultationPopup = () => {
           <div className="flex gap-3 mt-6">
             <Button
               variant="outline"
-              onClick={() => setIsOpen(false)}
+              onClick={() => onOpenChange(false)}
               className="flex-1 border-primary/30 hover:bg-primary/10"
             >
               Maybe Later

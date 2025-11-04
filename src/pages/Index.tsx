@@ -7,14 +7,14 @@ import VerticalsShowcase from "@/components/VerticalsShowcase";
 import FeaturedOffers from "@/components/FeaturedOffers";
 import Footer from "@/components/Footer";
 import ScrollNavigation from "@/components/ScrollNavigation";
-import ConsultationPopup from "@/components/ConsultationPopup";
+import FloatingConsultationButton from "@/components/FloatingConsultationButton";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background font-inter">
+    <div className="min-h-screen bg-background">
       <Navigation />
       <ScrollNavigation />
-      <ConsultationPopup />
+      <FloatingConsultationButton />
       <div id="hero">
         <Hero />
       </div>
