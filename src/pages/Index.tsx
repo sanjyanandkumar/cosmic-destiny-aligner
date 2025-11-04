@@ -3,20 +3,32 @@ import Hero from "@/components/Hero";
 import TrustProof from "@/components/TrustProof";
 import HowItWorks from "@/components/HowItWorks";
 import VerticalCards from "@/components/VerticalCards";
-import LeadMagnetCTA from "@/components/LeadMagnetCTA";
+import VerticalsShowcase from "@/components/VerticalsShowcase";
 import FeaturedOffers from "@/components/FeaturedOffers";
 import Footer from "@/components/Footer";
+import ScrollNavigation from "@/components/ScrollNavigation";
+import ConsultationPopup from "@/components/ConsultationPopup";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background font-inter">
       <Navigation />
-      <Hero />
-      <TrustProof />
+      <ScrollNavigation />
+      <ConsultationPopup />
+      <div id="hero">
+        <Hero />
+      </div>
+      <div id="trust">
+        <TrustProof />
+      </div>
       <VerticalCards />
-      <HowItWorks />
-      <LeadMagnetCTA />
-      <FeaturedOffers />
+      <VerticalsShowcase />
+      <div id="how-it-works">
+        <HowItWorks />
+      </div>
+      <div id="offers">
+        <FeaturedOffers />
+      </div>
       <Footer />
     </div>
   );

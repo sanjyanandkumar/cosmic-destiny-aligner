@@ -38,9 +38,6 @@ const Navigation = () => {
                 {link.name}
               </Link>
             ))}
-            <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90 font-inter font-semibold">
-              Free Snapshot
-            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -65,9 +62,6 @@ const Navigation = () => {
                 {link.name}
               </Link>
             ))}
-            <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-inter font-semibold">
-              Free Snapshot
-            </Button>
           </div>
         )}
       </div>
