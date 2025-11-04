@@ -49,9 +49,9 @@ const FeaturedOffers = () => {
   };
 
   return (
-    <section className="py-24 bg-cosmic-indigo relative">
+    <section className="py-14 bg-cosmic-indigo relative">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <h2 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">
             Featured Offerings
           </h2>

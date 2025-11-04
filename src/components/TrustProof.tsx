@@ -51,10 +51,10 @@ const TrustProof = () => {
   };
 
   return (
-    <section className="py-24 bg-secondary/20">
+    <section className="py-14 bg-secondary/20">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <h2 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">
             Trusted by{" "}
             <span className="bg-gradient-gold bg-clip-text text-transparent">
@@ -136,22 +136,7 @@ const TrustProof = () => {
           </Card>
         </div>
 
-        {/* Brand Mentions */}
-        <div className="text-center">
-          <p className="font-inter text-sm uppercase tracking-wider text-muted-foreground mb-8">
-            As Featured In
-          </p>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-            {brands.map((brand, index) => (
-              <div
-                key={index}
-                className="font-playfair text-xl md:text-2xl font-semibold text-foreground/60 hover:text-primary transition-colors"
-              >
-                {brand}
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* Brand Mentions removed as requested */}
       </div>
     </section>
   );

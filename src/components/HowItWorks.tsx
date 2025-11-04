@@ -20,9 +20,9 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section className="py-24 bg-gradient-celestial relative">
+    <section className="py-14 bg-gradient-celestial relative">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <h2 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">
             How BrahmaX Works
           </h2>

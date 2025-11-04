@@ -34,9 +34,13 @@ const WardrobePage = () => {
             BrahmaX Wardrobe
           </h1>
           <p className="text-xl text-muted-foreground">The Astro-Fashion Division</p>
-          <p className="mt-4 text-lg max-w-3xl mx-auto">
-            Wear Your Planets. Live Your Power. The world's first karmic fashion and lifestyle platform, curating collections that blend design, astrology, and consciousness.
+          <p className="mt-6 text-2xl font-semibold max-w-3xl mx-auto">
+            Wear Your Planets. Live Your Power.
           </p>
+          <p className="mt-4 text-lg max-w-3xl mx-auto text-muted-foreground">
+            BrahmaX Wardrobe is the world’s first karmic fashion and lifestyle platform, curating collections that blend design, astrology, and consciousness. Each piece is energetically aligned — crafted with colors, fabrics, and symbols tuned to your zodiac, lagna, and planetary energies. More than fashion, it’s cosmic alignment in wearable form.
+          </p>
+          <p className="mt-4 text-lg italic text-primary">“Style that heals. Luxury that vibrates.”</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">

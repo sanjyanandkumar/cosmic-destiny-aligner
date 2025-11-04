@@ -34,9 +34,13 @@ const LeisurePage = () => {
             BrahmaX Leisure
           </h1>
           <p className="text-xl text-muted-foreground">The Karmic Wellness Division</p>
-          <p className="mt-4 text-lg max-w-3xl mx-auto">
-            Relaxation, Realigned. BrahmaX Leisure redefines luxury wellness through the lens of karma, creating transformational environments where the soul can rest, realign, and rejuvenate.
+          <p className="mt-6 text-2xl font-semibold max-w-3xl mx-auto">
+            Relaxation, Realigned.
           </p>
+          <p className="mt-4 text-lg max-w-3xl mx-auto text-muted-foreground">
+            BrahmaX Leisure redefines luxury wellness through the lens of karma. Each retreat, café, and experiential space — including the visionary Petty Shop – Karmic Café by Abi — blends astrology, spirituality, and indulgence to create transformational environments. Whether it’s a karmic spa, astro-luxury retreat, or celestial dining experience, BrahmaX Leisure offers spaces where the soul can rest, realign, and rejuvenate.
+          </p>
+          <p className="mt-4 text-lg italic text-primary">“Wellness isn’t an escape — it’s a return to your divine frequency.”</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">

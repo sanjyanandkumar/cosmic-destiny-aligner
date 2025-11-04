@@ -25,9 +25,13 @@ const EduSeamPage = () => {
             EduSeam
           </h1>
           <p className="text-xl text-muted-foreground">The Passport to Conscious Learning</p>
-          <p className="mt-4 text-lg max-w-3xl mx-auto">
-            Education Reimagined as Evolution. EduSeam empowers individuals to travel through subjects — from astrology and branding to global culture and purpose-driven entrepreneurship.
+          <p className="mt-6 text-2xl font-semibold max-w-3xl mx-auto">
+            Education Reimagined as Evolution.
           </p>
+          <p className="mt-4 text-lg max-w-3xl mx-auto text-muted-foreground">
+            EduSeam is the learning and mentorship wing of BrahmaX, designed to bridge karmic awareness with real-world knowledge. Its flagship “Passport Concept” empowers individuals to travel through subjects — from astrology and branding to global culture and purpose-driven entrepreneurship. Each course is an initiation — a journey into discovering one’s unique dharma and how to translate it into meaningful work.
+          </p>
+          <p className="mt-4 text-lg italic text-primary">“We don’t teach — we awaken.”</p>
         </div>
 
         <div className="max-w-4xl mx-auto">

@@ -106,7 +106,7 @@ const LeadMagnetCTA = () => {
   };
 
   return (
-    <section className="py-24 bg-gradient-solar relative overflow-hidden">
+    <section className="py-14 bg-gradient-solar relative overflow-hidden">
       <div className="absolute inset-0 opacity-10">
         {[...Array(30)].map((_, i) => (
           <Star
@@ -125,7 +125,7 @@ const LeadMagnetCTA = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">
               Get Your Free{" "}
               <span className="bg-gradient-gold bg-clip-text text-transparent">

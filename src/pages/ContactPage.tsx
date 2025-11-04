@@ -14,48 +14,36 @@ const ContactPage = () => {
                 Contact & Collaborate
               </h1>
               <p className="font-inter text-xl text-primary italic mb-6">
-                "If you've felt the pull, it's already karmic."
+                “If you’ve felt the pull, it’s already karmic.”
               </p>
               <p className="font-inter text-lg text-muted-foreground max-w-2xl mx-auto">
-                BrahmaX collaborates with leaders, creators, investors, and seekers who wish to build ventures and experiences aligned with higher consciousness.
+                BrahmaX collaborates with leaders, creators, investors, and seekers who wish to build ventures and experiences aligned with higher consciousness. Whether you wish to consult, co-create, or partner, our doors are open to those who resonate with the BrahmaX frequency.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-              <div className="bg-card/30 backdrop-blur-sm border border-cosmic-blue/30 rounded-lg p-6 text-center">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/20 flex items-center justify-center">
-                  <MapPin className="h-8 w-8 text-primary" />
+            <div className="bg-card/30 backdrop-blur-sm border border-cosmic-blue/30 rounded-lg p-8 mb-12">
+              <h3 className="font-playfair text-2xl font-bold text-foreground mb-6 text-center">Connect With Us</h3>
+              <div className="space-y-4 max-w-2xl mx-auto">
+                <div className="flex items-start gap-3">
+                  <MapPin className="h-5 w-5 text-primary mt-1" />
+                  <p className="font-inter text-foreground"><span className="text-muted-foreground">Headquarters:</span> Bengaluru, India</p>
                 </div>
-                <h3 className="font-playfair text-lg font-bold text-foreground mb-3">
-                  Headquarters
-                </h3>
-                <p className="font-inter text-sm text-muted-foreground">
-                  Bengaluru, India
-                </p>
-              </div>
-
-              <div className="bg-card/30 backdrop-blur-sm border border-cosmic-blue/30 rounded-lg p-6 text-center">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/20 flex items-center justify-center">
-                  <Mail className="h-8 w-8 text-primary" />
+                <div className="flex items-start gap-3">
+                  <Mail className="h-5 w-5 text-primary mt-1" />
+                  <p className="font-inter text-foreground"><span className="text-muted-foreground">Website:</span> www.brahmax.in (placeholder)</p>
                 </div>
-                <h3 className="font-playfair text-lg font-bold text-foreground mb-3">
-                  Email
-                </h3>
-                <p className="font-inter text-sm text-muted-foreground">
-                  connect@brahmax.in
-                </p>
-              </div>
-
-              <div className="bg-card/30 backdrop-blur-sm border border-cosmic-blue/30 rounded-lg p-6 text-center">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/20 flex items-center justify-center">
-                  <Phone className="h-8 w-8 text-primary" />
+                <div className="flex items-start gap-3">
+                  <Mail className="h-5 w-5 text-primary mt-1" />
+                  <p className="font-inter text-foreground"><span className="text-muted-foreground">Email:</span> connect@brahmax.in</p>
                 </div>
-                <h3 className="font-playfair text-lg font-bold text-foreground mb-3">
-                  Consultations
-                </h3>
-                <p className="font-inter text-sm text-muted-foreground">
-                  Available by appointment only
-                </p>
+                <div className="flex items-start gap-3">
+                  <Phone className="h-5 w-5 text-primary mt-1" />
+                  <p className="font-inter text-foreground"><span className="text-muted-foreground">Collaborations & Consultations:</span> Available by appointment only</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Mail className="h-5 w-5 text-primary mt-1" />
+                  <p className="font-inter text-foreground"><span className="text-muted-foreground">Follow the Journey:</span> @BrahmaX.official (Instagram) | @KetteTalksByAbi (LinkedIn)</p>
+                </div>
               </div>
             </div>
 
@@ -64,7 +52,7 @@ const ContactPage = () => {
                 The Invitation
               </h3>
               <p className="font-inter text-lg text-muted-foreground leading-relaxed">
-                "If our vision resonates with your vibration, that's your sign from the cosmos. Let's build not just businesses — but blueprints for destiny."
+                “If our vision resonates with your vibration, that’s your sign from the cosmos. Let’s build not just businesses — but blueprints for destiny.”
               </p>
             </div>
           </div>
