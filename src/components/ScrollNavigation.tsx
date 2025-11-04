@@ -55,7 +55,7 @@ const ScrollNavigation = () => {
                 }`}
               />
               <span
-                className={`text-xs font-inter transition-all duration-300 opacity-0 group-hover:opacity-100 ${
+                className={`text-xs transition-all duration-300 opacity-0 group-hover:opacity-100 ${
                   activeSection === section.id
                     ? "text-primary opacity-100"
                     : "text-muted-foreground"

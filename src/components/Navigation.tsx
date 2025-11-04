@@ -22,7 +22,7 @@ const Navigation = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <Sparkles className="h-8 w-8 text-primary" />
-            <span className="font-playfair text-2xl font-bold bg-gradient-gold bg-clip-text text-transparent">
+            <span className="text-2xl font-bold bg-gradient-gold bg-clip-text text-transparent">
               BrahmaX
             </span>
           </Link>
@@ -33,7 +33,7 @@ const Navigation = () => {
               <Link
                 key={link.name}
                 to={link.href}
-                className="text-foreground hover:text-primary transition-colors font-inter text-sm font-medium"
+                className="text-foreground hover:text-primary transition-colors text-sm font-medium"
               >
                 {link.name}
               </Link>
@@ -56,7 +56,7 @@ const Navigation = () => {
               <Link
                 key={link.name}
                 to={link.href}
-                className="block text-foreground hover:text-primary transition-colors font-inter"
+                className="block text-foreground hover:text-primary transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 {link.name}

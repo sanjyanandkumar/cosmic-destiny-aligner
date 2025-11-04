@@ -61,7 +61,7 @@ const ConsultationPopup = ({ isOpen, onOpenChange }: ConsultationPopupProps) => 
               <Sparkles className="h-8 w-8 text-primary" />
             </div>
           </div>
-          <DialogTitle className="font-playfair text-2xl text-center text-foreground">
+          <DialogTitle className="text-2xl text-center text-foreground">
             Consultation with the Founder
           </DialogTitle>
           <DialogDescription className="text-center text-muted-foreground">

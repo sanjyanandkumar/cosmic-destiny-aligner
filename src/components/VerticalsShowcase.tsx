@@ -43,10 +43,10 @@ const VerticalsShowcase = () => {
     <section id="showcase" className="py-20 bg-background relative">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
             Explore Our Services
           </h2>
-          <p className="font-inter text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Scroll through our cosmic offerings and book your transformation
           </p>
         </div>
@@ -70,19 +70,19 @@ const VerticalsShowcase = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-cosmic-black/90 via-cosmic-black/50 to-transparent" />
                     <div className="absolute bottom-0 left-0 right-0 p-6">
-                      <h3 className="font-playfair text-2xl font-bold text-foreground mb-1">
+                      <h3 className="text-2xl font-bold text-foreground mb-1">
                         {vertical.title}
                       </h3>
-                      <p className="font-inter text-sm text-primary/80 mb-2">
+                      <p className="text-sm text-primary/80 mb-2">
                         {vertical.subtitle}
                       </p>
-                      <p className="font-inter text-xs text-muted-foreground mb-4">
+                      <p className="text-xs text-muted-foreground mb-4">
                         {vertical.description}
                       </p>
                       <Link to={vertical.link}>
                         <Button
                           size="sm"
-                          className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-inter font-semibold"
+                          className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold"
                         >
                           Book Now
                         </Button>

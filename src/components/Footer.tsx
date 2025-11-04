@@ -17,11 +17,11 @@ const Footer = () => {
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <Sparkles className="h-8 w-8 text-primary" />
-              <span className="font-playfair text-2xl font-bold bg-gradient-gold bg-clip-text text-transparent">
+              <span className="text-2xl font-bold bg-gradient-gold bg-clip-text text-transparent">
                 BrahmaX
               </span>
             </div>
-            <p className="font-inter text-muted-foreground">
+            <p className="text-muted-foreground">
               Where Karma Builds Kingdoms. A spiritual architecture for wealth, destiny, and evolution.
             </p>
             <div className="flex space-x-4">
@@ -42,10 +42,10 @@ const Footer = () => {
 
           {/* Verticals */}
           <div>
-            <h3 className="font-playfair text-lg font-bold text-foreground mb-4">
+            <h3 className="text-lg font-bold text-foreground mb-4">
               Verticals
             </h3>
-            <ul className="space-y-2 font-inter text-muted-foreground">
+            <ul className="space-y-2 text-muted-foreground">
               <li>
                 <a href="#verticals" className="hover:text-primary transition-colors">
                   BrahmaX Consulting
@@ -71,10 +71,10 @@ const Footer = () => {
 
           {/* Company */}
           <div>
-            <h3 className="font-playfair text-lg font-bold text-foreground mb-4">
+            <h3 className="text-lg font-bold text-foreground mb-4">
               Company
             </h3>
-            <ul className="space-y-2 font-inter text-muted-foreground">
+            <ul className="space-y-2 text-muted-foreground">
               <li>
                 <a href="#about" className="hover:text-primary transition-colors">
                   About BrahmaX
@@ -95,14 +95,14 @@ const Footer = () => {
 
           {/* Newsletter */}
           <div>
-            <h3 className="font-playfair text-lg font-bold text-foreground mb-4">
+            <h3 className="text-lg font-bold text-foreground mb-4">
               Contact
             </h3>
-            <div className="space-y-2 font-inter text-muted-foreground mb-4">
+            <div className="space-y-2 text-muted-foreground mb-4">
               <p>Bengaluru, India</p>
               <p>connect@brahmax.in</p>
             </div>
-            <p className="font-inter text-sm text-muted-foreground mb-4">
+            <p className="text-sm text-muted-foreground mb-4">
               "If you've felt the pull, it's already karmic."
             </p>
             <div className="flex space-x-4">
@@ -122,10 +122,10 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-cosmic-blue/30">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="font-inter text-sm text-muted-foreground">
+            <p className="text-sm text-muted-foreground">
               © 2025 DarkShadow Ventures LLP. All rights reserved.
             </p>
-            <p className="font-inter text-sm text-muted-foreground">
+            <p className="text-sm text-muted-foreground">
               Designed by the stars, executed by strategy.
             </p>
           </div>
