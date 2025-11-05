@@ -36,41 +36,11 @@ const Hero = () => {
           </h1>
           
           <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
-            Cosmic intelligence for your style, business, education and journeys.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-            <Button 
-              size="lg" 
-              className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-lg px-8 py-6 shadow-cosmic"
-            >
-              Get Your Free Karmic Outfit Snapshot
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            
-            <Link to="/#verticals">
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="border-primary text-foreground hover:bg-primary/10 font-semibold text-lg px-8 py-6"
-              >
-                Explore Verticals
-              </Button>
-            </Link>
-          </div>
-
-          <p className="text-sm text-muted-foreground pt-2">
-            Instant snapshot. No charge. 60s.
+            Where Karma Builds Kingdoms
           </p>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-primary rounded-full flex items-start justify-center p-2">
-          <div className="w-1 h-3 bg-primary rounded-full"></div>
-        </div>
-      </div>
     </section>
   );
 };
