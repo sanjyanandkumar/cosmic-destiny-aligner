@@ -5,6 +5,7 @@ import HowItWorks from "@/components/HowItWorks";
 import VerticalCards from "@/components/VerticalCards";
 import VerticalsShowcase from "@/components/VerticalsShowcase";
 import FeaturedOffers from "@/components/FeaturedOffers";
+import KarmaKingdomsShowcase from "@/components/KarmaKingdomsShowcase";
 import Footer from "@/components/Footer";
 import ScrollNavigation from "@/components/ScrollNavigation";
 import FloatingConsultationButton from "@/components/FloatingConsultationButton";
@@ -23,6 +24,7 @@ const Index = () => {
       </div>
       <VerticalCards />
       <VerticalsShowcase />
+      <KarmaKingdomsShowcase />
       <div id="how-it-works">
         <HowItWorks />
       </div>

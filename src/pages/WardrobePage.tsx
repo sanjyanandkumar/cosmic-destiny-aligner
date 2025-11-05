@@ -1,23 +1,21 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { useCheckout } from "@/hooks/use-checkout";
-import { CheckoutDialog } from "@/components/CheckoutDialog";
+import { Link } from "react-router-dom";
 import cosmicWalletImg from "@/assets/cosmic-wallet.jpg";
 import cosmicHandbagImg from "@/assets/cosmic-handbag.jpg";
 
 const WardrobePage = () => {
-  const { dialogOpen, currentProduct, processing, startCheckout, handleConfirmCheckout, handleCloseDialog } = useCheckout();
-
   const products = [
     {
+      id: "cosmic-wallet",
       name: "Cosmic Wallet",
       price: 400,
       description: "Luxury astro-fashion wallet with cosmic patterns and zodiac symbols.",
       image: cosmicWalletImg,
     },
     {
+      id: "celestial-handbag",
       name: "Celestial Handbag",
       price: 1000,
       description: "Premium astro-fashion handbag with celestial patterns and star symbols.",
@@ -45,42 +43,28 @@ const WardrobePage = () => {
 
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {products.map((product) => (
-            <Card key={product.name} className="overflow-hidden hover:shadow-xl transition-shadow duration-300">
-              <div className="relative h-[300px] overflow-hidden">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <h2 className="text-2xl font-bold mb-3">{product.name}</h2>
-                <p className="text-muted-foreground mb-4">{product.description}</p>
-                <p className="text-3xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-                  ₹{product.price.toLocaleString()}
-                </p>
-                <Button
-                  size="lg"
-                  onClick={() => startCheckout({ name: product.name, price: product.price, description: product.description })}
-                  disabled={processing}
-                  className="w-full"
-                >
-                  Buy Now
-                </Button>
-              </div>
-            </Card>
+            <Link key={product.id} to={`/wardrobe/${product.id}`}>
+              <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer group">
+                <div className="relative h-[300px] overflow-hidden">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-6">
+                  <h2 className="text-2xl font-bold mb-3">{product.name}</h2>
+                  <p className="text-muted-foreground mb-4">{product.description}</p>
+                  <p className="text-3xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+                    ₹{product.price.toLocaleString()}
+                  </p>
+                </div>
+              </Card>
+            </Link>
           ))}
         </div>
       </main>
       <Footer />
-      <CheckoutDialog
-        open={dialogOpen}
-        onOpenChange={handleCloseDialog}
-        productName={currentProduct?.name || ""}
-        price={currentProduct?.price || 0}
-        onConfirm={handleConfirmCheckout}
-        processing={processing}
-      />
     </div>
   );
 };
