@@ -1,25 +1,11 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
 
@@ -45,106 +31,93 @@ export default function AdminPage() {
   }, []);
 
   const checkAdminStatus = async () => {
-    try {
-      const { data: { user } } = await supabase.auth.getUser();
-      
-      if (!user) {
-        toast({
-          title: "Unauthorized",
-          description: "Please log in to access this page.",
-          variant: "destructive",
-        });
-        navigate("/");
-        return;
-      }
-
-      const { data: roleData, error: roleError } = await supabase
-        .from("user_roles")
-        .select("role")
-        .eq("user_id", user.id)
-        .eq("role", "admin")
-        .maybeSingle();
-
-      if (roleError) {
-        console.error("Error checking admin status:", roleError);
-      }
-
-      if (!roleData) {
-        toast({
-          title: "Access Denied",
-          description: "You don't have permission to access this page.",
-          variant: "destructive",
-        });
-        navigate("/");
-        return;
-      }
-
-      setIsAdmin(true);
-      fetchOrders();
-    } catch (error) {
-      console.error("Error in admin check:", error);
+    const { data: { user } } = await supabase.auth.getUser();
+    
+    if (!user) {
+      toast({
+        title: "Unauthorized",
+        description: "Please log in to access this page.",
+        variant: "destructive",
+      });
       navigate("/");
+      return;
     }
+
+    const { data: roleData, error } = await supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", user.id)
+      .eq("role", "admin")
+      .maybeSingle();
+
+    if (error || !roleData) {
+      toast({
+        title: "Access Denied",
+        description: "You do not have admin privileges.",
+        variant: "destructive",
+      });
+      navigate("/");
+      return;
+    }
+
+    setIsAdmin(true);
+    fetchOrders();
   };
 
   const fetchOrders = async () => {
-    try {
-      setLoading(true);
-      const { data, error } = await supabase
-        .from("orders")
-        .select("*")
-        .order("created_at", { ascending: false });
+    setLoading(true);
+    const { data, error } = await supabase
+      .from("orders")
+      .select("*")
+      .order("created_at", { ascending: false });
 
-      if (error) throw error;
-      setOrders(data || []);
-    } catch (error) {
+    if (error) {
       console.error("Error fetching orders:", error);
       toast({
         title: "Error",
         description: "Failed to fetch orders.",
         variant: "destructive",
       });
-    } finally {
-      setLoading(false);
+    } else {
+      setOrders(data || []);
     }
+    setLoading(false);
   };
 
   const updateOrderStatus = async (orderId: string, newStatus: string) => {
-    try {
-      const { error } = await supabase
-        .from("orders")
-        .update({ status: newStatus })
-        .eq("id", orderId);
+    const { error } = await supabase
+      .from("orders")
+      .update({ status: newStatus })
+      .eq("id", orderId);
 
-      if (error) throw error;
-
-      toast({
-        title: "Success",
-        description: "Order status updated successfully.",
-      });
-
-      fetchOrders();
-    } catch (error) {
-      console.error("Error updating order:", error);
+    if (error) {
+      console.error("Error updating order status:", error);
       toast({
         title: "Error",
         description: "Failed to update order status.",
         variant: "destructive",
       });
+    } else {
+      toast({
+        title: "Success",
+        description: "Order status updated successfully.",
+      });
+      fetchOrders();
     }
   };
 
   const getStatusBadge = (status: string) => {
-    const variants: Record<string, "default" | "secondary" | "destructive"> = {
-      pending: "secondary",
+    const variants: Record<string, "default" | "secondary" | "destructive" | "outline"> = {
+      pending: "outline",
+      processing: "secondary",
       completed: "default",
-      failed: "destructive",
+      cancelled: "destructive",
     };
-    return <Badge variant={variants[status] || "default"}>{status}</Badge>;
+    return <Badge variant={variants[status] || "outline"}>{status}</Badge>;
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("en-IN", {
+    return new Date(dateString).toLocaleDateString("en-US", {
       year: "numeric",
       month: "short",
       day: "numeric",
@@ -167,34 +140,32 @@ export default function AdminPage() {
       <main className="container mx-auto px-4 py-8 mt-20">
         <Card>
           <CardHeader>
-            <CardTitle className="text-3xl">Order Management</CardTitle>
+            <CardTitle className="text-3xl font-bold">Order Management</CardTitle>
           </CardHeader>
           <CardContent>
             {loading ? (
               <p className="text-center py-8">Loading orders...</p>
             ) : orders.length === 0 ? (
-              <p className="text-center py-8">No orders found.</p>
+              <p className="text-center py-8 text-muted-foreground">No orders found.</p>
             ) : (
               <div className="overflow-x-auto">
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead>Order #</TableHead>
+                      <TableHead>Order Number</TableHead>
                       <TableHead>Customer</TableHead>
                       <TableHead>Email</TableHead>
                       <TableHead>Phone</TableHead>
                       <TableHead>Amount</TableHead>
                       <TableHead>Status</TableHead>
                       <TableHead>Date</TableHead>
-                      <TableHead>Actions</TableHead>
+                      <TableHead>Action</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {orders.map((order) => (
                       <TableRow key={order.id}>
-                        <TableCell className="font-medium">
-                          {order.order_number}
-                        </TableCell>
+                        <TableCell className="font-medium">{order.order_number}</TableCell>
                         <TableCell>{order.buyer_name}</TableCell>
                         <TableCell>{order.buyer_email}</TableCell>
                         <TableCell>{order.buyer_phone || "N/A"}</TableCell>
@@ -204,17 +175,16 @@ export default function AdminPage() {
                         <TableCell>
                           <Select
                             value={order.status}
-                            onValueChange={(value) =>
-                              updateOrderStatus(order.id, value)
-                            }
+                            onValueChange={(value) => updateOrderStatus(order.id, value)}
                           >
-                            <SelectTrigger className="w-32">
+                            <SelectTrigger className="w-[140px]">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
                               <SelectItem value="pending">Pending</SelectItem>
+                              <SelectItem value="processing">Processing</SelectItem>
                               <SelectItem value="completed">Completed</SelectItem>
-                              <SelectItem value="failed">Failed</SelectItem>
+                              <SelectItem value="cancelled">Cancelled</SelectItem>
                             </SelectContent>
                           </Select>
                         </TableCell>

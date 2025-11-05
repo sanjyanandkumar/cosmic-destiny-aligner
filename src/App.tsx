@@ -15,8 +15,8 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 import EduSeamPage from "./pages/EduSeamPage";
 import LeisurePage from "./pages/LeisurePage";
 import OrdersPage from "./pages/OrdersPage";
-import NotFound from "./pages/NotFound";
 import AdminPage from "./pages/AdminPage";
+import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
