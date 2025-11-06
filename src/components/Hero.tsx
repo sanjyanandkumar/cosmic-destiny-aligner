@@ -6,7 +6,7 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Cosmic Background */}
-      <div className="absolute inset-0 bg-gradient-cosmic">
+      <div className="absolute inset-0 bg-transparent">
         <div className="absolute inset-0 opacity-20">
           {[...Array(50)].map((_, i) => (
             <Star

@@ -6,7 +6,7 @@ const ContactPage = () => {
   return (
     <div className="min-h-screen bg-transparent font-inter">
       <Navigation />
-      <section className="py-24 bg-cosmic-black relative">
+      <section className="py-24 bg-background/60 relative">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">

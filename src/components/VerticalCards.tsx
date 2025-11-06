@@ -35,7 +35,7 @@ const verticals = [
 
 const VerticalCards = () => {
   return (
-    <section id="verticals" className="py-14 bg-cosmic-black relative">
+    <section id="verticals" className="py-14 bg-background/60 relative">
       <div className="container mx-auto px-4">
         <div className="text-center mb-10">
           <h2 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">
