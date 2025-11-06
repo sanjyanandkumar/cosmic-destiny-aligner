@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 
 const AboutPage = () => {
   return (
-    <div className="min-h-screen bg-background font-inter">
+    <div className="min-h-screen bg-transparent font-inter">
       <Navigation />
       <About />
       <Footer />

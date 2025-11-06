@@ -25,7 +25,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
+    <div className="min-h-screen flex items-center justify-center bg-transparent">
       <div className="p-6 border rounded-lg shadow-lg w-full max-w-sm">
         <h1 className="text-2xl font-bold mb-4">Admin Login</h1>
 

@@ -17,7 +17,7 @@ const ConsultingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background font-inter">
+    <div className="min-h-screen bg-transparent font-inter">
       <Navigation />
       <main className="container mx-auto px-4 py-24">
         <div className="mb-12 text-center">

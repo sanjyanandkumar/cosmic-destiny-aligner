@@ -4,7 +4,7 @@ import { Mail, MapPin, Phone } from "lucide-react";
 
 const ContactPage = () => {
   return (
-    <div className="min-h-screen bg-background font-inter">
+    <div className="min-h-screen bg-transparent font-inter">
       <Navigation />
       <section className="py-24 bg-cosmic-black relative">
         <div className="container mx-auto px-4">

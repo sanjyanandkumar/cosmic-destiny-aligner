@@ -12,7 +12,7 @@ import FloatingConsultationButton from "@/components/FloatingConsultationButton"
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-transparent">
       <Navigation />
       <ScrollNavigation />
       <FloatingConsultationButton />
