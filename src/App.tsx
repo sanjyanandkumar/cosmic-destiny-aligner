@@ -17,6 +17,11 @@ import LeisurePage from "./pages/LeisurePage";
 import OrdersPage from "./pages/OrdersPage";
 import AdminPage from "./pages/AdminPage";
 import NotFound from "./pages/NotFound";
+import LoginPage from "./pages/LoginPage";
+import AdminGuard from "@/components/AdminGuard";
+import AdminProducts from "@/pages/admin/AdminProducts";
+import AdminOrders from "@/pages/admin/AdminOrders";
+import RegisterPage from "./pages/RegisterPage";
 
 const queryClient = new QueryClient();
 
@@ -39,9 +44,17 @@ const App = () => (
           <Route path="/leisure" element={<LeisurePage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/orders" element={<OrdersPage />} />
+		  <Route path="/register" element={<RegisterPage />} />
           <Route path="/admin" element={<AdminPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
+		  <Route path="/login" element={<LoginPage />} />
+		  <Route path="/admin/products" element={
+			<AdminGuard><AdminProducts /></AdminGuard>
+		  }/>
+		  <Route path="/admin/orders" element={
+			<AdminGuard><AdminOrders /></AdminGuard>
+		  }/>
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
