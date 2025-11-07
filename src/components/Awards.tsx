@@ -1,4 +1,5 @@
 import { Award, Star, TrendingUp } from "lucide-react";
+import bg from "@/assets/cosmic-background.png";
 
 const Awards = () => {
   const recognitions = [
@@ -20,7 +21,12 @@ const Awards = () => {
   ];
 
   return (
-    <section className="py-24 bg-background/60 relative">
+    <section className="py-24 bg-background/80 bg-cover bg-center bg-no-repeat relative"
+  style={{ backgroundImage: `url(${bg})` }}>
+	  {/* Dimmed overlay */}
+	  <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+
+	<div className="relative z-10">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
@@ -70,6 +76,7 @@ const Awards = () => {
           </div>
         </div>
       </div>
+	</div>
     </section>
   );
 };

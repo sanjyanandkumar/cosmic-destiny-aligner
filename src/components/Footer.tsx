@@ -2,6 +2,7 @@ import { Sparkles, Instagram, Twitter, Linkedin, Mail } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import bg from "@/assets/cosmic-background.png";
 
 const Footer = () => {
   const handleNewsletterSubmit = (e: React.FormEvent) => {
@@ -10,8 +11,12 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-background/80 backdrop-blur-sm border-t border-cosmic-blue/30">
-      <div className="container mx-auto px-4 py-16">
+	<footer
+	  className="relative bg-cover bg-center bg-no-repeat border-t border-cosmic-blue/30"
+	  style={{ backgroundImage: `url(${bg})` }}
+	>
+	<div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+		<div className="relative z-10 container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="space-y-4">

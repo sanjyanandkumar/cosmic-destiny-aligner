@@ -1,9 +1,16 @@
 import { Sparkles } from "lucide-react";
+import bg from "@/assets/cosmic-background.png";
 
 const Leadership = () => {
   return (
-    <section id="leadership" className="py-24 bg-gradient-celestial relative">
-      <div className="container mx-auto px-4">
+	<section
+	  id="leadership"
+	  className="relative py-24 bg-cover bg-center bg-no-repeat"
+	  style={{ backgroundImage: `url(${bg})` }}
+	>
+	  <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+	  <div className="relative z-10">
+	<div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <div className="flex items-center justify-center mb-6">
@@ -67,6 +74,7 @@ const Leadership = () => {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </section>
   );

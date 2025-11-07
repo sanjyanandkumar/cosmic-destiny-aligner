@@ -1,11 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { Star, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import bg from "@/assets/cosmic-background.png";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Cosmic Background */}
+	<section
+	  className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-cover bg-center bg-no-repeat"
+	  style={{ backgroundImage: `url(${bg})` }}
+	>
+	  {/* Dim cosmic overlay */}
+	  <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+	{/* Cosmic Background */}
       <div className="absolute inset-0 bg-transparent">
         <div className="absolute inset-0 opacity-20">
           {[...Array(50)].map((_, i) => (

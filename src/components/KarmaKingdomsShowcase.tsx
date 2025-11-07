@@ -13,6 +13,7 @@ import cosmicHandbagImg from "@/assets/cosmic-handbag.jpg";
 import cosmicWalletImg from "@/assets/cosmic-wallet.jpg";
 import karmicConsultingImg from "@/assets/karmic-consulting.jpg";
 import karmicMeditationImg from "@/assets/karmic-meditation.jpg";
+import bg from "@/assets/cosmic-background.png";
 
 const KarmaKingdomsShowcase = () => {
   const items = [
@@ -49,7 +50,12 @@ const KarmaKingdomsShowcase = () => {
   ];
 
   return (
-    <section className="py-20 px-4 bg-background">
+	<section
+	  className="relative py-24 px-4 bg-cover bg-center bg-no-repeat"
+	  style={{ backgroundImage: `url(${bg})` }}
+	>
+	  <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+	  <div className="relative z-10">
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
@@ -92,6 +98,7 @@ const KarmaKingdomsShowcase = () => {
           <CarouselPrevious className="hidden md:flex" />
           <CarouselNext className="hidden md:flex" />
         </Carousel>
+      </div>
       </div>
     </section>
   );

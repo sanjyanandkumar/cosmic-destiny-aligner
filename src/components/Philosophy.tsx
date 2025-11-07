@@ -1,4 +1,5 @@
 import { Zap, Clock, Target } from "lucide-react";
+import bg from "@/assets/cosmic-background.png";
 
 const Philosophy = () => {
   const principles = [
@@ -20,7 +21,13 @@ const Philosophy = () => {
   ];
 
   return (
-    <section className="py-24 bg-background/60 relative">
+	<section
+	  id="philosophy"
+	  className="relative py-24 bg-cover bg-center bg-no-repeat"
+	  style={{ backgroundImage: `url(${bg})` }}
+	>
+	  <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+	  <div className="relative z-10">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
@@ -93,7 +100,8 @@ const Philosophy = () => {
           </div>
         </div>
       </div>
-    </section>
+		</div>
+	</section>
   );
 };
 

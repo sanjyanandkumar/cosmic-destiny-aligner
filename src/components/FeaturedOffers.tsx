@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { FileText, Users, BookOpen, Plane } from "lucide-react";
 import { useCheckout } from "@/hooks/use-checkout";
 import { CheckoutDialog } from "./CheckoutDialog";
+import bg from "@/assets/cosmic-background.png";
 
 const offers = [
   {
@@ -49,7 +50,15 @@ const FeaturedOffers = () => {
   };
 
   return (
-    <section className="py-14 bg-cosmic-indigo relative">
+    <section
+      id="offers"
+      className="relative py-24 bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: `url(${bg})` }}
+    >
+      {/* ✅ Dim + Soft Glow Overlay */}
+      <div className="absolute inset-0 bg-black/45 backdrop-blur-sm"></div>
+
+      <div className="relative z-10 container mx-auto px-4">
       <div className="container mx-auto px-4">
         <div className="text-center mb-10">
           <h2 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">
@@ -103,6 +112,7 @@ const FeaturedOffers = () => {
             );
           })}
         </div>
+      </div>
       </div>
       <CheckoutDialog
         open={dialogOpen}

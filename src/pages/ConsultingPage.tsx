@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useCheckout } from "@/hooks/use-checkout";
 import { CheckoutDialog } from "@/components/CheckoutDialog";
 import karmicConsultingImg from "@/assets/karmic-consulting.jpg";
+import bg from "@/assets/cosmic-background.png";
 
 const ConsultingPage = () => {
   const { dialogOpen, currentProduct, processing, startCheckout, handleConfirmCheckout, handleCloseDialog } = useCheckout();
@@ -19,8 +20,13 @@ const ConsultingPage = () => {
   return (
     <div className="min-h-screen bg-transparent font-inter">
       <Navigation />
-      <main className="container mx-auto px-4 py-24">
-        <div className="mb-12 text-center">
+		<main
+		  className="relative py-24 bg-cover bg-center bg-no-repeat"
+		  style={{ backgroundImage: `url(${bg})` }}
+		>
+		  <div className="absolute inset-0 bg-black/45 backdrop-blur-sm"></div>
+		  <div className="relative z-10 container mx-auto px-4">
+		<div className="mb-12 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
             BrahmaX Consulting
           </h1>
@@ -59,6 +65,7 @@ const ConsultingPage = () => {
               </div>
             </div>
           </Card>
+        </div>
         </div>
       </main>
       <Footer />

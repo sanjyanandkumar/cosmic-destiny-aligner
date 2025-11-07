@@ -3,6 +3,13 @@ import { supabase } from "@/integrations/supabase/client";
 import { Menu, X, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -63,22 +70,45 @@ const Navigation = () => {
 			</Link>
 		  ))}
 
-		  {user ? (
-			<div className="flex items-center space-x-4">
-			<span className="text-sm text-muted-foreground">
-			  {user.user_metadata?.full_name || user.email}
-			</span>
-			  <Button variant="outline" size="sm" onClick={handleLogout}>
+		{user ? (
+		  <DropdownMenu>
+			<DropdownMenuTrigger className="flex items-center gap-2 cursor-pointer select-none">
+			  {/* Avatar Circle */}
+			  <div className="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center font-semibold">
+				{user.user_metadata?.full_name
+				  ? user.user_metadata.full_name.charAt(0).toUpperCase()
+				  : user.email.charAt(0).toUpperCase()}
+			  </div>
+
+			  {/* Name */}
+			  <span className="text-sm font-medium text-foreground">
+				{user.user_metadata?.full_name?.split(" ")[0] || user.email}
+			  </span>
+
+			  <span className="text-muted-foreground text-xs">▼</span>
+			</DropdownMenuTrigger>
+
+			<DropdownMenuContent align="end" className="w-40 bg-card border-cosmic-blue/30 backdrop-blur-sm">
+			  <DropdownMenuItem asChild>
+				<Link to="/profile" className="cursor-pointer">Profile</Link>
+			  </DropdownMenuItem>
+
+			  <DropdownMenuItem asChild>
+				<Link to="/orders" className="cursor-pointer">My Orders</Link>
+			  </DropdownMenuItem>
+
+			  <DropdownMenuSeparator />
+
+			  <DropdownMenuItem onClick={handleLogout} className="text-destructive cursor-pointer">
 				Logout
-			  </Button>
-			</div>
-		  ) : (
-			<div className="flex items-center space-x-4">
-			  <Button variant="outline" size="sm" asChild>
-				<Link to="/login">Login</Link>
-			  </Button>
-			</div>
-		  )}
+			  </DropdownMenuItem>
+			</DropdownMenuContent>
+		  </DropdownMenu>
+		) : (
+		  <Button variant="outline" size="sm" asChild>
+			<Link to="/login">Login</Link>
+		  </Button>
+		)}
 		</div>
 
           {/* Mobile Menu Button */}

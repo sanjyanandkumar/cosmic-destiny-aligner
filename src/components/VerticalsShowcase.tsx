@@ -6,6 +6,7 @@ import consultingImg from "@/assets/karmic-consulting.jpg";
 import wardrobeImg from "@/assets/cosmic-wallet.jpg";
 import eduseamImg from "@/assets/career-guidance.jpg";
 import leisureImg from "@/assets/bali-trip.jpg";
+import bg from "@/assets/cosmic-background.png";
 
 const verticals = [
   {
@@ -40,8 +41,14 @@ const verticals = [
 
 const VerticalsShowcase = () => {
   return (
-    <section id="showcase" className="py-20 bg-background relative">
-      <div className="container mx-auto px-4">
+	<section
+	  id="showcase"
+	  className="relative py-24 bg-cover bg-center bg-no-repeat"
+	  style={{ backgroundImage: `url(${bg})` }}
+	>
+	  <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+	  <div className="relative z-10">
+	<div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
             Explore Our Services
@@ -96,6 +103,7 @@ const VerticalsShowcase = () => {
           <CarouselPrevious className="hidden md:flex" />
           <CarouselNext className="hidden md:flex" />
         </Carousel>
+      </div>
       </div>
     </section>
   );

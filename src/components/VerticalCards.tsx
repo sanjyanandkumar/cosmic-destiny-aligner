@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Sparkles, ShoppingBag, GraduationCap, Palmtree } from "lucide-react";
 import { Link } from "react-router-dom";
+import bg from "@/assets/cosmic-background.png";
 
 const verticals = [
   {
@@ -35,7 +36,15 @@ const verticals = [
 
 const VerticalCards = () => {
   return (
-    <section id="verticals" className="py-14 bg-background/60 relative">
+    <section
+      id="verticals"
+      className="relative py-24 bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: `url(${bg})` }}
+    >
+      {/* Dim overlay */}
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+
+      <div className="relative z-10 container mx-auto px-4">
       <div className="container mx-auto px-4">
         <div className="text-center mb-10">
           <h2 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">
@@ -72,6 +81,7 @@ const VerticalCards = () => {
             );
           })}
         </div>
+      </div>
       </div>
     </section>
   );

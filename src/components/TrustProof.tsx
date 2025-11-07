@@ -2,6 +2,7 @@ import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useState } from "react";
+import bg from "@/assets/cosmic-background.png";
 
 const testimonials = [
   {
@@ -51,8 +52,13 @@ const TrustProof = () => {
   };
 
   return (
-    <section className="py-14 bg-secondary/20">
-      <div className="container mx-auto px-4">
+	<section
+	  className="relative py-24 bg-cover bg-center bg-no-repeat"
+	  style={{ backgroundImage: `url(${bg})` }}
+	>
+	  <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+	  <div className="relative z-10">
+	<div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-10">
           <h2 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">
@@ -137,6 +143,7 @@ const TrustProof = () => {
         </div>
 
         {/* Brand Mentions removed as requested */}
+      </div>
       </div>
     </section>
   );

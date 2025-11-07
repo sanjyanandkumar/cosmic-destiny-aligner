@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import cosmicWalletImg from "@/assets/cosmic-wallet.jpg";
 import cosmicHandbagImg from "@/assets/cosmic-handbag.jpg";
+import bg from "@/assets/cosmic-background.png";
 
 const WardrobePage = () => {
   const products = [
@@ -24,46 +25,77 @@ const WardrobePage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-transparent font-inter">
+    <div className="min-h-screen font-inter">
       <Navigation />
-      <main className="container mx-auto px-4 py-24">
-        <div className="mb-12 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
-            BrahmaX Wardrobe
-          </h1>
-          <p className="text-xl text-muted-foreground">The Astro-Fashion Division</p>
-          <p className="mt-6 text-2xl font-semibold max-w-3xl mx-auto">
-            Wear Your Planets. Live Your Power.
-          </p>
-          <p className="mt-4 text-lg max-w-3xl mx-auto text-muted-foreground">
-            BrahmaX Wardrobe is the world’s first karmic fashion and lifestyle platform, curating collections that blend design, astrology, and consciousness. Each piece is energetically aligned — crafted with colors, fabrics, and symbols tuned to your zodiac, lagna, and planetary energies. More than fashion, it’s cosmic alignment in wearable form.
-          </p>
-          <p className="mt-4 text-lg italic text-primary">“Style that heals. Luxury that vibrates.”</p>
-        </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {products.map((product) => (
-            <Link key={product.id} to={`/wardrobe/${product.id}`}>
-              <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer group">
-                <div className="relative h-[300px] overflow-hidden">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
-                </div>
-                <div className="p-6">
-                  <h2 className="text-2xl font-bold mb-3">{product.name}</h2>
-                  <p className="text-muted-foreground mb-4">{product.description}</p>
-                  <p className="text-3xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-                    ₹{product.price.toLocaleString()}
-                  </p>
-                </div>
-              </Card>
-            </Link>
-          ))}
+      {/* ✅ Cosmic Background Section */}
+      <main
+        className="relative py-24 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${bg})` }}
+      >
+        <div className="absolute inset-0 bg-black/45 backdrop-blur-sm"></div>
+        <div className="relative z-10 container mx-auto px-4">
+
+          {/* Header Text */}
+          <div className="text-center mb-14 max-w-4xl mx-auto">
+            <h1 className="font-playfair text-5xl font-bold text-foreground mb-4">
+              BrahmaX Wardrobe
+            </h1>
+            <p className="text-xl text-primary italic mb-6">
+              The Astro-Fashion Division
+            </p>
+
+            <p className="text-2xl font-semibold text-foreground mb-4">
+              Wear Your Planets. Live Your Power.
+            </p>
+
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+              A fashion system aligned with your zodiac, lagna, and planetary energies.
+              Every piece is a vibrational tool — blending design, astrology, and sacred intention.
+            </p>
+
+            <p className="mt-4 text-lg italic text-primary">
+              “Style that heals. Luxury that vibrates.”
+            </p>
+          </div>
+
+          {/* Product Grid */}
+          <div className="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto">
+            {products.map((product) => (
+              <Link key={product.id} to={`/wardrobe/${product.id}`} className="block group">
+                <Card
+                  className="overflow-hidden border border-cosmic-blue/30 bg-card/30 backdrop-blur-md 
+                  hover:border-primary/60 hover:shadow-[0_0_25px_rgba(255,220,120,0.4)]
+                  transition-all duration-500 cursor-pointer"
+                >
+                  <div className="relative h-[320px] overflow-hidden">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  </div>
+
+                  <div className="p-6">
+                    <h2 className="font-playfair text-2xl font-bold text-foreground mb-2">
+                      {product.name}
+                    </h2>
+                    <p className="text-muted-foreground mb-4 leading-relaxed">
+                      {product.description}
+                    </p>
+                    <p className="font-playfair text-3xl font-bold bg-gradient-gold bg-clip-text text-transparent">
+                      ₹{product.price.toLocaleString()}
+                    </p>
+                  </div>
+                </Card>
+              </Link>
+            ))}
+          </div>
+
         </div>
       </main>
+
       <Footer />
     </div>
   );

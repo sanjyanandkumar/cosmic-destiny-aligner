@@ -18,6 +18,7 @@ import OrdersPage from "./pages/OrdersPage";
 import AdminPage from "./pages/AdminPage";
 import NotFound from "./pages/NotFound";
 import LoginPage from "./pages/LoginPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 import AdminGuard from "@/components/AdminGuard";
 import AdminProducts from "@/pages/admin/AdminProducts";
 import AdminOrders from "@/pages/admin/AdminOrders";
@@ -47,7 +48,7 @@ const App = () => (
 		  <Route path="/register" element={<RegisterPage />} />
           <Route path="/admin" element={<AdminPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
+			<Route path="/reset-password" element={<ResetPasswordPage />} />
 		  <Route path="/login" element={<LoginPage />} />
 		  <Route path="/admin/products" element={
 			<AdminGuard><AdminProducts /></AdminGuard>
@@ -55,6 +56,7 @@ const App = () => (
 		  <Route path="/admin/orders" element={
 			<AdminGuard><AdminOrders /></AdminGuard>
 		  }/>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

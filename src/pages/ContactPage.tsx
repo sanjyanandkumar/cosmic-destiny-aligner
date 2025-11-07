@@ -1,13 +1,20 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Mail, MapPin, Phone } from "lucide-react";
+import bg from "@/assets/cosmic-background.png";
 
 const ContactPage = () => {
   return (
     <div className="min-h-screen bg-transparent font-inter">
       <Navigation />
-      <section className="py-24 bg-background/60 relative">
-        <div className="container mx-auto px-4">
+	<section
+	  id="contact"
+	  className="relative py-24 bg-cover bg-center bg-no-repeat"
+	  style={{ backgroundImage: `url(${bg})` }}
+	>
+	  <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+	  <div className="relative z-10">
+		<div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <h1 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">
@@ -21,7 +28,7 @@ const ContactPage = () => {
               </p>
             </div>
 
-            <div className="bg-card/30 backdrop-blur-sm border border-cosmic-blue/30 rounded-lg p-8 mb-12">
+            <div className="bg-card/60 backdrop-blur-sm border border-cosmic-blue/30 rounded-lg p-8 mb-12">
               <h3 className="font-playfair text-2xl font-bold text-foreground mb-6 text-center">Connect With Us</h3>
               <div className="space-y-4 max-w-2xl mx-auto">
                 <div className="flex items-start gap-3">
@@ -56,6 +63,7 @@ const ContactPage = () => {
               </p>
             </div>
           </div>
+        </div>
         </div>
       </section>
       <Footer />

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useCheckout } from "@/hooks/use-checkout";
 import { CheckoutDialog } from "@/components/CheckoutDialog";
 import careerGuidanceImg from "@/assets/career-guidance.jpg";
+import bg from "@/assets/cosmic-background.png";
 
 const EduSeamPage = () => {
   const { dialogOpen, currentProduct, processing, startCheckout, handleConfirmCheckout, handleCloseDialog } = useCheckout();
@@ -17,55 +18,92 @@ const EduSeamPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-transparent font-inter">
+    <div className="min-h-screen font-inter">
       <Navigation />
-      <main className="container mx-auto px-4 py-24">
-        <div className="mb-12 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
-            EduSeam
-          </h1>
-          <p className="text-xl text-muted-foreground">The Passport to Conscious Learning</p>
-          <p className="mt-6 text-2xl font-semibold max-w-3xl mx-auto">
-            Education Reimagined as Evolution.
-          </p>
-          <p className="mt-4 text-lg max-w-3xl mx-auto text-muted-foreground">
-            EduSeam is the learning and mentorship wing of BrahmaX, designed to bridge karmic awareness with real-world knowledge. Its flagship “Passport Concept” empowers individuals to travel through subjects — from astrology and branding to global culture and purpose-driven entrepreneurship. Each course is an initiation — a journey into discovering one’s unique dharma and how to translate it into meaningful work.
-          </p>
-          <p className="mt-4 text-lg italic text-primary">“We don’t teach — we awaken.”</p>
-        </div>
 
-        <div className="max-w-4xl mx-auto">
-          <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300">
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="relative h-[400px] overflow-hidden">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="p-6 flex flex-col justify-between">
-                <div>
-                  <h2 className="text-3xl font-bold mb-4">{product.name}</h2>
-                  <p className="text-muted-foreground mb-6">{product.description}</p>
-                  <p className="text-4xl font-bold mb-8 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-                    ₹{product.price.toLocaleString()}
-                  </p>
+      {/* ✅ Cosmic Background */}
+      <main
+        className="relative py-24 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${bg})` }}
+      >
+        {/* Dim overlay */}
+        <div className="absolute inset-0 bg-black/45 backdrop-blur-sm"></div>
+
+        <div className="relative z-10 container mx-auto px-4">
+          <div className="mb-14 text-center max-w-4xl mx-auto">
+            <h1 className="font-playfair text-5xl font-bold text-foreground mb-4">
+              EduSeam
+            </h1>
+
+            <p className="text-xl text-primary italic mb-6">
+              The Passport to Conscious Learning
+            </p>
+
+            <p className="text-2xl font-semibold text-foreground mb-4">
+              Education Reimagined as Evolution.
+            </p>
+
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              EduSeam bridges karmic wisdom with real-world learning. The “Passport Concept”
+              allows you to journey through subjects — astrology, global culture, branding,
+              business, purpose — to discover your true *dharma* through experience and expansion.
+            </p>
+
+            <p className="mt-4 text-lg italic text-primary">
+              “We don’t teach — we awaken.”
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <Card className="overflow-hidden backdrop-blur-md bg-card/30 border border-cosmic-blue/40 hover:border-primary/60 shadow-xl hover:shadow-[0_0_30px_rgba(255,220,120,0.4)] transition-all duration-500">
+              <div className="grid md:grid-cols-2 gap-0">
+                <div className="relative h-[420px]">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 </div>
-              <Button
-                size="lg"
-                onClick={() => startCheckout({ name: product.name, price: product.price, description: product.description })}
-                disabled={processing}
-                className="w-full"
-              >
-                Buy Now
-              </Button>
+
+                <div className="p-8 flex flex-col justify-between">
+                  <div>
+                    <h2 className="font-playfair text-3xl font-bold mb-3 text-foreground">
+                      {product.name}
+                    </h2>
+
+                    <p className="font-inter text-muted-foreground mb-6 leading-relaxed">
+                      {product.description}
+                    </p>
+
+                    <p className="font-playfair text-4xl font-bold bg-gradient-gold bg-clip-text text-transparent mb-6">
+                      ₹{product.price.toLocaleString()}
+                    </p>
+                  </div>
+
+                  <Button
+                    size="lg"
+                    onClick={() =>
+                      startCheckout({
+                        name: product.name,
+                        price: product.price,
+                        description: product.description,
+                      })
+                    }
+                    disabled={processing}
+                    className="w-full bg-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all"
+                  >
+                    Begin Your Path
+                  </Button>
+                </div>
               </div>
-            </div>
-          </Card>
+            </Card>
+          </div>
         </div>
       </main>
+
       <Footer />
+
       <CheckoutDialog
         open={dialogOpen}
         onOpenChange={handleCloseDialog}
