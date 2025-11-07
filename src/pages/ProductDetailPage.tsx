@@ -6,6 +6,7 @@ import { useCheckout } from "@/hooks/use-checkout";
 import { CheckoutDialog } from "@/components/CheckoutDialog";
 import cosmicWalletImg from "@/assets/cosmic-wallet.jpg";
 import cosmicHandbagImg from "@/assets/cosmic-handbag.jpg";
+import bg from "@/assets/cosmic-background.png";
 import {
   Carousel,
   CarouselContent,
@@ -56,7 +57,15 @@ const ProductDetailPage = () => {
   return (
     <div className="min-h-screen bg-transparent">
       <Navigation />
-      <main className="container mx-auto px-4 py-24">
+	<main
+	  className="relative py-24 bg-cover bg-center bg-no-repeat"
+	  style={{ backgroundImage: `url(${bg})` }}
+	>
+	  {/* Dark overlay */}
+	  <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+
+	  {/* Page Content */}
+	  <div className="relative z-10 container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12">
             {/* Image Carousel */}
@@ -123,6 +132,7 @@ const ProductDetailPage = () => {
               </Button>
             </div>
           </div>
+        </div>
         </div>
       </main>
       <Footer />

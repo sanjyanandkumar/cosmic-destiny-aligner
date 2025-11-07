@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Search, Package, Calendar, Mail, Phone } from "lucide-react";
+import bg from "@/assets/cosmic-background.png";
 
 interface Order {
   id: string;
@@ -95,8 +96,16 @@ const OrdersPage = () => {
   return (
     <div className="min-h-screen bg-transparent font-inter">
       <Navigation />
-      <section className="py-24 bg-background/60 relative">
-        <div className="container mx-auto px-4">
+		<section
+		  className="py-24 relative bg-cover bg-center bg-no-repeat"
+		  style={{ backgroundImage: `url(${bg})` }}
+		>
+		  {/* Dark overlay for clarity */}
+		  <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+
+		  {/* Page Content */}
+		  <div className="relative z-10 container mx-auto px-4">
+		<div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h1 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">
@@ -207,6 +216,7 @@ const OrdersPage = () => {
               </div>
             )}
           </div>
+        </div>
         </div>
       </section>
       <Footer />
