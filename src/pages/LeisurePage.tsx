@@ -7,6 +7,8 @@ import { CheckoutDialog } from "@/components/CheckoutDialog";
 import baliTripImg from "@/assets/bali-trip.jpg";
 import karmicMeditationImg from "@/assets/karmic-meditation.jpg";
 import bg from "@/assets/cosmic-background.png";
+import { supabase } from "@/integrations/supabase/client";
+import { requireLogin } from "@/utils/requireLogin";
 
 const LeisurePage = () => {
   const { dialogOpen, currentProduct, processing, startCheckout, handleConfirmCheckout, handleCloseDialog } = useCheckout();
@@ -91,12 +93,17 @@ const LeisurePage = () => {
 
                   <Button
                     size="lg"
-                    onClick={() => startCheckout({ name: product.name, price: product.price, description: product.description })}
-                    disabled={processing}
-                    className="w-full bg-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all"
-                  >
-                    Book Experience
-                  </Button>
+                    onClick={async () => {
+                    const user = await requireLogin("/leisure");
+                    if (!user) return;
+
+                    startCheckout({ name: product.name, price: product.price, description: product.description });
+                  }}
+                  disabled={processing}
+                  className="w-full bg-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all"
+                >
+                  Book Experience
+                </Button>
                 </div>
               </Card>
             ))}

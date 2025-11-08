@@ -75,10 +75,10 @@ const KarmaKingdomsShowcase = () => {
         >
           <CarouselContent>
             {items.map((item, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+              <CarouselItem key={index} className="basis-full md:basis-1/1 lg:basis-1/2">
                 <Link to={item.link}>
                   <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer group">
-                    <div className="relative h-[300px] overflow-hidden">
+                    <div className="relative h-[450px] overflow-hidden">
                       <img
                         src={item.image}
                         alt={item.title}

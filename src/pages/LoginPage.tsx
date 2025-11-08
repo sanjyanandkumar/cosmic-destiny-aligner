@@ -35,7 +35,11 @@ export default function LoginPage() {
       toast({ title: "Login Failed", description: error.message, variant: "destructive" });
     } else {
       toast({ title: "Success", description: "Logged in successfully!" });
-      navigate("/admin");
+
+      // ✅ IMPORTANT: Use redirect param if exists
+    const params = new URLSearchParams(window.location.search);
+    const redirectTo = params.get("redirect") || "/admin"; // default is /admin
+    navigate(redirectTo);
     }
   };
 

@@ -6,7 +6,7 @@ import bg from "@/assets/cosmic-background.png";
 const Hero = () => {
   return (
 	<section
-	  className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-cover bg-center bg-no-repeat"
+	  className="relative py-24 flex items-center justify-center overflow-hidden pt-20 bg-cover bg-center bg-no-repeat"
 	  style={{ backgroundImage: `url(${bg})` }}
 	>
 	  {/* Dim cosmic overlay */}

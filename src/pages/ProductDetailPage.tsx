@@ -7,6 +7,8 @@ import { CheckoutDialog } from "@/components/CheckoutDialog";
 import cosmicWalletImg from "@/assets/cosmic-wallet.jpg";
 import cosmicHandbagImg from "@/assets/cosmic-handbag.jpg";
 import bg from "@/assets/cosmic-background.png";
+import { supabase } from "@/integrations/supabase/client";
+
 import {
   Carousel,
   CarouselContent,
@@ -124,9 +126,24 @@ const ProductDetailPage = () => {
 
               <Button
                 size="lg"
-                onClick={() => startCheckout({ name: product.name, price: product.price, description: product.description })}
+                onClick={async () => {
+                  const { data } = await supabase.auth.getUser();
+
+                  // ✅ If not logged in → redirect to login with return-to link
+                  if (!data?.user) {
+                    window.location.href = `/login?redirect=/wardrobe/${productId}`;
+                    return;
+                  }
+
+                  // ✅ If logged in → open checkout dialog
+                  startCheckout({
+                    name: product.name,
+                    price: product.price,
+                    description: product.description,
+                  });
+                }}
                 disabled={processing}
-                className="w-full md:w-auto"
+                className="w-full md:w-auto bg-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all"
               >
                 Buy Now - ₹{product.price.toLocaleString()}
               </Button>

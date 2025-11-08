@@ -5,6 +5,9 @@ import { FileText, Users, BookOpen, Plane } from "lucide-react";
 import { useCheckout } from "@/hooks/use-checkout";
 import { CheckoutDialog } from "./CheckoutDialog";
 import bg from "@/assets/cosmic-background.png";
+import { supabase } from "@/integrations/supabase/client";
+import { useNavigate } from "react-router-dom";
+import { requireLogin } from "@/utils/requireLogin";
 
 const offers = [
   {
@@ -40,12 +43,17 @@ const offers = [
 const FeaturedOffers = () => {
   const { dialogOpen, currentProduct, processing, startCheckout, handleConfirmCheckout, handleCloseDialog } = useCheckout();
 
-  const handleBuyNow = (offer: typeof offers[0]) => {
+  const navigate = useNavigate();
+
+  const handleBuyNow = async (offer: typeof offers[0]) => {
+    const user = await requireLogin("/#offers");
+    if (!user) return; // ← stops here if not logged in
+
     const price = parseInt(offer.price.replace(/[^\d]/g, '')) || 0;
-    startCheckout({ 
-      name: offer.title, 
+    startCheckout({
+      name: offer.title,
       price,
-      description: offer.description 
+      description: offer.description,
     });
   };
 

@@ -14,22 +14,21 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-transparent">
       <Navigation />
+      <KarmaKingdomsShowcase />
       <ScrollNavigation />
       <FloatingConsultationButton />
       <div id="hero">
         <Hero />
       </div>
-      <div id="trust">
-        <TrustProof />
-      </div>
       <VerticalCards />
-      <VerticalsShowcase />
-      <KarmaKingdomsShowcase />
       <div id="how-it-works">
         <HowItWorks />
       </div>
       <div id="offers">
         <FeaturedOffers />
+      </div>
+      <div id="trust">
+        <TrustProof />
       </div>
       <Footer />
     </div>

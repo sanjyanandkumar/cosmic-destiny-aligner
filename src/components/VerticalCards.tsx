@@ -1,36 +1,40 @@
 import { Card } from "@/components/ui/card";
-import { Sparkles, ShoppingBag, GraduationCap, Palmtree } from "lucide-react";
 import { Link } from "react-router-dom";
+
+import consultingImg from "@/assets/karmic-consulting.jpg";
+import wardrobeImg from "@/assets/cosmic-wallet.jpg";
+import eduseamImg from "@/assets/career-guidance.jpg";
+import leisureImg from "@/assets/bali-trip.jpg";
 import bg from "@/assets/cosmic-background.png";
 
 const verticals = [
   {
-    icon: Sparkles,
     title: "BrahmaX Consulting",
     subtitle: "The Karmic Business Division",
-    gradient: "from-purple-500/20 to-pink-500/20",
+    image: consultingImg,
     link: "/consulting",
+    description: "Strategic cosmic guidance for founders & creators.",
   },
   {
-    icon: ShoppingBag,
     title: "BrahmaX Wardrobe",
     subtitle: "The Astro-Fashion Division",
-    gradient: "from-blue-500/20 to-cyan-500/20",
+    image: wardrobeImg,
     link: "/wardrobe",
+    description: "Luxury fashion aligned with your planets.",
   },
   {
-    icon: GraduationCap,
     title: "EduSeam",
     subtitle: "The Passport to Conscious Learning",
-    gradient: "from-amber-500/20 to-orange-500/20",
+    image: eduseamImg,
     link: "/eduseam",
+    description: "Discover your dharma through guided learning.",
   },
   {
-    icon: Palmtree,
     title: "BrahmaX Leisure",
     subtitle: "The Karmic Wellness Division",
-    gradient: "from-green-500/20 to-emerald-500/20",
+    image: leisureImg,
     link: "/leisure",
+    description: "Travel & retreats for deep energetic alignment.",
   },
 ];
 
@@ -45,8 +49,7 @@ const VerticalCards = () => {
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
 
       <div className="relative z-10 container mx-auto px-4">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-10">
+        <div className="text-center mb-12">
           <h2 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">
             Karmic Divisions
           </h2>
@@ -55,33 +58,36 @@ const VerticalCards = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {verticals.map((vertical, index) => {
-            const Icon = vertical.icon;
-            return (
-              <Link key={index} to={vertical.link}>
-                <Card
-                  className={`group p-8 bg-gradient-to-br ${vertical.gradient} backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-all duration-300 hover:scale-105 cursor-pointer h-full`}
-                >
-                  <div className="space-y-4">
-                    <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                      <Icon className="h-8 w-8 text-primary" />
-                    </div>
-                    
-                    <h3 className="font-playfair text-2xl font-bold text-foreground">
-                      {vertical.title}
-                    </h3>
-                    
-                    <p className="font-inter text-sm text-primary/80">
-                      {vertical.subtitle}
-                    </p>
-                  </div>
-                </Card>
-              </Link>
-            );
-          })}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+          {verticals.map((item, index) => (
+            <Link key={index} to={item.link}>
+              <Card
+                className="overflow-hidden border border-white/20 bg-card/30 backdrop-blur-md 
+                hover:shadow-[0_0_25px_rgba(255,220,120,0.4)] hover:border-primary/60
+                transition-all duration-500 cursor-pointer group"
+              >
+                <div className="relative h-[260px] overflow-hidden">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                </div>
+
+                <div className="p-6">
+                  <h3 className="font-playfair text-2xl font-bold text-foreground">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-primary/80 mb-3">{item.subtitle}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+              </Card>
+            </Link>
+          ))}
         </div>
-      </div>
       </div>
     </section>
   );

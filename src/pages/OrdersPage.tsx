@@ -28,6 +28,18 @@ const OrdersPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>("");
 
+	useEffect(() => {
+	  const checkAuth = async () => {
+		const { data } = await supabase.auth.getSession();
+		if (!data.session) {
+		  // No user logged in → Redirect to login
+		  window.location.href = "/login";
+		}
+	  };
+
+	  checkAuth();
+	}, []);
+
   const searchOrders = async () => {
     if (!email.trim()) {
       setError("Please enter your email address");

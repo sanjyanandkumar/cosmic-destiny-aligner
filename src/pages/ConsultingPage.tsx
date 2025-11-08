@@ -6,6 +6,8 @@ import { useCheckout } from "@/hooks/use-checkout";
 import { CheckoutDialog } from "@/components/CheckoutDialog";
 import karmicConsultingImg from "@/assets/karmic-consulting.jpg";
 import bg from "@/assets/cosmic-background.png";
+import { supabase } from "@/integrations/supabase/client";
+import { requireLogin } from "@/utils/requireLogin";
 
 const ConsultingPage = () => {
   const { dialogOpen, currentProduct, processing, startCheckout, handleConfirmCheckout, handleCloseDialog } = useCheckout();
@@ -54,14 +56,19 @@ const ConsultingPage = () => {
                     ₹{product.price.toLocaleString()}
                   </p>
                 </div>
-              <Button
-                size="lg"
-                onClick={() => startCheckout({ name: product.name, price: product.price, description: product.description })}
-                disabled={processing}
-                className="w-full"
-              >
-                Buy Now
-              </Button>
+                <Button
+                  size="lg"
+                  onClick={async () => {
+                    const user = await requireLogin("/consulting");
+                    if (!user) return;
+
+                      startCheckout(product);
+                    }}
+                    disabled={processing}
+                    className="w-full"
+                  >
+                    Book Session
+                  </Button>
               </div>
             </div>
           </Card>
