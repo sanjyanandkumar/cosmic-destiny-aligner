@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Search, Package, Calendar, Mail, Phone } from "lucide-react";
 import bg from "@/assets/cosmic-background.png";
+import GalaxyBackground from "@/components/GalaxyBackground";
 
 interface Order {
   id: string;
@@ -20,6 +21,7 @@ interface Order {
   status: string;
   razorpay_payment_id: string | null;
   created_at: string;
+  report_url?: string | null;
 }
 
 const OrdersPage = () => {
@@ -117,6 +119,7 @@ const OrdersPage = () => {
 
 		  {/* Page Content */}
 		  <div className="relative z-10 container mx-auto px-4">
+      <GalaxyBackground className="z-[1]" />
 		<div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
@@ -223,6 +226,18 @@ const OrdersPage = () => {
                         )}
                       </div>
                     </div>
+                    {order.report_url && (
+                      <div className="pt-4 border-t border-cosmic-blue/30 flex justify-end">
+                        <a
+                          href={order.report_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center px-4 py-2 bg-primary/20 text-primary border border-primary/40 rounded hover:bg-primary hover:text-primary-foreground transition-all text-sm font-semibold"
+                        >
+                          Download Report
+                        </a>
+                      </div>
+                    )}
                   </Card>
                 ))}
               </div>

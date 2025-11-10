@@ -14,6 +14,7 @@ import cosmicWalletImg from "@/assets/cosmic-wallet.jpg";
 import karmicConsultingImg from "@/assets/karmic-consulting.jpg";
 import karmicMeditationImg from "@/assets/karmic-meditation.jpg";
 import bg from "@/assets/cosmic-background.png";
+import GalaxyBackground from "@/components/GalaxyBackground";
 
 const KarmaKingdomsShowcase = () => {
   const items = [
@@ -55,12 +56,20 @@ const KarmaKingdomsShowcase = () => {
 	  style={{ backgroundImage: `url(${bg})` }}
 	>
 	  <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+    <GalaxyBackground className="z-[1]" />
+    
 	  <div className="relative z-10">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
-            Where Karma Builds Kingdoms
-          </h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 leading-none">
+              <span
+                className="inline-block px-[0.02em] pt-[0.15em] pb-[0.35em]
+                bg-gradient-to-r from-primary via-primary/80 to-primary/60
+                bg-clip-text text-transparent"
+              >
+                Where Karma Builds Kingdoms
+              </span>
+            </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Explore our cosmic offerings
           </p>
@@ -84,10 +93,14 @@ const KarmaKingdomsShowcase = () => {
                         alt={item.title}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
-                        <h3 className="text-white text-2xl font-bold">
-                          {item.title}
-                        </h3>
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="absolute w-full bottom-6 flex justify-center">
+                          <div className="glass-diamond px-6 py-4">
+                            <h3 className="text-white text-2xl font-bold tracking-wide text-center">
+                              {item.title}
+                            </h3>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </Card>

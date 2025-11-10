@@ -1,5 +1,6 @@
 import { Award, Star, TrendingUp } from "lucide-react";
 import bg from "@/assets/cosmic-background.png";
+import GalaxyBackground from "@/components/GalaxyBackground";
 
 const Awards = () => {
   const recognitions = [
@@ -25,7 +26,7 @@ const Awards = () => {
   style={{ backgroundImage: `url(${bg})` }}>
 	  {/* Dimmed overlay */}
 	  <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
-
+    <GalaxyBackground className="z-[1]" />
 	<div className="relative z-10">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">

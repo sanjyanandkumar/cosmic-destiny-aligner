@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import cosmicWalletImg from "@/assets/cosmic-wallet.jpg";
 import cosmicHandbagImg from "@/assets/cosmic-handbag.jpg";
 import bg from "@/assets/cosmic-background.png";
+import GalaxyBackground from "@/components/GalaxyBackground";
 
 const WardrobePage = () => {
   const products = [
@@ -34,6 +35,7 @@ const WardrobePage = () => {
         style={{ backgroundImage: `url(${bg})` }}
       >
         <div className="absolute inset-0 bg-black/45 backdrop-blur-sm"></div>
+        <GalaxyBackground className="z-[1]" />
         <div className="relative z-10 container mx-auto px-4">
 
           {/* Header Text */}

@@ -6,6 +6,7 @@ import wardrobeImg from "@/assets/cosmic-wallet.jpg";
 import eduseamImg from "@/assets/career-guidance.jpg";
 import leisureImg from "@/assets/bali-trip.jpg";
 import bg from "@/assets/cosmic-background.png";
+import GalaxyBackground from "@/components/GalaxyBackground";
 
 const verticals = [
   {
@@ -47,6 +48,7 @@ const VerticalCards = () => {
     >
       {/* Dim overlay */}
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+      <GalaxyBackground className="z-[1]" />
 
       <div className="relative z-10 container mx-auto px-4">
         <div className="text-center mb-12">

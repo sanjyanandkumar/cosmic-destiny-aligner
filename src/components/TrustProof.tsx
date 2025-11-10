@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useState } from "react";
 import bg from "@/assets/cosmic-background.png";
+import GalaxyBackground from "@/components/GalaxyBackground";
 
 const testimonials = [
   {
@@ -57,6 +58,8 @@ const TrustProof = () => {
 	  style={{ backgroundImage: `url(${bg})` }}
 	>
 	  <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+    <GalaxyBackground className="z-[1]" />
+
 	  <div className="relative z-10">
 	<div className="container mx-auto px-4">
         {/* Section Header */}

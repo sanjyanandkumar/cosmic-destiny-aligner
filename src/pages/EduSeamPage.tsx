@@ -11,6 +11,7 @@ import bg from "@/assets/cosmic-background.png";
 import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "@/hooks/use-toast";
 import { requireLogin } from "@/utils/requireLogin";
+import GalaxyBackground from "@/components/GalaxyBackground";
 
 const EduSeamPage = () => {
   const {
@@ -64,7 +65,7 @@ const EduSeamPage = () => {
         style={{ backgroundImage: `url(${bg})` }}
       >
         <div className="absolute inset-0 bg-black/45 backdrop-blur-sm"></div>
-
+        <GalaxyBackground className="z-[1]" />
         <div className="relative z-10 container mx-auto px-4">
           <div className="mb-14 text-center max-w-4xl mx-auto">
             <h1 className="font-playfair text-5xl font-bold text-foreground mb-4">

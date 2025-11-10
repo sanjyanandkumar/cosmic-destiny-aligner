@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Star, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import bg from "@/assets/cosmic-background.png";
+import GalaxyBackground from "@/components/GalaxyBackground";
 
 const Hero = () => {
   return (
@@ -11,6 +12,7 @@ const Hero = () => {
 	>
 	  {/* Dim cosmic overlay */}
 	  <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+      <GalaxyBackground className="z-[1]" />
 	{/* Cosmic Background */}
       <div className="absolute inset-0 bg-transparent">
         <div className="absolute inset-0 opacity-20">

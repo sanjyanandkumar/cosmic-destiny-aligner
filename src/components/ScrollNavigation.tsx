@@ -6,11 +6,10 @@ const ScrollNavigation = () => {
 
   const sections = [
     { id: "hero", label: "Home" },
-    { id: "trust", label: "Trust" },
     { id: "verticals", label: "Divisions" },
-    { id: "showcase", label: "Services" },
     { id: "how-it-works", label: "Process" },
     { id: "offers", label: "Offers" },
+    { id: "trust", label: "Trust" },
   ];
 
   useEffect(() => {

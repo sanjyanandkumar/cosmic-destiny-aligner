@@ -90,10 +90,6 @@ const Navigation = () => {
 
 			<DropdownMenuContent align="end" className="w-40 bg-card border-cosmic-blue/30 backdrop-blur-sm">
 			  <DropdownMenuItem asChild>
-				<Link to="/profile" className="cursor-pointer">Profile</Link>
-			  </DropdownMenuItem>
-
-			  <DropdownMenuItem asChild>
 				<Link to="/orders" className="cursor-pointer">My Orders</Link>
 			  </DropdownMenuItem>
 

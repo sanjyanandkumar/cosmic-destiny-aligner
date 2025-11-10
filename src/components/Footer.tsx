@@ -3,6 +3,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import bg from "@/assets/cosmic-background.png";
+import { Link } from "react-router-dom";
+import GalaxyBackground from "@/components/GalaxyBackground";
 
 const Footer = () => {
   const handleNewsletterSubmit = (e: React.FormEvent) => {
@@ -16,6 +18,7 @@ const Footer = () => {
 	  style={{ backgroundImage: `url(${bg})` }}
 	>
 	<div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+  <GalaxyBackground className="z-[1]" />
 		<div className="relative z-10 container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
@@ -52,22 +55,22 @@ const Footer = () => {
             </h3>
             <ul className="space-y-2 text-muted-foreground">
               <li>
-                <a href="#verticals" className="hover:text-primary transition-colors">
+                <a href="/consulting" className="hover:text-primary transition-colors">
                   BrahmaX Consulting
                 </a>
               </li>
               <li>
-                <a href="#verticals" className="hover:text-primary transition-colors">
+                <a href="/wardrobe" className="hover:text-primary transition-colors">
                   BrahmaX Wardrobe
                 </a>
               </li>
               <li>
-                <a href="#verticals" className="hover:text-primary transition-colors">
+                <a href="/eduseam" className="hover:text-primary transition-colors">
                   EduSeam
                 </a>
               </li>
               <li>
-                <a href="#verticals" className="hover:text-primary transition-colors">
+                <a href="/leisure" className="hover:text-primary transition-colors">
                   BrahmaX Leisure
                 </a>
               </li>
@@ -81,17 +84,17 @@ const Footer = () => {
             </h3>
             <ul className="space-y-2 text-muted-foreground">
               <li>
-                <a href="#about" className="hover:text-primary transition-colors">
+                <a href="/about" className="hover:text-primary transition-colors">
                   About BrahmaX
                 </a>
               </li>
               <li>
-                <a href="#leadership" className="hover:text-primary transition-colors">
+                <a href="/leadership" className="hover:text-primary transition-colors">
                   Leadership
                 </a>
               </li>
               <li>
-                <a href="#contact" className="hover:text-primary transition-colors">
+                <a href="/contact" className="hover:text-primary transition-colors">
                   Contact & Collaborate
                 </a>
               </li>

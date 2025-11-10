@@ -1,81 +1,81 @@
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { useRazorpay } from "./use-razorpay";
 import { toast } from "@/hooks/use-toast";
-
-interface BuyerDetails {
-  name: string;
-  email: string;
-  phone: string;
-  address: string;
-}
-
-interface ProductInfo {
-  name: string;
-  price: number;
-  description?: string;
-  productId?: string;
-}
+import { useNavigate } from "react-router-dom";
 
 export function useCheckout() {
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [currentProduct, setCurrentProduct] = useState<ProductInfo | null>(null);
-  const [buyerDetails, setBuyerDetails] = useState<BuyerDetails | null>(null);
-  const { buyNow, processing } = useRazorpay();
+  const [currentProduct, setCurrentProduct] = useState<any>(null);
+  const [processing, setProcessing] = useState(false);
+  const navigate = useNavigate();
 
-  const startCheckout = async (product: ProductInfo) => {
-    // Check inventory if productId is provided
-    if (product.productId) {
-      const { data: productData, error } = await supabase
-        .from("products")
-        .select("quantity_available, name")
-        .eq("id", product.productId)
-        .single();
-
-      if (error) {
-        console.error("Error checking inventory:", error);
-        toast({
-          title: "Error",
-          description: "Could not verify product availability. Please try again.",
-          variant: "destructive",
-        });
-        return;
-      }
-
-      if (!productData || productData.quantity_available <= 0) {
-        toast({
-          title: "Out of Stock",
-          description: `${product.name} is currently out of stock.`,
-          variant: "destructive",
-        });
-        return;
-      }
-    }
-
+  const startCheckout = (product: { name: string; price: number; description: string }) => {
     setCurrentProduct(product);
     setDialogOpen(true);
   };
 
-  const handleConfirmCheckout = async (details: BuyerDetails) => {
-    if (!currentProduct) return;
-
-    setBuyerDetails(details);
-
-    // Proceed to payment with buyer details
-    await buyNow({
-      amountInPaise: currentProduct.price * 100,
-      name: currentProduct.name,
-      description: currentProduct.description,
-      buyerDetails: details,
-      productId: currentProduct.productId,
-    });
-
+  const handleCloseDialog = () => {
     setDialogOpen(false);
   };
 
-  const handleCloseDialog = () => {
-    setDialogOpen(false);
-    setCurrentProduct(null);
+  const handleConfirmCheckout = async () => {
+    if (!currentProduct) return;
+
+    setProcessing(true);
+
+    try {
+      // ✅ Get the logged-in user session
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) {
+        toast({ title: "Login Required", description: "Please log in to continue.", variant: "destructive" });
+        navigate("/login");
+        return;
+      }
+
+      // ✅ Create Order (Completed Immediately — TEST MODE)
+      const { data: orderData, error: orderErr } = await supabase
+        .from("orders")
+        .insert({
+          order_number: `ORD-${Date.now()}`,
+          buyer_name: user.user_metadata?.full_name || "Customer",
+          buyer_email: user.email,
+          buyer_phone: null,
+          total_amount: currentProduct.price * 100, // paise
+          status: "completed", // ✅ Skip payment, mark complete
+          razorpay_payment_id: null,
+        })
+        .select()
+        .single();
+
+      if (orderErr) {
+        toast({ title: "Order Failed", description: orderErr.message, variant: "destructive" });
+        return;
+      }
+
+      // ✅ Insert Order Item
+      await supabase.from("order_items").insert({
+        order_id: orderData.id,
+        product_id: currentProduct.name,
+        price_at_purchase: currentProduct.price,
+        quantity: 1,
+      });
+
+      toast({
+        title: "Order Placed (Test Mode)",
+        description: "Order successfully created without payment.",
+      });
+
+      handleCloseDialog();
+
+      // Optionally redirect to Orders page
+      navigate("/orders");
+
+    } catch (err: any) {
+      console.error(err);
+      toast({ title: "Order Failed", description: "Unexpected error occurred.", variant: "destructive" });
+    } finally {
+      setProcessing(false);
+    }
   };
 
   return {

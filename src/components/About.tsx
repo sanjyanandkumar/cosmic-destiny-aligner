@@ -1,4 +1,5 @@
 import bg from "@/assets/cosmic-background.png";
+import GalaxyBackground from "@/components/GalaxyBackground";
 
 const About = () => {
   return (
@@ -9,6 +10,7 @@ const About = () => {
 	>
 	  {/* Dim overlay same as Login & Awards */}
 	  <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+    <GalaxyBackground className="z-[1]" />
 
 	  <div className="relative z-10">
       <div className="container mx-auto px-4">

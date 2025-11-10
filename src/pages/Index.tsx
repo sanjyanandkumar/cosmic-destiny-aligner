@@ -3,7 +3,6 @@ import Hero from "@/components/Hero";
 import TrustProof from "@/components/TrustProof";
 import HowItWorks from "@/components/HowItWorks";
 import VerticalCards from "@/components/VerticalCards";
-import VerticalsShowcase from "@/components/VerticalsShowcase";
 import FeaturedOffers from "@/components/FeaturedOffers";
 import KarmaKingdomsShowcase from "@/components/KarmaKingdomsShowcase";
 import Footer from "@/components/Footer";

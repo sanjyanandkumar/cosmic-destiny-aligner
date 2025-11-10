@@ -9,6 +9,7 @@ import karmicMeditationImg from "@/assets/karmic-meditation.jpg";
 import bg from "@/assets/cosmic-background.png";
 import { supabase } from "@/integrations/supabase/client";
 import { requireLogin } from "@/utils/requireLogin";
+import GalaxyBackground from "@/components/GalaxyBackground";
 
 const LeisurePage = () => {
   const { dialogOpen, currentProduct, processing, startCheckout, handleConfirmCheckout, handleCloseDialog } = useCheckout();
@@ -39,7 +40,8 @@ const LeisurePage = () => {
       >
         {/* Soft golden-black overlay */}
         <div className="absolute inset-0 bg-black/45 backdrop-blur-sm"></div>
-
+        <GalaxyBackground className="z-[1]" />
+        
         {/* Content Layer */}
         <div className="relative z-10 container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto mb-14">
