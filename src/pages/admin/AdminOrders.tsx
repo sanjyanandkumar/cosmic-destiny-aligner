@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
-import { Loader2, FileDown, Printer } from "lucide-react";
+import { Loader2, Printer, UploadCloud, ExternalLink } from "lucide-react";
 import jsPDF from "jspdf";
 import bg from "@/assets/cosmic-background.png";
 import GalaxyBackground from "@/components/GalaxyBackground";
@@ -23,7 +23,8 @@ type Order = {
   status: string;
   created_at: string;
   updated_at: string;
-  report_url: string | null;
+  report_path: string | null;
+  report_signed_url: string | null;
 };
 
 function useOrders() {
@@ -44,6 +45,7 @@ function useOrders() {
 export default function AdminOrders() {
   const { data, isLoading, refetch, isFetching } = useOrders();
   const [search, setSearch] = useState("");
+  const fileInputs = useRef<{ [key: string]: HTMLInputElement | null }>({});
 
   const filtered = useMemo(() => {
     const s = search.toLowerCase();
@@ -61,80 +63,102 @@ export default function AdminOrders() {
     doc.save(`invoice-${order.order_number}.pdf`);
   };
 
+  const uploadReport = async (order: Order, file: File) => {
+    const fileName = `${order.order_number}-${Date.now()}.${file.name.split(".").pop()}`;
+
+    const { data: uploadData, error: uploadError } = await supabase.storage
+      .from("order-reports")
+      .upload(fileName, file, { upsert: true });
+
+    if (uploadError) {
+      toast({ title: "Upload Failed", description: uploadError.message, variant: "destructive" });
+      return;
+    }
+
+    const filePath = uploadData.path;
+
+    const { data: signed, error: signedError } = await supabase.storage
+      .from("order-reports")
+      .createSignedUrl(filePath, 60 * 60 * 24 * 30 * 6); // 6 months
+
+    if (signedError) {
+      toast({ title: "Signed URL Error", description: signedError.message, variant: "destructive" });
+      return;
+    }
+
+    const signedUrl = signed.signedUrl;
+
+    const { error: updateError } = await supabase
+      .from("orders")
+      .update({
+        report_path: filePath,
+        report_signed_url: signedUrl,
+        status: "Report Ready"
+      })
+      .eq("id", order.id);
+
+    if (updateError) {
+      toast({ title: "Save Failed", description: updateError.message, variant: "destructive" });
+      return;
+    }
+
+    toast({ title: "Success", description: "Report uploaded and signed URL saved." });
+    refetch();
+  };
+
+  const triggerUpload = (orderId: string) => {
+    fileInputs.current[orderId]?.click();
+  };
+
   return (
     <div className="relative min-h-screen overflow-hidden">
 
-      <Navigation /> {/* ✅ HEADER */}
+      <Navigation />
 
-      {/* Background */}
       <div className="absolute inset-0 bg-cover bg-center opacity-40" style={{ backgroundImage: `url(${bg})` }} />
       <div className="absolute inset-0 bg-black/60 backdrop-blur-[4px]" />
       <GalaxyBackground className="absolute inset-0 opacity-60 pointer-events-none" />
 
-      <main className="relative z-10 pt-32 pb-24 px-8"> 
-        {/* Page Content */}
+      <main className="relative z-10 pt-32 pb-24 px-8">
         <div className="max-w-6xl mx-auto">
 
-          {/* Header */}
-          <div className="flex items-center justify-between">
-            <h1
-              className="
-                text-4xl font-bold 
-                bg-clip-text text-transparent 
-                bg-gradient-to-r from-[#F7E8A0] via-[#FFDFAF] to-[#E2B448]
-                drop-shadow-[0_0_10px_rgba(255,215,140,0.6)]
-                leading-normal
-                pb-1
-              "
-              style={{
-                WebkitTextStroke: "1px rgba(0,0,0,0.7)",
-              }}
-            >
+          <div className="flex items-center justify-between mb-6">
+            <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#F7E8A0] via-[#FFDFAF] to-[#E2B448] drop-shadow-[0_0_10px_rgba(255,215,140,0.6)]">
               Order Management Console
             </h1>
 
-            <div className="flex gap-2">
-              <Button
-                variant="outline"
-                onClick={() => refetch()}
-                disabled={isFetching}
-                className="border-white/30 text-white hover:bg-white/10"
-              >
-                <Loader2 className={`mr-2 h-4 w-4 ${isFetching ? "animate-spin" : ""}`} /> Refresh
-              </Button>
-
-              <Button className="bg-gradient-to-r from-[#FFDC94] to-[#E2B448] text-black font-semibold shadow-[0_0_18px_rgba(255,220,148,0.7)] hover:scale-105 transition-all">
-                <FileDown className="mr-2 h-4 w-4" /> Export CSV
-              </Button>
-            </div>
+            <Button
+              variant="outline"
+              onClick={() => refetch()}
+              disabled={isFetching}
+              className="border-white/30 text-white hover:bg-white/10"
+            >
+              <Loader2 className={`mr-2 h-4 w-4 ${isFetching ? "animate-spin" : ""}`} /> Refresh
+            </Button>
           </div>
 
-          {/* Search */}
-          <div className="mt-6">
-            <Input
-              placeholder="Search by order#, email, name, status…"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="bg-white/10 text-white placeholder-white/60 border-white/30"
-            />
-          </div>
+          <Input
+            placeholder="Search by order#, email, name, status…"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="bg-white/10 text-white placeholder-white/60 border-white/30 mb-6"
+          />
 
-          {/* Table Card */}
-          <Card className="mt-8 bg-white/10 backdrop-blur-md border-white/20 shadow-[0_0_40px_rgba(255,215,0,0.15)] rounded-2xl text-white">
+          <Card className="bg-white/10 backdrop-blur-md border-white/20 rounded-2xl text-white">
             <CardHeader>
-              <CardTitle className="text-lg font-semibold">All Orders</CardTitle>
+              <CardTitle>All Orders</CardTitle>
             </CardHeader>
 
             <CardContent>
               <Table className="text-white/90">
                 <TableHeader>
                   <TableRow className="border-white/10">
-                    <TableHead className="text-[#FFDFAF] uppercase tracking-wider text-xs">Order #</TableHead>
-                    <TableHead className="text-[#FFDFAF] uppercase tracking-wider text-xs">Buyer</TableHead>
-                    <TableHead className="text-[#FFDFAF] uppercase tracking-wider text-xs">Email</TableHead>
-                    <TableHead className="text-[#FFDFAF] uppercase tracking-wider text-xs">Status</TableHead>
-                    <TableHead className="text-right text-[#FFDFAF] uppercase tracking-wider text-xs">Total</TableHead>
-                    <TableHead className="text-right text-[#FFDFAF] uppercase tracking-wider text-xs">Actions</TableHead>
+                    <TableHead className="text-[#FFDFAF] text-xs">Order #</TableHead>
+                    <TableHead className="text-[#FFDFAF] text-xs">Buyer</TableHead>
+                    <TableHead className="text-[#FFDFAF] text-xs">Email</TableHead>
+                    <TableHead className="text-[#FFDFAF] text-xs">Status</TableHead>
+                    <TableHead className="text-right text-[#FFDFAF] text-xs">Total</TableHead>
+                    <TableHead className="text-right text-[#FFDFAF] text-xs">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
 
@@ -142,7 +166,7 @@ export default function AdminOrders() {
                   {isLoading ? (
                     <TableRow>
                       <TableCell colSpan={6} className="text-center py-8">
-                        <Loader2 className="inline h-6 w-6 animate-spin text-[#FFDFAF]" />
+                        <Loader2 className="h-6 w-6 animate-spin text-[#FFDFAF]" />
                       </TableCell>
                     </TableRow>
                   ) : (
@@ -152,16 +176,37 @@ export default function AdminOrders() {
                         <TableCell>{o.buyer_name}</TableCell>
                         <TableCell>{o.buyer_email}</TableCell>
                         <TableCell>{o.status}</TableCell>
-                        <TableCell className="text-right">₹{Number(o.total_amount).toFixed(2)}</TableCell>
+                        <TableCell className="text-right">₹{o.total_amount.toFixed(2)}</TableCell>
 
                         <TableCell className="text-right">
-                          <Button
-                            size="sm"
-                            onClick={() => invoicePDF(o)}
-                            className="border border-white/30 text-white hover:bg-white/10"
-                          >
-                            <Printer className="h-4 w-4 mr-1" /> Invoice
-                          </Button>
+                          <div className="flex justify-end gap-2">
+
+                            <Button size="sm" onClick={() => invoicePDF(o)} className="border border-white/30 text-white hover:bg-white/10">
+                              <Printer className="h-4 w-4 mr-1" /> Invoice
+                            </Button>
+
+                            {o.report_signed_url && (
+                              <Button
+                                size="sm"
+                                onClick={() => window.open(o.report_signed_url!, "_blank")}
+                                className="border border-white/30 text-[#FFDFAF] hover:bg-white/10"
+                              >
+                                <ExternalLink className="h-4 w-4 mr-1" /> View Report
+                              </Button>
+                            )}
+
+                            <Button size="sm" onClick={() => triggerUpload(o.id)} className="bg-[#FFDFAF] text-black hover:bg-[#f7d596]">
+                              <UploadCloud className="h-4 w-4 mr-1" /> Upload
+                            </Button>
+
+                            <input
+                              type="file"
+                              accept="application/pdf,image/*"
+                              className="hidden"
+                              ref={(el) => (fileInputs.current[o.id] = el)}
+                              onChange={(e) => e.target.files?.[0] && uploadReport(o, e.target.files[0])}
+                            />
+                          </div>
                         </TableCell>
                       </TableRow>
                     ))
@@ -173,7 +218,7 @@ export default function AdminOrders() {
         </div>
       </main>
 
-      <Footer /> {/* ✅ FOOTER */}
+      <Footer />
     </div>
   );
 }

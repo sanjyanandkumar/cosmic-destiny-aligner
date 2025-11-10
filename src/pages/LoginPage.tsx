@@ -77,6 +77,9 @@ return (
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") handleLogin();
+          }}
           className="mb-3 text-white placeholder-white/60 bg-white/10 border-white/20"
         />
 

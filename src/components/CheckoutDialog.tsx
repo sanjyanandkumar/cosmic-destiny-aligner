@@ -195,7 +195,7 @@ export const CheckoutDialog = ({
               id="phone"
               type="tel"
               {...register("phone")}
-              placeholder="+91 9876543210 or 9876543210"
+              placeholder=""
               className={
                 errors.phone
                   ? "border-destructive focus-visible:ring-destructive"

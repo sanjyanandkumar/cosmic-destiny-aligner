@@ -8,8 +8,8 @@ import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
+import CosmicPage from "@/components/CosmicPage";
 import bg from "@/assets/cosmic-background.png";
-import GalaxyBackground from "@/components/GalaxyBackground";
 
 interface Order {
   id: string;
@@ -32,55 +32,39 @@ export default function AdminPage() {
     checkAdminStatus();
   }, []);
 
-const checkAdminStatus = async () => {
-  const { data: { user } } = await supabase.auth.getUser();
-  
-  if (!user) {
-    toast({
-      title: "Unauthorized",
-      description: "Please log in to access this page.",
-      variant: "destructive",
+  const checkAdminStatus = async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!user) {
+      toast({ title: "Unauthorized", description: "Please log in.", variant: "destructive" });
+      navigate("/login");
+      return;
+    }
+
+    const { data: isAdmin, error } = await supabase.rpc("has_role", {
+      _role: "admin",
+      _user_id: user.id,
     });
-    navigate("/login");
-    return;
-  }
 
-  const { data: isAdmin, error } = await supabase.rpc("has_role", {
-    _role: "admin",
-    _user_id: user.id,
-  });
+    if (error || isAdmin !== true) {
+      toast({ title: "Access Denied", description: "Admin access required.", variant: "destructive" });
+      navigate("/");
+      return;
+    }
 
-  if (error || isAdmin !== true) {
-    toast({
-      title: "Access Denied",
-      description: "You do not have admin privileges.",
-      variant: "destructive",
-    });
-    navigate("/");
-    return;
-  }
-
-  setIsAdmin(true);
-  fetchOrders();
-};
+    setIsAdmin(true);
+    fetchOrders();
+  };
 
   const fetchOrders = async () => {
     setLoading(true);
-    const { data, error } = await supabase
+
+    const { data } = await supabase
       .from("orders")
       .select("*")
       .order("created_at", { ascending: false });
 
-    if (error) {
-      console.error("Error fetching orders:", error);
-      toast({
-        title: "Error",
-        description: "Failed to fetch orders.",
-        variant: "destructive",
-      });
-    } else {
-      setOrders(data || []);
-    }
+    setOrders(data || []);
     setLoading(false);
   };
 
@@ -91,121 +75,93 @@ const checkAdminStatus = async () => {
       .eq("id", orderId);
 
     if (error) {
-      console.error("Error updating order status:", error);
-      toast({
-        title: "Error",
-        description: "Failed to update order status.",
-        variant: "destructive",
-      });
-    } else {
-      toast({
-        title: "Success",
-        description: "Order status updated successfully.",
-      });
-      fetchOrders();
+      toast({ title: "Error", description: "Could not update status", variant: "destructive" });
+      return;
     }
+
+    toast({ title: "Updated", description: "Order status updated" });
+    fetchOrders();
   };
 
-  const getStatusBadge = (status: string) => {
-    const variants: Record<string, "default" | "secondary" | "destructive" | "outline"> = {
+  const getStatusBadge = (s: string) => {
+    const map: Record<string, "default" | "secondary" | "destructive" | "outline"> = {
       pending: "outline",
       processing: "secondary",
       completed: "default",
       cancelled: "destructive",
     };
-    return <Badge variant={variants[status] || "outline"}>{status}</Badge>;
+    return <Badge variant={map[s] || "outline"}>{s}</Badge>;
   };
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-  };
+  const formatDate = (d: string) =>
+    new Date(d).toLocaleString("en-IN");
 
-  const formatAmount = (amount: number) => {
-    return `₹${(amount / 100).toFixed(2)}`;
-  };
+  const formatAmount = (amt: number) =>
+    `₹${(amt / 100).toFixed(2)}`;
 
-  if (!isAdmin) {
-    return null;
-  }
+  if (!isAdmin) return null;
 
   return (
-    <div className="min-h-screen bg-transparent">
+    <CosmicPage bgSrc={bg}>
       <Navigation />
-      <main
-        className="flex-1 flex justify-center bg-cover bg-center relative py-32"
-        style={{ backgroundImage: `url(${bg})` }}
-      >
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-sm z-0"></div>
-        <GalaxyBackground className="z-0" />
-        <div className="relative z-10 w-full flex justify-center">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-3xl font-bold">Order Management</CardTitle>
-            </CardHeader>
-            <CardContent>
-              {loading ? (
-                <p className="text-center py-8">Loading orders...</p>
-              ) : orders.length === 0 ? (
-                <p className="text-center py-8 text-muted-foreground">No orders found.</p>
-              ) : (
-                <div className="overflow-x-auto">
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead>Order Number</TableHead>
-                        <TableHead>Customer</TableHead>
-                        <TableHead>Email</TableHead>
-                        <TableHead>Phone</TableHead>
-                        <TableHead>Amount</TableHead>
-                        <TableHead>Status</TableHead>
-                        <TableHead>Date</TableHead>
-                        <TableHead>Action</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {orders.map((order) => (
-                        <TableRow key={order.id}>
-                          <TableCell className="font-medium">{order.order_number}</TableCell>
-                          <TableCell>{order.buyer_name}</TableCell>
-                          <TableCell>{order.buyer_email}</TableCell>
-                          <TableCell>{order.buyer_phone || "N/A"}</TableCell>
-                          <TableCell>{formatAmount(order.total_amount)}</TableCell>
-                          <TableCell>{getStatusBadge(order.status)}</TableCell>
-                          <TableCell>{formatDate(order.created_at)}</TableCell>
-                          <TableCell>
-                            <Select
-                              value={order.status}
-                              onValueChange={(value) => updateOrderStatus(order.id, value)}
-                            >
-                              <SelectTrigger className="w-[140px]">
-                                <SelectValue />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value="pending">Pending</SelectItem>
-                                <SelectItem value="processing">Processing</SelectItem>
-                                <SelectItem value="completed">Completed</SelectItem>
-                                <SelectItem value="cancelled">Cancelled</SelectItem>
-                              </SelectContent>
-                            </Select>
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </div>
-              )}
-            </CardContent>
-          </Card>
-        </div>
-      </main>
+
+      <div className="container mx-auto px-4 py-24 max-w-6xl">
+        <Card className="bg-white/10 backdrop-blur-md border-white/20 text-white rounded-2xl">
+          <CardHeader>
+            <CardTitle className="text-3xl font-playfair">Order Management</CardTitle>
+          </CardHeader>
+
+          <CardContent>
+            {loading ? (
+              <p className="text-center py-6">Loading orders...</p>
+            ) : (
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Order #</TableHead>
+                    <TableHead>Customer</TableHead>
+                    <TableHead>Email</TableHead>
+                    <TableHead>Phone</TableHead>
+                    <TableHead>Total</TableHead>
+                    <TableHead>Status</TableHead>
+                    <TableHead>Date</TableHead>
+                    <TableHead>Update</TableHead>
+                  </TableRow>
+                </TableHeader>
+
+                <TableBody>
+                  {orders.map((o) => (
+                    <TableRow key={o.id}>
+                      <TableCell>{o.order_number}</TableCell>
+                      <TableCell>{o.buyer_name}</TableCell>
+                      <TableCell>{o.buyer_email}</TableCell>
+                      <TableCell>{o.buyer_phone || "—"}</TableCell>
+                      <TableCell>{formatAmount(o.total_amount)}</TableCell>
+                      <TableCell>{getStatusBadge(o.status)}</TableCell>
+                      <TableCell>{formatDate(o.created_at)}</TableCell>
+                      <TableCell>
+                        <Select value={o.status} onValueChange={(v) => updateOrderStatus(o.id, v)}>
+                          <SelectTrigger className="w-[130px]">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="pending">Pending</SelectItem>
+                            <SelectItem value="processing">Processing</SelectItem>
+                            <SelectItem value="completed">Completed</SelectItem>
+                            <SelectItem value="cancelled">Cancelled</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            )}
+          </CardContent>
+        </Card>
+      </div>
+
       <Footer />
-    </div>
+    </CosmicPage>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 
-const GalaxyBackground = ({ className = "", starCount = 200 }) => {
+const GalaxyBackground = ({ className = "", starCount = 600 }) => {
   const stars = useMemo(
     () =>
       Array.from({ length: starCount }).map(() => ({

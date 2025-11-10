@@ -1,12 +1,12 @@
 import { Card } from "@/components/ui/card";
 import { Link } from "react-router-dom";
+import CosmicPage from "@/components/CosmicPage";
 
 import consultingImg from "@/assets/karmic-consulting.jpg";
 import wardrobeImg from "@/assets/cosmic-wallet.jpg";
 import eduseamImg from "@/assets/career-guidance.jpg";
 import leisureImg from "@/assets/bali-trip.jpg";
 import bg from "@/assets/cosmic-background.png";
-import GalaxyBackground from "@/components/GalaxyBackground";
 
 const verticals = [
   {
@@ -41,57 +41,56 @@ const verticals = [
 
 const VerticalCards = () => {
   return (
-    <section
-      id="verticals"
-      className="relative py-24 bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: `url(${bg})` }}
+    <CosmicPage
+      bgSrc={bg}
+      showNav={false}     // section on landing page → no header
+      showFooter={false}  // you asked to hide footer for this section
+      mainClassName="py-24"
     >
-      {/* Dim overlay */}
-      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
-      <GalaxyBackground className="z-[1]" />
+      <section id="verticals">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="font-playfair text-4xl md:text-5xl font-bold text-white mb-4">
+              Karmic Divisions
+            </h2>
+            <p className="font-inter text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Four Paths. One Purpose — to Align Karma with Creation
+            </p>
+          </div>
 
-      <div className="relative z-10 container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Karmic Divisions
-          </h2>
-          <p className="font-inter text-xl text-muted-foreground max-w-2xl mx-auto">
-            Four Paths. One Purpose — to Align Karma with Creation
-          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+            {verticals.map((item, index) => (
+              <Link key={index} to={item.link}>
+                <Card
+                  className="overflow-hidden border border-white/20 bg-white/10 backdrop-blur-md 
+                             hover:shadow-[0_0_25px_rgba(255,220,120,0.4)] hover:border-primary/60
+                             transition-all duration-500 cursor-pointer group rounded-2xl"
+                >
+                  <div className="relative h-[260px] overflow-hidden rounded-t-2xl">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  </div>
+
+                  <div className="p-6">
+                    <h3 className="font-playfair text-2xl font-bold text-white">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-primary/80 mb-3">{item.subtitle}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                </Card>
+              </Link>
+            ))}
+          </div>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-          {verticals.map((item, index) => (
-            <Link key={index} to={item.link}>
-              <Card
-                className="overflow-hidden border border-white/20 bg-card/30 backdrop-blur-md 
-                hover:shadow-[0_0_25px_rgba(255,220,120,0.4)] hover:border-primary/60
-                transition-all duration-500 cursor-pointer group"
-              >
-                <div className="relative h-[260px] overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                </div>
-
-                <div className="p-6">
-                  <h3 className="font-playfair text-2xl font-bold text-foreground">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-primary/80 mb-3">{item.subtitle}</p>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
-              </Card>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </section>
+      </section>
+    </CosmicPage>
   );
 };
 

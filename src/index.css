@@ -231,3 +231,15 @@ All colors MUST be HSL.
 .group:hover .lux-inner::after {
   opacity: 0.55;
 }
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+@keyframes scrollhint {
+  0%, 100% { opacity: .25; transform: translateX(0); }
+  50% { opacity: 1; transform: translateX(6px); }
+}
