@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X, Sparkles, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -9,6 +9,9 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent,
 } from "@/components/ui/dropdown-menu";
 
 const Navigation = () => {
@@ -25,32 +28,29 @@ const Navigation = () => {
     { name: "Contact", href: "/contact" },
   ];
 
-	useEffect(() => {
-	  const getUser = async () => {
-		const { data: { user } } = await supabase.auth.getUser();
-		setUser(user);
-	  };
-	  getUser();
+  useEffect(() => {
+    const getUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      setUser(user);
+    };
+    getUser();
+    const { data: authListener } = supabase.auth.onAuthStateChange(() => {
+      getUser();
+    });
+    return () => authListener.subscription.unsubscribe();
+  }, []);
 
-	  // Listen for login/logout without refresh
-	  const { data: authListener } = supabase.auth.onAuthStateChange(() => {
-		getUser();
-	  });
-
-	  return () => authListener.subscription.unsubscribe();
-	}, []);
-
-	const handleLogout = async () => {
-	  await supabase.auth.signOut();
-	  setUser(null);
-	  navigate("/"); // redirect to homepage (or /login)
-	};
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    setUser(null);
+    navigate("/");
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-cosmic-indigo/95 backdrop-blur-sm border-b border-cosmic-blue/30">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
+
           <Link to="/" className="flex items-center space-x-2">
             <Sparkles className="h-8 w-8 text-primary" />
             <span className="text-2xl font-bold bg-gradient-gold bg-clip-text text-transparent">
@@ -58,90 +58,97 @@ const Navigation = () => {
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
-		<div className="hidden md:flex items-center space-x-8">
-		  {navLinks.map((link) => (
-			<Link
-			  key={link.name}
-			  to={link.href}
-			  className="text-foreground hover:text-primary transition-colors text-sm font-medium"
-			>
-			  {link.name}
-			</Link>
-		  ))}
+          <div className="hidden md:flex items-center space-x-8">
 
-		{user ? (
-		  <DropdownMenu>
-			<DropdownMenuTrigger className="flex items-center gap-2 cursor-pointer select-none">
-			  {/* Avatar Circle */}
-			  <div className="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center font-semibold">
-				{user.user_metadata?.full_name
-				  ? user.user_metadata.full_name.charAt(0).toUpperCase()
-				  : user.email.charAt(0).toUpperCase()}
-			  </div>
+            {/* GROUPED ORIGIN MENU */}
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-foreground hover:text-primary transition cursor-pointer">
+                Origin <ChevronDown className="w-4 h-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-card/80 backdrop-blur border-cosmic-blue/30">
+                <DropdownMenuItem asChild>
+                  <Link to="/philosophy">Philosophy</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/leadership">Leadership</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/awards">Awards</Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
 
-			  {/* Name */}
-			  <span className="text-sm font-medium text-foreground">
-				{user.user_metadata?.full_name?.split(" ")[0] || user.email}
-			  </span>
+            <Link to="/about" className="text-sm font-medium text-foreground hover:text-primary transition">About</Link>
+            <Link to="/orders" className="text-sm font-medium text-foreground hover:text-primary transition">Orders</Link>
+            <Link to="/contact" className="text-sm font-medium text-foreground hover:text-primary transition">Contact</Link>
 
-			  <span className="text-muted-foreground text-xs">▼</span>
-			</DropdownMenuTrigger>
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex items-center gap-2 cursor-pointer select-none hover:text-primary transition">
+                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-semibold">
+                    {(user.user_metadata?.full_name
+                      ? user.user_metadata.full_name.charAt(0)
+                      : user.email?.charAt(0)
+                    )?.toUpperCase()}
+                  </div>
+                  <span className="text-sm font-medium text-foreground">
+                    {user.user_metadata?.full_name?.split(" ")[0] || user.email}
+                  </span>
+                  <ChevronDown className="w-4 h-4 text-muted-foreground" />
+                </DropdownMenuTrigger>
 
-			<DropdownMenuContent align="end" className="w-40 bg-card border-cosmic-blue/30 backdrop-blur-sm">
-			  <DropdownMenuItem asChild>
-				<Link to="/orders" className="cursor-pointer">My Orders</Link>
-			  </DropdownMenuItem>
+                <DropdownMenuContent align="end" className="w-40 bg-card/90 backdrop-blur border-cosmic-blue/30">
+                  <DropdownMenuItem asChild>
+                    <Link to="/orders">My Orders</Link>
+                  </DropdownMenuItem>
 
-			  <DropdownMenuSeparator />
+                  <DropdownMenuSeparator />
 
-			  <DropdownMenuItem onClick={handleLogout} className="text-destructive cursor-pointer">
-				Logout
-			  </DropdownMenuItem>
-			</DropdownMenuContent>
-		  </DropdownMenu>
-		) : (
-		  <Button variant="outline" size="sm" asChild>
-			<Link to="/login">Login</Link>
-		  </Button>
-		)}
-		</div>
+                  <DropdownMenuItem className="text-destructive" onClick={handleLogout}>
+                    Logout
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button variant="outline" size="sm" asChild>
+                <Link to="/login">Login</Link>
+              </Button>
+            )}
+          </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-foreground"
-          >
-		{isOpen && (
-		  <div className="md:hidden py-4 space-y-4 border-t border-cosmic-blue/30">
-			{navLinks.map((link) => (
-			  <Link
-				key={link.name}
-				to={link.href}
-				className="block text-foreground hover:text-primary transition-colors"
-				onClick={() => setIsOpen(false)}
-			  >
-				{link.name}
-			  </Link>
-			))}
-		  </div>
-		)}
+          <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-foreground">
+            {isOpen ? <X /> : <Menu />}
           </button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* MOBILE NAV */}
         {isOpen && (
           <div className="md:hidden py-4 space-y-4 border-t border-cosmic-blue/30">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.href}
-                className="block text-foreground hover:text-primary transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
+
+            {/* Grouped Origin */}
+            <details className="group">
+              <summary className="cursor-pointer text-foreground hover:text-primary transition">
+                Origin
+              </summary>
+              <div className="mt-2 ml-4 space-y-2">
+                <Link to="/philosophy" className="block text-sm text-muted-foreground hover:text-primary" onClick={() => setIsOpen(false)}>Philosophy</Link>
+                <Link to="/leadership" className="block text-sm text-muted-foreground hover:text-primary" onClick={() => setIsOpen(false)}>Leadership</Link>
+                <Link to="/awards" className="block text-sm text-muted-foreground hover:text-primary" onClick={() => setIsOpen(false)}>Awards</Link>
+              </div>
+            </details>
+
+            <Link to="/about" className="block" onClick={() => setIsOpen(false)}>About</Link>
+            <Link to="/orders" className="block" onClick={() => setIsOpen(false)}>Orders</Link>
+            <Link to="/contact" className="block" onClick={() => setIsOpen(false)}>Contact</Link>
+
+            {user ? (
+              <>
+                <div className="pt-2 border-t border-cosmic-blue/30 text-sm">{user.email}</div>
+                <button onClick={handleLogout} className="text-destructive text-sm">Logout</button>
+              </>
+            ) : (
+              <Link to="/login" className="block text-sm" onClick={() => setIsOpen(false)}>Login</Link>
+            )}
           </div>
         )}
       </div>
