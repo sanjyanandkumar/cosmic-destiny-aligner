@@ -20,7 +20,7 @@ const items = [
   { title: "Karmic Meditation", image: karmicMeditationImg, link: "/consulting" },
 ];
 
-const AUTOPLAY_DELAY = 1200; // reduced idle time (1.2 sec)
+const AUTOPLAY_DELAY = 2200; // reduced idle time (1.2 sec)
 
 const KarmaKingdomsShowcase = () => {
   const [index, setIndex] = useState(0);
