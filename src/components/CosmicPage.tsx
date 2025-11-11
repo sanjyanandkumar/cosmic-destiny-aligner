@@ -8,7 +8,7 @@ export default function CosmicPage({ children }: { children: React.ReactNode }) 
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${bg})` }}
       />
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-[4px]" />
+      <div className="absolute inset-0 bg-black/80 backdrop-blur-[4px]" />
       <GalaxyBackground className="absolute inset-0 opacity-60 pointer-events-none" />
       <div className="relative z-10">{children}</div>
     </div>
