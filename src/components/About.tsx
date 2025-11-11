@@ -21,10 +21,11 @@ const About = () => {
               </h2>
 
               <p className="font-inter text-xl text-muted-foreground leading-relaxed">
-                BrahmaX is a karmic innovation company born from the belief that
-                every creation, business, and relationship has a divine blueprint.
-                We decode this unseen architecture and align it with strategy,
-                design, and destiny.
+                BrahmaX is a holistic karmic alignment enterprise that decodes the mystic architecture of karmic science and aligns each individual or business with the karmic blueprint that shapes everyone’s strategy, design, and destiny.<br></br>
+Every creation, business, and relationship in this universe has a divine blueprint.<br></br>
+Hence, it is pertinent and important that each individual across the globe, be it of any culture, religion, or country, is aware of how this pre-destined blueprint works and aligns his/her life to lead a harmonious one, by which they don’t travel their life-journey clueless and unaware of what is happening to them at all.<br></br>
+In short, the universe doesn’t reward effort alone — it rewards alignment!<br></br>
+And this is where BrahmaX steps in…
               </p>
             </div>
 
@@ -35,9 +36,8 @@ const About = () => {
                   Our Essence
                 </h3>
                 <p className="font-inter text-lg text-muted-foreground leading-relaxed">
-                  BrahmaX stands at the intersection of spiritual intelligence and
-                  strategic enterprise. Operating as a house of karmic verticals —
-                  each built to realign industries with higher consciousness.
+                  BrahmaX stands at the intersection of spiritual intelligence and strategic enterprise. Founded under DarkShadow Ventures, it operates a plethora of karmic verticals — digital ecosystems to luxury wellness, from karmic real estate to cosmic branding to karmic media assets, et al <br></br>
+Each one is built to realign vision to vibration, and vibration to value.<br></br>
                 </p>
               </div>
 
@@ -47,19 +47,27 @@ const About = () => {
                   Our Vision
                 </h3>
                 <p className="font-inter text-lg text-muted-foreground italic mb-4">
-                  "To build karmically aligned global enterprises that balance profit,
-                  purpose, and planetary evolution."
+                  "To build karmically aligned individuals and global enterprises that balance growth, achievement, success, purpose, profit, and planetary evolution."
                 </p>
                 <p className="font-inter text-lg text-muted-foreground leading-relaxed">
-                  We believe true success is cosmic — when your actions, timing, and
-                  energy align with the universe itself.
+                  BrahmaX also envisions a new era of entrepreneurship — where destiny is not chased, but decoded. <br></br>
+We believe true success is cosmic — when your actions, timing, and energy align with the universe. Our mission is to bridge spirituality and strategy, turning karmic blueprints into tangible empires that uplift both the individual and the collective.
+
                 </p>
               </div>
 
+              <div>
+                <h3 className="font-playfair text-2xl font-bold text-white mb-4">
+                  Our Purpose
+                </h3>
+                <p className="font-inter text-lg text-muted-foreground mb-4">
+                  To guide individuals, creators, leaders, and enterprises toward ventures that are cosmically timed and spiritually sustainable — also crafting businesses that generate wealth with meaning, legacy, and balance in the bargain.
+                </p>
+              </div>
               {/* Company Profile */}
               <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg p-8 mt-12">
                 <h3 className="font-playfair text-2xl font-bold text-white mb-6">
-                  Company Profile
+                  Company profile snapshot
                 </h3>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">

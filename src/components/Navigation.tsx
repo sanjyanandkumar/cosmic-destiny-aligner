@@ -13,6 +13,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuSubContent,
 } from "@/components/ui/dropdown-menu";
+import brahmaXLogo from "@/assets/brahmax-logo.png";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -51,13 +52,13 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
 
-          <Link to="/" className="flex items-center space-x-2">
-            <Sparkles className="h-8 w-8 text-primary" />
-            <span className="text-2xl font-bold bg-gradient-gold bg-clip-text text-transparent">
-              BrahmaX
-            </span>
+          <Link to="/" className="flex items-center">
+            <img
+              src={brahmaXLogo}
+              alt="BrahmaX Logo"
+              className="h-20 w-auto animate-pulse-glow"
+            />
           </Link>
-
           <div className="hidden md:flex items-center space-x-8">
 
             {/* GROUPED ORIGIN MENU */}

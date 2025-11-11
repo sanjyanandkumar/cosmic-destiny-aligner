@@ -42,37 +42,22 @@ const Leadership = () => {
                     The Visionary Behind BrahmaX
                   </h4>
                   <p className="font-inter text-muted-foreground leading-relaxed">
-                    Abishek Selvaraj is a new-generation spiritual entrepreneur who bridges karma and commerce, energy and execution. As the Founder of BrahmaX, he leads a cosmic collective of ventures that unite astrology, innovation, and strategic intelligence into one global ecosystem.
+                    Abishek Selvaraj is the visionary force behind BrahmaX, where he bridges the realms of ancient astrology, spiritual law, and modern entrepreneurship. With a foundation in communication, branding, and strategy, he has mastered the art of aligning karmic timing with business architecture.
                   </p>
                 </div>
 
                 <div>
                   <h4 className="font-playfair text-xl font-bold text-white mb-3">
-                    The Journey
+                    Mission
                   </h4>
                   <p className="font-inter text-muted-foreground leading-relaxed">
-                    From mastering sales and communication to exploring spiritual sciences, Abishek's path has been both strategic and sacred. Armed with an MBA in Communication & Branding and advisory experience across entrepreneurs and creators, he decodes karmic business blueprints to align ventures with divine timing.
-                  </p>
-                </div>
-
-                <div>
-                  <h4 className="font-playfair text-xl font-bold text-white mb-3">
-                    Leadership Ethos
-                  </h4>
-                  <p className="font-inter text-muted-foreground leading-relaxed">
-                    At BrahmaX, leadership is vibrational. Ideas are frequencies; teams are channels. Abishek leads with intuition, empathy, and clarity — shaping BrahmaX not as a company, but as a living consciousness.
+                    His mission is simple yet profound — to awaken leaders, creators, and investors into realizing that wealth, purpose, and destiny are all interconnected frequencies. Through BrahmaX, he channels karmic intelligence into real-world ventures, helping people not just build businesses, but build their destiny.
                   </p>
                 </div>
 
                 <div className="bg-primary/5 border border-primary/20 rounded-lg p-6 mt-8">
                   <p className="font-inter text-lg italic text-white text-center">
                     "Business is a spiritual journey — a reflection of inner karma. Align with your cosmic design, and success becomes effortless."
-                  </p>
-                </div>
-
-                <div className="bg-white/10 border border-white/20 rounded-lg p-6 mt-6 backdrop-blur-sm">
-                  <p className="font-inter text-lg italic text-white text-center">
-                    "Leadership is resonance, not authority."
                   </p>
                 </div>
 

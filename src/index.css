@@ -243,3 +243,12 @@ All colors MUST be HSL.
   0%, 100% { opacity: .25; transform: translateX(0); }
   50% { opacity: 1; transform: translateX(6px); }
 }
+
+@keyframes pulse-glow {
+  0%, 100% { filter: drop-shadow(0 0 0.4rem rgba(255, 215, 0, 0.6)); }
+  50% { filter: drop-shadow(0 0 1.2rem rgba(255, 215, 0, 0.9)); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2.2s ease-in-out infinite;
+}
