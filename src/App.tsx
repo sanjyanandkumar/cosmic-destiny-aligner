@@ -12,6 +12,7 @@ import ContactPage from "./pages/ContactPage";
 import ConsultingPage from "./pages/ConsultingPage";
 import WardrobePage from "./pages/WardrobePage";
 import ProductDetailPage from "./pages/ProductDetailPage";
+import LeisureDetailsPage from "./pages/LeisureDetailsPage";
 import EduSeamPage from "./pages/EduSeamPage";
 import LeisurePage from "./pages/LeisurePage";
 import OrdersPage from "./pages/OrdersPage";
@@ -43,6 +44,8 @@ const App = () => (
           <Route path="/consulting" element={<ConsultingPage />} />
           <Route path="/wardrobe" element={<WardrobePage />} />
           <Route path="/wardrobe/:productId" element={<ProductDetailPage />} />
+          <Route path="/leisure" element={<LeisurePage />} />
+          <Route path="/leisure/:experienceId" element={<LeisureDetailsPage />} />
           <Route path="/eduseam" element={<EduSeamPage />} />
           <Route path="/leisure" element={<LeisurePage />} />
           <Route path="/contact" element={<ContactPage />} />

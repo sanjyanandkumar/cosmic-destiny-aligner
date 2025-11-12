@@ -56,7 +56,7 @@ const Navigation = () => {
             <img
               src={brahmaXLogo}
               alt="BrahmaX Logo"
-              className="h-20 w-auto animate-pulse-glow"
+              className="h-14 w-auto animate-pulse-glow"
             />
           </Link>
           <div className="hidden md:flex items-center space-x-8">

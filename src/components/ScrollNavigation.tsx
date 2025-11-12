@@ -20,7 +20,10 @@ const ScrollNavigation = () => {
         const element = document.getElementById(section.id);
         if (element) {
           const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+          if (
+            scrollPosition >= offsetTop &&
+            scrollPosition < offsetTop + offsetHeight
+          ) {
             setActiveSection(section.id);
             break;
           }
@@ -54,10 +57,10 @@ const ScrollNavigation = () => {
                 }`}
               />
               <span
-                className={`text-xs transition-all duration-300 opacity-0 group-hover:opacity-100 ${
+                className={`text-xs font-semibold tracking-wide transition-all duration-300 opacity-0 group-hover:opacity-100 ${
                   activeSection === section.id
                     ? "text-primary opacity-100"
-                    : "text-muted-foreground"
+                    : "text-white/90 hover:text-primary/90"
                 }`}
               >
                 {section.label}

@@ -1,19 +1,18 @@
-import { useState, useEffect } from "react";
+import * as React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useCheckout } from "@/hooks/use-checkout";
+import { requireLogin } from "@/utils/requireLogin";
 import { supabase } from "@/integrations/supabase/client";
+import { toast } from "@/hooks/use-toast";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import CosmicPage from "@/components/CosmicPage";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useCheckout } from "@/hooks/use-checkout";
 import { CheckoutDialog } from "@/components/CheckoutDialog";
 import careerGuidanceImg from "@/assets/career-guidance.jpg";
-import bg from "@/assets/cosmic-background.png";
-import { useNavigate, useLocation } from "react-router-dom";
-import { toast } from "@/hooks/use-toast";
-import { requireLogin } from "@/utils/requireLogin";
-import GalaxyBackground from "@/components/GalaxyBackground";
 
-const EduSeamPage = () => {
+const EduSeamPage: React.FC = () => {
   const {
     dialogOpen,
     currentProduct,
@@ -39,7 +38,6 @@ const EduSeamPage = () => {
     const { data, error } = await supabase.auth.getSession();
 
     if (!data?.session) {
-      // User not logged in → redirect to login WITH return URL
       toast({
         title: "Please Login",
         description: "You need to login before you can continue.",
@@ -49,30 +47,23 @@ const EduSeamPage = () => {
     }
 
     // ✅ Logged in → allow checkout
-    startCheckout({
-      name: product.name,
-      price: product.price,
-      description: product.description,
-    });
+    startCheckout(product);
   };
 
   return (
-    <div className="min-h-screen font-inter">
+    <CosmicPage>
       <Navigation />
 
-      <main
-        className="relative py-24 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${bg})` }}
-      >
-        <div className="absolute inset-0 bg-black/45 backdrop-blur-sm"></div>
-        <GalaxyBackground className="z-[1]" />
-        <div className="relative z-10 container mx-auto px-4">
-          <div className="mb-14 text-center max-w-4xl mx-auto">
-            <h1 className="font-playfair text-5xl font-bold text-foreground mb-4">
+      {/* 🌌 EduSeam Section */}
+      <section id="eduseam" className="py-24">
+        <div className="container mx-auto px-4">
+          {/* Heading */}
+          <div className="max-w-6xl mx-auto text-center mb-8">
+            <h1 className="font-playfair text-5xl font-bold text-white mb-6 leading-tight">
               EduSeam
             </h1>
 
-            <p className="text-xl text-primary italic mb-6">
+            <p className="font-inter text-xl text-primary italic mb-6">
               The Passport to Conscious Learning
             </p>
 
@@ -80,26 +71,39 @@ const EduSeamPage = () => {
               Education Reimagined as Evolution.
             </p>
 
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              EduSeam bridges karmic wisdom with real-world learning. The “Passport Concept”
-              allows you to journey through subjects — astrology, global culture, branding,
-              business, purpose — to discover your true *dharma* through experience and expansion.
-            </p>
+            {/* ✅ Paragraph widened and detached from narrow parent */}
+            <div className="max-w-6xl mx-auto">
+              <p className="font-inter text-lg text-muted-foreground leading-relaxed px-4">
+                EduSeam bridges karmic wisdom with real-world learning. The “Passport Concept”
+                allows you to journey through subjects — astrology, global culture, branding,
+                business, and purpose — to discover your true <em>dharma</em> through experience
+                and expansion.
+              </p>
+            </div>
 
-            <p className="mt-4 text-lg italic text-primary">“We don’t teach — we awaken.”</p>
+            <p className="mt-4 text-lg italic text-primary">
+              “We don’t teach — we awaken.”
+            </p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
-            <Card className="overflow-hidden backdrop-blur-md bg-card/30 border border-cosmic-blue/40 hover:border-primary/60 shadow-xl hover:shadow-[0_0_30px_rgba(255,220,120,0.4)] transition-all duration-500">
-              <div className="grid md:grid-cols-2 gap-0">
-                <div className="relative h-[420px]">
-                  <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+          {/* Product Card */}
+          <div className="max-w-5xl mx-auto">
+            <Card className="overflow-hidden backdrop-blur-md bg-white/10 border border-white/20 rounded-lg shadow-lg transition-all hover:shadow-[0_0_25px_rgba(255,220,120,0.3)]">
+              <div className="grid md:grid-cols-2 gap-0 items-stretch">
+                {/* Image - keep original width and proportion */}
+                <div className="relative h-[420px] md:h-auto overflow-hidden">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 </div>
 
-                <div className="p-8 flex flex-col justify-between">
+                {/* Product Info */}
+                <div className="p-8 flex flex-col justify-between bg-transparent">
                   <div>
-                    <h2 className="font-playfair text-3xl font-bold mb-3 text-foreground">
+                    <h2 className="font-playfair text-3xl font-bold mb-3 text-white">
                       {product.name}
                     </h2>
 
@@ -112,17 +116,11 @@ const EduSeamPage = () => {
                     </p>
                   </div>
 
-                  {/* ✅ Updated button with login-check */}
                   <Button
                     size="lg"
-                    onClick={async () => {
-                      const user = await requireLogin("/eduseam");
-                      if (!user) return;
-
-                      startCheckout(product);
-                    }}
+                    onClick={handleBuyNow}
                     disabled={processing}
-                    className="w-full bg-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all"
+                    className="w-full font-semibold bg-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all"
                   >
                     Begin Your Path
                   </Button>
@@ -131,7 +129,7 @@ const EduSeamPage = () => {
             </Card>
           </div>
         </div>
-      </main>
+      </section>
 
       <Footer />
 
@@ -143,7 +141,7 @@ const EduSeamPage = () => {
         onConfirm={handleConfirmCheckout}
         processing={processing}
       />
-    </div>
+    </CosmicPage>
   );
 };
 

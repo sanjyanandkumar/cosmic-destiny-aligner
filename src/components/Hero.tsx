@@ -26,9 +26,9 @@ const Hero = () => {
 
         {/* Content */}
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center space-y-8">
+          <div className="max-w-4xl mx-auto text-center space-y-4">
 
-            <h1 className="text-[3.5rem] md:text-[5.5rem] font-bold text-white leading-[1.2] tracking-[0.02em]">
+            <h1 className="text-[3.5rem] md:text-[3rem] font-bold text-white leading-[1.2] tracking-[0.02em]">
               BrahmaX —{" "}
               <span className="bg-gradient-gold bg-clip-text text-transparent">
                 Designed by the Stars, Executed by Strategy
@@ -36,9 +36,19 @@ const Hero = () => {
             </h1>
 
             <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto tracking-wide leading-relaxed">
-              Where Karma Builds Kingdoms
+              Karmic wisdom. Simplified
             </p>
-
+            <p className="text-xl md:text-xl text-muted-foreground max-w-5xl mx-auto tracking-wide leading-relaxed space-y-4">
+              <p>
+              Karma isn’t a punishment or a reward — it’s a divine design. Understand, imbibe, and master your destiny NOW!!
+              </p>
+              <p>
+              BrahmaX offers a scientific-spiritual architecture for your destiny, wealth, and success. We decode your karmic blueprint and help you align with the stars! 
+              </p>
+              <p>
+              Born at the intersection of scientific astrology and karmic science, BrahmaX translates ancient karmic wisdom into modern strategic ecosystems that offer practical solutions for your day-to-day life.
+              </p>
+            </p>
           </div>
         </div>
       </section>

@@ -1,129 +1,138 @@
+import * as React from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { useCheckout } from "@/hooks/use-checkout";
-import { CheckoutDialog } from "@/components/CheckoutDialog";
+import { Link } from "react-router-dom";
 import baliTripImg from "@/assets/bali-trip.jpg";
 import karmicMeditationImg from "@/assets/karmic-meditation.jpg";
-import bg from "@/assets/cosmic-background.png";
-import { supabase } from "@/integrations/supabase/client";
-import { requireLogin } from "@/utils/requireLogin";
-import GalaxyBackground from "@/components/GalaxyBackground";
+import kumbakonamImg from "@/assets/kumbakonam-temple.jpg";
+import bandipurImg from "@/assets/bandipur-forest.jpg";
+import sriLankaImg from "@/assets/sri-lanka-retreat.jpg"; // 🆕 Add Sri Lanka image
+import CosmicPage from "@/components/CosmicPage";
 
-const LeisurePage = () => {
-  const { dialogOpen, currentProduct, processing, startCheckout, handleConfirmCheckout, handleCloseDialog } = useCheckout();
-
-  const products = [
+const LeisurePage: React.FC = () => {
+  const experiences = [
     {
+      id: "bali-retreat",
       name: "Bali Wellness Retreat",
       price: 50000,
-      description: "Luxurious karmic wellness retreat in Bali with spiritual temples and cosmic energy experiences.",
+      description:
+        "Luxurious karmic wellness retreat in Bali with spiritual temples and cosmic energy experiences.",
       image: baliTripImg,
     },
     {
+      id: "karmic-meditation",
       name: "Customized Karmic Meditation",
       price: 2000,
-      description: "Personalized karmic meditation session designed to realign your energy and restore divine frequency.",
+      description:
+        "Personalized karmic meditation session designed to realign your energy and restore divine frequency.",
       image: karmicMeditationImg,
+    },
+    {
+      id: "temple-run",
+      name: "Temple Run (Kumbakonam Edition)",
+      priceRange: "₹16,999 – ₹25,999",
+      description:
+        "A planetary-aligned spiritual journey across the Navagraha temples of Kumbakonam — South India’s sacred axis of divine geometry.",
+      image: kumbakonamImg,
+    },
+    {
+      id: "bandipur-retreat",
+      name: "Bandipur Tour",
+      price: 9999,
+      description:
+        "Organic wellness retreat designed to align mind, body, and soul in the serene energy of Bandipur Forest, Karnataka.",
+      image: bandipurImg,
+    },
+    {
+      id: "sri-lanka-retreat",
+      name: "Karmic Island Experience – Sri Lanka",
+      price: 55000,
+      description:
+        "A karmic escape into the heart of Sri Lanka’s spiritual energy — lush forests, sacred temples, and coastal calm.",
+      image: sriLankaImg,
     },
   ];
 
   return (
-    <div className="min-h-screen font-inter">
+    <CosmicPage>
       <Navigation />
 
-      {/* ✅ Cosmic Background */}
-      <main
-        className="relative py-24 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${bg})` }}
-      >
-        {/* Soft golden-black overlay */}
-        <div className="absolute inset-0 bg-black/45 backdrop-blur-sm"></div>
-        <GalaxyBackground className="z-[1]" />
-        
-        {/* Content Layer */}
-        <div className="relative z-10 container mx-auto px-4">
-          <div className="text-center max-w-4xl mx-auto mb-14">
-            <h1 className="font-playfair text-5xl font-bold text-foreground mb-4">
-              BrahmaX Leisure
-            </h1>
+      <section id="leisure" className="py-24">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            {/* Heading */}
+            <div className="text-center mb-14">
+              <h1 className="font-playfair text-5xl font-bold text-white mb-6 leading-tight">
+                BrahmaX Leisure
+              </h1>
 
-            <p className="text-xl text-primary italic mb-6">
-              The Karmic Wellness Division
-            </p>
+              <p className="font-inter text-xl text-primary italic mb-6">
+                The Karmic Wellness Division
+              </p>
 
-            <p className="text-2xl font-semibold text-foreground mb-4">
-              Relaxation, Realigned.
-            </p>
+              <p className="text-2xl font-semibold text-foreground mb-4">
+                Relaxation, Realigned.
+              </p>
 
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              BrahmaX Leisure redefines luxury wellness through the science of karma.
-              Retreats, meditation sanctuaries, spiritual travel & celestial cafés —
-              designed for energetic reset and divine alignment.
-            </p>
+              <p className="font-inter text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+                BrahmaX Leisure curates divine experiences through travel, meditation,
+                and cosmic realignment. Each offering is designed to restore spiritual harmony,
+                awaken planetary consciousness, and return you to your divine rhythm.
+              </p>
 
-            <p className="mt-4 text-lg italic text-primary">
-              “Wellness isn’t an escape — it’s a return to your divine frequency.”
-            </p>
-          </div>
+              <p className="mt-4 text-lg italic text-primary">
+                “Wellness isn’t an escape — it’s a return to your cosmic essence.”
+              </p>
+            </div>
 
-          {/* ✅ Product Cards */}
-          <div className="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto">
-            {products.map((product) => (
-              <Card
-                key={product.name}
-                className="overflow-hidden backdrop-blur-md bg-card/30 border border-cosmic-blue/40 hover:border-primary/60 shadow-xl hover:shadow-[0_0_30px_rgba(255,220,120,0.4)] transition-all duration-500"
-              >
-                <div className="relative h-[320px]">
-                  <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                </div>
+            {/* Experiences Grid */}
+            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg p-8">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                {experiences.map((exp) => (
+                  <Link
+                    key={exp.id}
+                    to={`/leisure/${exp.id}`}
+                    className="block group"
+                  >
+                    <Card
+                      className="overflow-hidden border border-cosmic-blue/30 bg-card/30 backdrop-blur-md 
+                      hover:border-primary/60 hover:shadow-[0_0_25px_rgba(255,220,120,0.4)]
+                      transition-all duration-500 cursor-pointer"
+                    >
+                      <div className="relative h-[320px] overflow-hidden">
+                        <img
+                          src={exp.image}
+                          alt={exp.name}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                      </div>
 
-                <div className="p-8">
-                  <h2 className="font-playfair text-3xl font-bold text-foreground mb-3">
-                    {product.name}
-                  </h2>
-
-                  <p className="font-inter text-muted-foreground mb-4 leading-relaxed">
-                    {product.description}
-                  </p>
-
-                  <p className="font-playfair text-4xl font-bold mb-6 bg-gradient-gold bg-clip-text text-transparent">
-                    ₹{product.price.toLocaleString()}
-                  </p>
-
-                  <Button
-                    size="lg"
-                    onClick={async () => {
-                    const user = await requireLogin("/leisure");
-                    if (!user) return;
-
-                    startCheckout({ name: product.name, price: product.price, description: product.description });
-                  }}
-                  disabled={processing}
-                  className="w-full bg-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all"
-                >
-                  Book Experience
-                </Button>
-                </div>
-              </Card>
-            ))}
+                      <div className="p-6">
+                        <h2 className="font-playfair text-2xl font-bold text-foreground mb-2">
+                          {exp.name}
+                        </h2>
+                        <p className="text-muted-foreground mb-4 leading-relaxed">
+                          {exp.description}
+                        </p>
+                        <p className="font-playfair text-3xl font-bold bg-gradient-gold bg-clip-text text-transparent">
+                          {exp.priceRange
+                            ? exp.priceRange
+                            : `₹${exp.price.toLocaleString()}`}
+                        </p>
+                      </div>
+                    </Card>
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
-      </main>
+      </section>
 
       <Footer />
-
-      <CheckoutDialog
-        open={dialogOpen}
-        onOpenChange={handleCloseDialog}
-        productName={currentProduct?.name || ""}
-        price={currentProduct?.price || 0}
-        onConfirm={handleConfirmCheckout}
-        processing={processing}
-      />
-    </div>
+    </CosmicPage>
   );
 };
 

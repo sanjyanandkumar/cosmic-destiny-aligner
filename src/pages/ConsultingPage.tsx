@@ -1,3 +1,5 @@
+import * as React from "react";
+import CosmicPage from "@/components/CosmicPage";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
@@ -5,79 +7,93 @@ import { Button } from "@/components/ui/button";
 import { useCheckout } from "@/hooks/use-checkout";
 import { CheckoutDialog } from "@/components/CheckoutDialog";
 import karmicConsultingImg from "@/assets/karmic-consulting.jpg";
-import bg from "@/assets/cosmic-background.png";
-import { supabase } from "@/integrations/supabase/client";
 import { requireLogin } from "@/utils/requireLogin";
-import GalaxyBackground from "@/components/GalaxyBackground";
 
-const ConsultingPage = () => {
-  const { dialogOpen, currentProduct, processing, startCheckout, handleConfirmCheckout, handleCloseDialog } = useCheckout();
+const ConsultingPage: React.FC = () => {
+  const {
+    dialogOpen,
+    currentProduct,
+    processing,
+    startCheckout,
+    handleConfirmCheckout,
+    handleCloseDialog,
+  } = useCheckout();
 
   const product = {
     name: "Karmic Consulting",
     price: 2000,
-    description: "Unlock the hidden timing and energy behind your ventures with our karmic business consulting.",
+    description:
+      "Unlock the hidden timing and energy behind your ventures with our karmic business consulting.",
     image: karmicConsultingImg,
   };
 
   return (
-    <div className="min-h-screen bg-transparent font-inter">
+    <CosmicPage>
       <Navigation />
-		<main
-		  className="relative py-24 bg-cover bg-center bg-no-repeat"
-		  style={{ backgroundImage: `url(${bg})` }}
-		>
-		  <div className="absolute inset-0 bg-black/45 backdrop-blur-sm"></div>
-      <GalaxyBackground className="z-[1]" />
-		  <div className="relative z-10 container mx-auto px-4">
-		<div className="mb-12 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
-            BrahmaX Consulting
-          </h1>
-          <p className="text-xl text-muted-foreground">The Karmic Business Division</p>
-          <p className="mt-4 text-lg max-w-3xl mx-auto">
-            Scaling Destiny, Not Just Business. We help founders, investors, and creators unlock the hidden timing and energy behind their ventures using astrological intelligence, cosmic strategy, and karmic analytics.
-          </p>
-        </div>
 
-        <div className="max-w-4xl mx-auto">
-          <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300">
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="relative h-[400px] overflow-hidden">
+      {/* 🌠 Content Section - same layout tone as About */}
+      <section id="consulting" className="py-24">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center mb-16">
+            <h1 className="font-playfair text-5xl font-bold text-white mb-4 leading-tight">
+              BrahmaX Consulting
+            </h1>
+            <p className="font-inter text-xl text-primary italic mb-6">
+              The Karmic Business Division
+            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+              Scaling destiny, not just business. We help founders, investors, and creators
+              unlock the hidden timing and energy behind their ventures using astrological intelligence,
+              cosmic strategy, and karmic analytics.
+            </p>
+          </div>
+
+          {/* 🌑 Consulting Card */}
+          <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg p-8">
+            <div className="grid md:grid-cols-2 gap-6 items-center">
+              <div className="relative h-[400px] overflow-hidden rounded-lg">
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               </div>
-              <div className="p-6 flex flex-col justify-between">
+
+              <div className="p-6 flex flex-col justify-between text-left">
                 <div>
-                  <h2 className="text-3xl font-bold mb-4">{product.name}</h2>
-                  <p className="text-muted-foreground mb-6">{product.description}</p>
-                  <p className="text-4xl font-bold mb-8 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+                  <h2 className="text-3xl font-playfair font-bold text-white mb-4">
+                    {product.name}
+                  </h2>
+                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                    {product.description}
+                  </p>
+                  <p className="font-playfair text-4xl font-bold bg-gradient-gold bg-clip-text text-transparent">
                     ₹{product.price.toLocaleString()}
                   </p>
                 </div>
+
                 <Button
                   size="lg"
                   onClick={async () => {
                     const user = await requireLogin("/consulting");
                     if (!user) return;
-
-                      startCheckout(product);
-                    }}
-                    disabled={processing}
-                    className="w-full"
-                  >
-                    Book Session
-                  </Button>
+                    startCheckout(product);
+                  }}
+                  disabled={processing}
+                  className="w-full mt-6"
+                >
+                  Book Session
+                </Button>
               </div>
             </div>
-          </Card>
+          </div>
         </div>
-        </div>
-      </main>
+      </section>
+
       <Footer />
+
+      {/* 💳 Checkout Dialog */}
       <CheckoutDialog
         open={dialogOpen}
         onOpenChange={handleCloseDialog}
@@ -86,7 +102,7 @@ const ConsultingPage = () => {
         onConfirm={handleConfirmCheckout}
         processing={processing}
       />
-    </div>
+    </CosmicPage>
   );
 };
 
