@@ -17,7 +17,7 @@ const Footer = () => {
 	  className="relative bg-cover bg-center bg-no-repeat border-t border-cosmic-blue/30"
 	  style={{ backgroundImage: `url(${bg})` }}
 	>
-	<div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+	<div className="absolute inset-0 bg-black/75 backdrop-blur-sm"></div>
   <GalaxyBackground className="z-[1]" />
 		<div className="relative z-10 container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
@@ -134,7 +134,8 @@ const Footer = () => {
               © 2025 DarkShadow Ventures LLP. All rights reserved.
             </p>
             <p className="text-sm text-muted-foreground">
-              Designed by the stars, executed by strategy.
+              Designed by the stars, executed by strategy.<br />
+              Designer: Sanjay Anandkumar
             </p>
           </div>
         </div>

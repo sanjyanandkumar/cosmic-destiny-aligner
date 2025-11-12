@@ -26,6 +26,7 @@ import AdminOrders from "@/pages/admin/AdminOrders";
 import RegisterPage from "./pages/RegisterPage";
 import ScrollToTop from "@/components/ScrollToTop";
 import BackgroundMusic from "./components/BackgroundMusic";
+import ConsultingDetailsPage from "./pages/ConsultingDetailsPage";
 
 const queryClient = new QueryClient();
 
@@ -48,6 +49,7 @@ const App = () => (
           <Route path="/leisure" element={<LeisurePage />} />
           <Route path="/leisure/:experienceId" element={<LeisureDetailsPage />} />
           <Route path="/eduseam" element={<EduSeamPage />} />
+          <Route path="/consulting/:experienceId" element={<ConsultingDetailsPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/orders" element={<OrdersPage />} />
           <Route path="/register" element={<RegisterPage />} />
