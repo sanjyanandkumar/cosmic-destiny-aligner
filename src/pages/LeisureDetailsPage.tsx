@@ -22,7 +22,12 @@ import kumbakonamSunImg from "@/assets/sun-temple.jpg";
 import kumbakonamRahuImg from "@/assets/rahu-temple.jpg";
 import kumbakonamGroupImg from "@/assets/group-meditation.jpg";
 import bandipurImg from "@/assets/bandipur-forest.jpg";
+import bandipurBisonImg from "@/assets/bandipur-bison.jpg";
+import bandipurLeopardImg from "@/assets/bandipur-leopard.jpg";
+import bandipurEagleImg from "@/assets/bandipur-eagle.jpg";
 import sriLankaImg from "@/assets/sri-lanka-retreat.jpg";
+import srilankaColomboImg from "@/assets/sri-lanka-colombo.jpg";
+import srilankaKandyImg from "@/assets/sri-lanka-kandy.jpg";
 
 const LeisureDetailsPage = () => {
   const { experienceId } = useParams();
@@ -105,7 +110,7 @@ const LeisureDetailsPage = () => {
         "Organic wellness retreat designed to align mind, body, and soul in the serene energy of Bandipur Forest, Karnataka.",
       concept:
         "A 1-night, 2-day organic wellness retreat designed to align mind, body, and soul in the serene energy of Bandipur Forest, Karnataka. Participants experience grounding meditations, sound healing, and soulful community bonding through nature and mindful experiences.",
-      images: [bandipurImg, bandipurImg],
+      images: [bandipurImg, bandipurBisonImg, bandipurLeopardImg, bandipurEagleImg],
       highlights: [
         "The BrahmaX Bhojana Experience – meals cooked by local homemakers using organic ingredients.",
         "Mind–Body–Soul alignment sessions with yoga, journaling, and astrology insights.",
@@ -144,7 +149,7 @@ const LeisureDetailsPage = () => {
         "A karmic escape into the heart of Sri Lanka’s spiritual energy — lush forests, sacred temples, and coastal calm.",
       concept:
         "A guided karmic escape into the heart of Sri Lanka’s spiritual energy — lush forests, sacred temples, and coastal calm. Designed by Abi (BrahmaX Leisure, Darkshadow Ventures LLP.) for seekers wishing to realign the Mind, Body, and Soul through astrology, nature, and soulful experiences.",
-      images: [sriLankaImg, sriLankaImg],
+      images: [sriLankaImg, srilankaColomboImg, srilankaKandyImg],
       highlights: [
         "Round-trip from Bengaluru → Colombo (UL/Indigo/SriLankan Air).",
         "Guided astrology & sound healing sessions with Abi.",
