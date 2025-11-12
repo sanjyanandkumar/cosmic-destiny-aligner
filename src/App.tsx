@@ -25,6 +25,7 @@ import AdminProducts from "@/pages/admin/AdminProducts";
 import AdminOrders from "@/pages/admin/AdminOrders";
 import RegisterPage from "./pages/RegisterPage";
 import ScrollToTop from "@/components/ScrollToTop";
+import BackgroundMusic from "./components/BackgroundMusic";
 
 const queryClient = new QueryClient();
 
@@ -34,8 +35,8 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-          <ScrollToTop />
-          <Routes>
+        <ScrollToTop />
+        <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/philosophy" element={<PhilosophyPage />} />
@@ -47,22 +48,33 @@ const App = () => (
           <Route path="/leisure" element={<LeisurePage />} />
           <Route path="/leisure/:experienceId" element={<LeisureDetailsPage />} />
           <Route path="/eduseam" element={<EduSeamPage />} />
-          <Route path="/leisure" element={<LeisurePage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/orders" element={<OrdersPage />} />
-		  <Route path="/register" element={<RegisterPage />} />
+          <Route path="/register" element={<RegisterPage />} />
           <Route path="/admin" element={<AdminPage />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-			<Route path="/reset-password" element={<ResetPasswordPage />} />
-		  <Route path="/login" element={<LoginPage />} />
-		  <Route path="/admin/products" element={
-			<AdminGuard><AdminProducts /></AdminGuard>
-		  }/>
-		  <Route path="/admin/orders" element={
-			<AdminGuard><AdminOrders /></AdminGuard>
-		  }/>
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/admin/products"
+            element={
+              <AdminGuard>
+                <AdminProducts />
+              </AdminGuard>
+            }
+          />
+          <Route
+            path="/admin/orders"
+            element={
+              <AdminGuard>
+                <AdminOrders />
+              </AdminGuard>
+            }
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
+
+        {/* 🎵 Persistent Music Player */}
+        <BackgroundMusic />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
