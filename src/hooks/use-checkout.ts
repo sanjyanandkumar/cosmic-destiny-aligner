@@ -40,7 +40,7 @@ export function useCheckout() {
           buyer_name: user.user_metadata?.full_name || "Customer",
           buyer_email: user.email,
           buyer_phone: null,
-          total_amount: currentProduct.price * 100, // paise
+          total_amount: currentProduct.price, // paise
           status: "completed", // ✅ Skip payment, mark complete
           razorpay_payment_id: null,
         })
