@@ -42,7 +42,19 @@ export default function OrdersPage() {
         .eq("buyer_email", user.email.toLowerCase())
         .order("created_at", { ascending: false });
 
-      setOrders(data || []);
+      setOrders((data || []).map(order => ({
+        id: order.id,
+        order_number: order.order_number,
+        buyer_name: order.buyer_name,
+        buyer_email: order.buyer_email,
+        buyer_phone: order.buyer_phone,
+        total_amount: order.total_amount,
+        status: order.status,
+        razorpay_payment_id: order.razorpay_payment_id,
+        created_at: order.created_at,
+        report_path: (order as any).report_path || null,
+        report_signed_url: (order as any).report_signed_url || null
+      })));
       setLoading(false);
     };
 
@@ -64,7 +76,7 @@ export default function OrdersPage() {
     });
 
   return (
-    <CosmicPage bgSrc={bg}>
+    <CosmicPage>
       <Navigation />
 
       <section className="py-24">

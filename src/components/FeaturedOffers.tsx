@@ -57,7 +57,7 @@ const FeaturedOffers = () => {
   };
 
   return (
-    <CosmicPage bgSrc={bg} showNav={false} showFooter={false}>
+    <CosmicPage>
       <section id="offers" className="py-28 md:py-32">
         <div className="container mx-auto px-4">
 

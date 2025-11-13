@@ -10,7 +10,7 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <CosmicPage bgSrc={bg} showNav={false} showFooter={false}>
+    <CosmicPage>
       {/* Restored top + bottom spacing */}
       <section id="how-it-works" className="py-28 md:py-32">
         <div className="container mx-auto px-4">

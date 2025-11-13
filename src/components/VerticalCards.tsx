@@ -41,12 +41,7 @@ const verticals = [
 
 const VerticalCards = () => {
   return (
-    <CosmicPage
-      bgSrc={bg}
-      showNav={false}     // section on landing page → no header
-      showFooter={false}  // you asked to hide footer for this section
-      mainClassName="py-24"
-    >
+    <CosmicPage>
       <section id="verticals">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">

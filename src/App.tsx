@@ -27,6 +27,7 @@ import RegisterPage from "./pages/RegisterPage";
 import ScrollToTop from "@/components/ScrollToTop";
 import BackgroundMusic from "./components/BackgroundMusic";
 import ConsultingDetailsPage from "./pages/ConsultingDetailsPage";
+import InstallPage from "./pages/InstallPage";
 
 const queryClient = new QueryClient();
 
@@ -53,6 +54,7 @@ const App = () => (
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/orders" element={<OrdersPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/install" element={<InstallPage />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
           <Route path="/login" element={<LoginPage />} />

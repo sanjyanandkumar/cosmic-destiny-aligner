@@ -37,7 +37,19 @@ function useOrders() {
         .order("created_at", { ascending: false });
 
       if (error) throw error;
-      return data as Order[];
+      return (data || []).map(order => ({
+        id: order.id,
+        order_number: order.order_number,
+        buyer_name: order.buyer_name,
+        buyer_email: order.buyer_email,
+        buyer_phone: order.buyer_phone,
+        total_amount: order.total_amount,
+        status: order.status,
+        created_at: order.created_at,
+        updated_at: order.updated_at,
+        report_path: (order as any).report_path || null,
+        report_signed_url: (order as any).report_signed_url || null
+      }));
     },
   });
 }
