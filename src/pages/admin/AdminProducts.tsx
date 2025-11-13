@@ -121,7 +121,7 @@ export default function AdminProducts() {
   const rows = useMemo(() => data || [], [data]);
 
   return (
-    <CosmicPage bgSrc={bg}>
+    <CosmicPage>
       <Navigation />
 
       <div className="container mx-auto px-6 pt-32 py-20 space-y-8 text-white">

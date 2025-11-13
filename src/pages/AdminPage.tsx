@@ -102,7 +102,7 @@ export default function AdminPage() {
   if (!isAdmin) return null;
 
   return (
-    <CosmicPage bgSrc={bg}>
+    <CosmicPage>
       <Navigation />
 
       <div className="container mx-auto px-4 py-24 max-w-6xl">

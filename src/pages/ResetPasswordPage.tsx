@@ -80,7 +80,6 @@ export default function ResetPasswordPage() {
     toast({
       title: "Success",
       description: "Your password has been updated. Please log in.",
-      variant: "success",
     });
     navigate("/login");
   };
