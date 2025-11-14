@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'app.lovable.9478e628c158481ab7748f07692d3917',
+  appId: 'com.brahmax.cosmic',
   appName: 'cosmic-destiny-aligner',
   webDir: 'dist',
   server: {
