@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { CartProvider } from "@/contexts/CartContext";
 import Index from "./pages/Index";
 import AboutPage from "./pages/AboutPage";
 import PhilosophyPage from "./pages/PhilosophyPage";
@@ -16,6 +17,8 @@ import LeisureDetailsPage from "./pages/LeisureDetailsPage";
 import EduSeamPage from "./pages/EduSeamPage";
 import LeisurePage from "./pages/LeisurePage";
 import OrdersPage from "./pages/OrdersPage";
+import CartPage from "./pages/CartPage";
+import CheckoutPage from "./pages/CheckoutPage";
 import AdminPage from "./pages/AdminPage";
 import NotFound from "./pages/NotFound";
 import LoginPage from "./pages/LoginPage";
@@ -34,55 +37,59 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/philosophy" element={<PhilosophyPage />} />
-          <Route path="/verticaldet" element={<VerticalDetails />} />
-          <Route path="/leadership" element={<LeadershipPage />} />
-          <Route path="/awards" element={<AwardsPage />} />
-          <Route path="/consulting" element={<ConsultingPage />} />
-          <Route path="/wardrobe" element={<WardrobePage />} />
-          <Route path="/wardrobe/:productId" element={<ProductDetailPage />} />
-          <Route path="/leisure" element={<LeisurePage />} />
-          <Route path="/leisure/:experienceId" element={<LeisureDetailsPage />} />
-          <Route path="/eduseam" element={<EduSeamPage />} />
-          <Route path="/consulting/:experienceId" element={<ConsultingDetailsPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/orders" element={<OrdersPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/install" element={<InstallPage />} />
-          <Route path="/admin" element={<AdminPage />} />
-          <Route path="/reset-password" element={<ResetPasswordPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route
-            path="/admin/products"
-            element={
-              <AdminGuard>
-                <AdminProducts />
-              </AdminGuard>
-            }
-          />
-          <Route
-            path="/admin/orders"
-            element={
-              <AdminGuard>
-                <AdminOrders />
-              </AdminGuard>
-            }
-          />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+    <CartProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/philosophy" element={<PhilosophyPage />} />
+            <Route path="/verticaldet" element={<VerticalDetails />} />
+            <Route path="/leadership" element={<LeadershipPage />} />
+            <Route path="/awards" element={<AwardsPage />} />
+            <Route path="/consulting" element={<ConsultingPage />} />
+            <Route path="/wardrobe" element={<WardrobePage />} />
+            <Route path="/wardrobe/:productId" element={<ProductDetailPage />} />
+            <Route path="/leisure" element={<LeisurePage />} />
+            <Route path="/leisure/:experienceId" element={<LeisureDetailsPage />} />
+            <Route path="/eduseam" element={<EduSeamPage />} />
+            <Route path="/consulting/:experienceId" element={<ConsultingDetailsPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="/orders" element={<OrdersPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/install" element={<InstallPage />} />
+            <Route path="/admin" element={<AdminPage />} />
+            <Route path="/reset-password" element={<ResetPasswordPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route
+              path="/admin/products"
+              element={
+                <AdminGuard>
+                  <AdminProducts />
+                </AdminGuard>
+              }
+            />
+            <Route
+              path="/admin/orders"
+              element={
+                <AdminGuard>
+                  <AdminOrders />
+                </AdminGuard>
+              }
+            />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
 
-        {/* 🎵 Persistent Music Player */}
-        <BackgroundMusic />
-      </BrowserRouter>
-    </TooltipProvider>
+          {/* 🎵 Persistent Music Player */}
+          <BackgroundMusic />
+        </BrowserRouter>
+      </TooltipProvider>
+    </CartProvider>
   </QueryClientProvider>
 );
 
