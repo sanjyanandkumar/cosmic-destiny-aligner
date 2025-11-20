@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { Menu, X, Sparkles, ChevronDown } from "lucide-react";
+import { Menu, X, Sparkles, ChevronDown, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
+import { useCart } from "@/contexts/CartContext";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -19,6 +20,7 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
   const navigate = useNavigate();
+  const { totalItems } = useCart();
 
   const navLinks = [
     { name: "About", href: "/about" },
@@ -92,6 +94,15 @@ const Navigation = () => {
             <Link to="/verticaldet" className="text-sm font-inter text-foreground hover:text-primary transition">Verticals</Link>
             <Link to="/orders" className="text-sm font-inter text-foreground hover:text-primary transition">Orders</Link>
             <Link to="/contact" className="text-sm font-inter text-foreground hover:text-primary transition">Contact</Link>
+            
+            <Button variant="ghost" size="icon" onClick={() => navigate("/cart")} className="relative">
+              <ShoppingCart className="h-5 w-5" />
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground rounded-full w-5 h-5 text-xs flex items-center justify-center">
+                  {totalItems}
+                </span>
+              )}
+            </Button>
 
             {user ? (
               <DropdownMenu>

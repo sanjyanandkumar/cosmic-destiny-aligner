@@ -1,58 +1,30 @@
 import * as React from "react";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
-import { Link } from "react-router-dom";
-import baliTripImg from "@/assets/bali-trip.jpg";
-import karmicMeditationImg from "@/assets/karmic-meditation.jpg";
-import kumbakonamImg from "@/assets/kumbakonam-temple.jpg";
-import bandipurImg from "@/assets/bandipur-forest.jpg";
-import sriLankaImg from "@/assets/sri-lanka-retreat.jpg"; // 🆕 Add Sri Lanka image
+import { Button } from "@/components/ui/button";
 import CosmicPage from "@/components/CosmicPage";
+import { useCart } from "@/contexts/CartContext";
+import { ShoppingCart } from "lucide-react";
 
 const LeisurePage: React.FC = () => {
-  const experiences = [
-    {
-      id: "bali-retreat",
-      name: "Bali Wellness Retreat",
-      price: 50000,
-      description:
-        "Luxurious karmic wellness retreat in Bali with spiritual temples and cosmic energy experiences.",
-      image: baliTripImg,
+  const { addToCart } = useCart();
+  
+  const { data: experiences = [], isLoading } = useQuery({
+    queryKey: ["products", "leisure"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("products")
+        .select("*")
+        .eq("category", "leisure")
+        .order("created_at", { ascending: false });
+      
+      if (error) throw error;
+      return data;
     },
-    {
-      id: "karmic-meditation",
-      name: "Customized Karmic Meditation",
-      price: 2000,
-      description:
-        "Personalized karmic meditation session designed to realign your energy and restore divine frequency.",
-      image: karmicMeditationImg,
-    },
-    {
-      id: "temple-run",
-      name: "Temple Run (Kumbakonam Edition)",
-      priceRange: "₹16,999 – ₹25,999",
-      description:
-        "A planetary-aligned spiritual journey across the Navagraha temples of Kumbakonam — South India’s sacred axis of divine geometry.",
-      image: kumbakonamImg,
-    },
-    {
-      id: "bandipur-retreat",
-      name: "Bandipur Tour",
-      price: 9999,
-      description:
-        "Organic wellness retreat designed to align mind, body, and soul in the serene energy of Bandipur Forest, Karnataka.",
-      image: bandipurImg,
-    },
-    {
-      id: "sri-lanka-retreat",
-      name: "Karmic Island Experience – Sri Lanka",
-      price: 55000,
-      description:
-        "A karmic escape into the heart of Sri Lanka’s spiritual energy — lush forests, sacred temples, and coastal calm.",
-      image: sriLankaImg,
-    },
-  ];
+  });
 
   return (
     <CosmicPage>
@@ -82,29 +54,30 @@ const LeisurePage: React.FC = () => {
               </p>
 
               <p className="mt-4 text-lg italic text-primary">
-                “Wellness isn’t an escape — it’s a return to your cosmic essence.”
+                "Wellness isn't an escape — it's a return to your cosmic essence."
               </p>
             </div>
 
             {/* Experiences Grid */}
             <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg p-8">
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-                {experiences.map((exp) => (
-                  <Link
-                    key={exp.id}
-                    to={`/leisure/${exp.id}`}
-                    className="block group"
-                  >
+              {isLoading ? (
+                <div className="text-center py-12 text-white">Loading experiences...</div>
+              ) : experiences.length === 0 ? (
+                <div className="text-center py-12 text-white">No experiences available yet.</div>
+              ) : (
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                  {experiences.map((exp) => (
                     <Card
+                      key={exp.id}
                       className="overflow-hidden border border-cosmic-blue/30 bg-card/30 backdrop-blur-md 
                       hover:border-primary/60 hover:shadow-[0_0_25px_rgba(255,220,120,0.4)]
-                      transition-all duration-500 cursor-pointer"
+                      transition-all duration-500"
                     >
                       <div className="relative h-[320px] overflow-hidden">
                         <img
-                          src={exp.image}
+                          src={exp.image_url || "/placeholder.svg"}
                           alt={exp.name}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                       </div>
@@ -116,16 +89,21 @@ const LeisurePage: React.FC = () => {
                         <p className="text-muted-foreground mb-4 leading-relaxed">
                           {exp.description}
                         </p>
-                        <p className="font-playfair text-3xl font-bold bg-gradient-gold bg-clip-text text-transparent">
-                          {exp.priceRange
-                            ? exp.priceRange
-                            : `₹${exp.price.toLocaleString()}`}
+                        <p className="font-playfair text-3xl font-bold bg-gradient-gold bg-clip-text text-transparent mb-4">
+                          ₹{exp.price.toLocaleString()}
                         </p>
+                        <Button
+                          onClick={() => addToCart(exp)}
+                          className="w-full"
+                        >
+                          <ShoppingCart className="mr-2 h-4 w-4" />
+                          Add to Cart
+                        </Button>
                       </div>
                     </Card>
-                  </Link>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>

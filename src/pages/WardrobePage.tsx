@@ -1,31 +1,30 @@
 import * as React from "react";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
-import { Link } from "react-router-dom";
-import cosmicWalletImg from "@/assets/cosmic-wallet.jpg";
-import cosmicHandbagImg from "@/assets/cosmic-handbag.jpg";
+import { Button } from "@/components/ui/button";
 import CosmicPage from "@/components/CosmicPage";
+import { useCart } from "@/contexts/CartContext";
+import { ShoppingCart } from "lucide-react";
 
 const WardrobePage: React.FC = () => {
-  const products = [
-    {
-      id: "cosmic-wallet",
-      name: "Cosmic Wallet",
-      price: 400,
-      description:
-        "Luxury astro-fashion wallet with cosmic patterns and zodiac symbols.",
-      image: cosmicWalletImg,
+  const { addToCart } = useCart();
+  
+  const { data: products = [], isLoading } = useQuery({
+    queryKey: ["products", "wardrobe"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("products")
+        .select("*")
+        .eq("category", "wardrobe")
+        .order("created_at", { ascending: false });
+      
+      if (error) throw error;
+      return data;
     },
-    {
-      id: "celestial-handbag",
-      name: "Celestial Handbag",
-      price: 1000,
-      description:
-        "Premium astro-fashion handbag with celestial patterns and star symbols.",
-      image: cosmicHandbagImg,
-    },
-  ];
+  });
 
   return (
     <CosmicPage>
@@ -59,25 +58,26 @@ const WardrobePage: React.FC = () => {
               </p>
             </div>
 
-            {/* 🌑 Product section same darkness as About page */}
+            {/* Product section */}
             <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg p-8">
-              <div className="grid md:grid-cols-2 gap-10">
-                {products.map((product) => (
-                  <Link
-                    key={product.id}
-                    to={`/wardrobe/${product.id}`}
-                    className="block group"
-                  >
+              {isLoading ? (
+                <div className="text-center py-12 text-white">Loading products...</div>
+              ) : products.length === 0 ? (
+                <div className="text-center py-12 text-white">No products available yet.</div>
+              ) : (
+                <div className="grid md:grid-cols-2 gap-10">
+                  {products.map((product) => (
                     <Card
+                      key={product.id}
                       className="overflow-hidden border border-cosmic-blue/30 bg-card/30 backdrop-blur-md 
                       hover:border-primary/60 hover:shadow-[0_0_25px_rgba(255,220,120,0.4)]
-                      transition-all duration-500 cursor-pointer"
+                      transition-all duration-500"
                     >
                       <div className="relative h-[320px] overflow-hidden">
                         <img
-                          src={product.image}
+                          src={product.image_url || "/placeholder.svg"}
                           alt={product.name}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                       </div>
@@ -89,14 +89,21 @@ const WardrobePage: React.FC = () => {
                         <p className="text-muted-foreground mb-4 leading-relaxed">
                           {product.description}
                         </p>
-                        <p className="font-playfair text-3xl font-bold bg-gradient-gold bg-clip-text text-transparent">
+                        <p className="font-playfair text-3xl font-bold bg-gradient-gold bg-clip-text text-transparent mb-4">
                           ₹{product.price.toLocaleString()}
                         </p>
+                        <Button
+                          onClick={() => addToCart(product)}
+                          className="w-full"
+                        >
+                          <ShoppingCart className="mr-2 h-4 w-4" />
+                          Add to Cart
+                        </Button>
                       </div>
                     </Card>
-                  </Link>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>
