@@ -134,7 +134,6 @@ const Footer = () => {
               © 2025 DarkShadow Ventures LLP. All rights reserved.
             </p>
             <p className="text-sm text-muted-foreground">
-              Designed by the stars, executed by strategy.<br />
               Designer: Sanjay Anandkumar
             </p>
           </div>

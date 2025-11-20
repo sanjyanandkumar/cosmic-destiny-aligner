@@ -50,23 +50,33 @@ const Navigation = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-cosmic-indigo/95 backdrop-blur-sm border-b border-cosmic-blue/30">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-30">
 
-          <Link to="/" className="flex items-center">
+          <Link to="/" className="flex flex-col items-start leading-tight group">
+            {/* Logo */}
             <img
               src={brahmaXLogo}
               alt="BrahmaX Logo"
-              className="h-14 w-auto animate-pulse-glow"
+              className="h-18 w-auto animate-pulse-glow"
             />
+
+            {/* Tagline + Orange Dot */}
+            <span className="flex items-center gap-1 text-[12px] md:text-[13px] font-inter text-white tracking-widest pl-[2px] opacity-100">
+              Karmic wisdom simplified
+
+              <span className="text-[#FF8C00] text-[11px] font-bold translate-y-[0.5px]">
+                ●
+              </span>
+            </span>
           </Link>
           <div className="hidden md:flex items-center space-x-8">
 
             {/* GROUPED ORIGIN MENU */}
             <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-foreground hover:text-primary transition cursor-pointer">
+              <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-inter text-foreground hover:text-primary transition cursor-pointer">
                 Origin <ChevronDown className="w-4 h-4" />
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-card/80 backdrop-blur border-cosmic-blue/30">
+              <DropdownMenuContent className="bg-card/80 backdrop-blur border-cosmic-blue/30 text-base md:text-lg font-inter font-medium">
                 <DropdownMenuItem asChild>
                   <Link to="/philosophy">Philosophy</Link>
                 </DropdownMenuItem>
@@ -79,9 +89,9 @@ const Navigation = () => {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <Link to="/about" className="text-sm font-medium text-foreground hover:text-primary transition">About</Link>
-            <Link to="/orders" className="text-sm font-medium text-foreground hover:text-primary transition">Orders</Link>
-            <Link to="/contact" className="text-sm font-medium text-foreground hover:text-primary transition">Contact</Link>
+            <Link to="/verticaldet" className="text-sm font-inter text-foreground hover:text-primary transition">Verticals</Link>
+            <Link to="/orders" className="text-sm font-inter text-foreground hover:text-primary transition">Orders</Link>
+            <Link to="/contact" className="text-sm font-inter text-foreground hover:text-primary transition">Contact</Link>
 
             {user ? (
               <DropdownMenu>
@@ -111,7 +121,7 @@ const Navigation = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <Button variant="outline" size="sm" asChild>
+              <Button variant="outline" className="text-base md:text-lg font-inter font-medium px-4 py-2" asChild>
                 <Link to="/login">Login</Link>
               </Button>
             )}
@@ -132,13 +142,14 @@ const Navigation = () => {
                 Origin
               </summary>
               <div className="mt-2 ml-4 space-y-2">
-                <Link to="/philosophy" className="block text-sm text-muted-foreground hover:text-primary" onClick={() => setIsOpen(false)}>Philosophy</Link>
-                <Link to="/leadership" className="block text-sm text-muted-foreground hover:text-primary" onClick={() => setIsOpen(false)}>Leadership</Link>
-                <Link to="/awards" className="block text-sm text-muted-foreground hover:text-primary" onClick={() => setIsOpen(false)}>Awards</Link>
+                <Link to="/philosophy" className="block text-base font-medium text-muted-foreground hover:text-primary" onClick={() => setIsOpen(false)}>Philosophy</Link>
+                <Link to="/leadership" className="block text-base font-medium text-muted-foreground hover:text-primary" onClick={() => setIsOpen(false)}>Leadership</Link>
+                <Link to="/awards" className="block text-base font-medium text-muted-foreground hover:text-primary" onClick={() => setIsOpen(false)}>Awards</Link>
               </div>
             </details>
 
             <Link to="/about" className="block" onClick={() => setIsOpen(false)}>About</Link>
+            <Link to="/verticaldet" className="block" onClick={() => setIsOpen(false)}>Verticals</Link>
             <Link to="/orders" className="block" onClick={() => setIsOpen(false)}>Orders</Link>
             <Link to="/contact" className="block" onClick={() => setIsOpen(false)}>Contact</Link>
 
@@ -148,7 +159,7 @@ const Navigation = () => {
                 <button onClick={handleLogout} className="text-destructive text-sm">Logout</button>
               </>
             ) : (
-              <Link to="/login" className="block text-sm" onClick={() => setIsOpen(false)}>Login</Link>
+              <Link to="/login" className="block text-sm font-inter" onClick={() => setIsOpen(false)}>Login</Link>
             )}
           </div>
         )}

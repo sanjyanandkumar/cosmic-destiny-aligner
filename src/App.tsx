@@ -28,6 +28,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import BackgroundMusic from "./components/BackgroundMusic";
 import ConsultingDetailsPage from "./pages/ConsultingDetailsPage";
 import InstallPage from "./pages/InstallPage";
+import VerticalDetails from "./pages/VerticalDetails"
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/philosophy" element={<PhilosophyPage />} />
+          <Route path="/verticaldet" element={<VerticalDetails />} />
           <Route path="/leadership" element={<LeadershipPage />} />
           <Route path="/awards" element={<AwardsPage />} />
           <Route path="/consulting" element={<ConsultingPage />} />

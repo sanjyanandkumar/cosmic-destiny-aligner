@@ -12,7 +12,7 @@ const HowItWorks = () => {
   return (
     <CosmicPage>
       {/* Restored top + bottom spacing */}
-      <section id="how-it-works" className="py-28 md:py-32">
+      <section id="how-it-works" className="py-6 md:py-10">
         <div className="container mx-auto px-4">
 
           <div className="text-center mb-14">

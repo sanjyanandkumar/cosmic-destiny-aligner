@@ -6,23 +6,23 @@ import VerticalCards from "@/components/VerticalCards";
 import FeaturedOffers from "@/components/FeaturedOffers";
 import KarmaKingdomsShowcase from "@/components/KarmaKingdomsShowcase";
 import Footer from "@/components/Footer";
-import ScrollNavigation from "@/components/ScrollNavigation";
 import FloatingConsultationButton from "@/components/FloatingConsultationButton";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-transparent">
-      <Navigation />
+      <div className="font-sans text-[17px]">
+        <Navigation />
+      </div>
       <KarmaKingdomsShowcase />
-      <ScrollNavigation />
       <FloatingConsultationButton />
-      <div id="hero">
+      <div id="hero" className="m-0 p-0">
         <Hero />
       </div>
-      <VerticalCards />
-      <div id="how-it-works">
+      <div id="how-it-works" className="m-0 p-0">
         <HowItWorks />
       </div>
+      <VerticalCards />
       <div id="offers">
         <FeaturedOffers />
       </div>
