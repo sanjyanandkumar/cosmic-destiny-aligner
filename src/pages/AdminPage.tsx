@@ -105,41 +105,41 @@ export default function AdminPage() {
     <CosmicPage>
       <Navigation />
 
-      <div className="container mx-auto px-4 py-24 max-w-6xl">
+      <div className="container mx-auto px-4 pt-32 pb-24 max-w-6xl leading-tight">
         <Card className="bg-white/10 backdrop-blur-md border-white/20 text-white rounded-2xl">
           <CardHeader>
             <CardTitle className="text-3xl font-playfair">Order Management</CardTitle>
           </CardHeader>
 
-          <CardContent>
+          <CardContent className="leading-tight">
             {loading ? (
               <p className="text-center py-6">Loading orders...</p>
             ) : (
-              <Table>
+              <Table className="leading-tight">
                 <TableHeader>
-                  <TableRow>
-                    <TableHead>Order #</TableHead>
-                    <TableHead>Customer</TableHead>
-                    <TableHead>Email</TableHead>
-                    <TableHead>Phone</TableHead>
-                    <TableHead>Total</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead>Date</TableHead>
-                    <TableHead>Update</TableHead>
+                  <TableRow className="!py-1">
+                    <TableHead className="!py-1">Order #</TableHead>
+                    <TableHead className="!py-1">Customer</TableHead>
+                    <TableHead className="!py-1">Email</TableHead>
+                    <TableHead className="!py-1">Phone</TableHead>
+                    <TableHead className="!py-1">Total</TableHead>
+                    <TableHead className="!py-1">Status</TableHead>
+                    <TableHead className="!py-1">Date</TableHead>
+                    <TableHead className="!py-1">Update</TableHead>
                   </TableRow>
                 </TableHeader>
 
                 <TableBody>
                   {orders.map((o) => (
-                    <TableRow key={o.id}>
-                      <TableCell>{o.order_number}</TableCell>
-                      <TableCell>{o.buyer_name}</TableCell>
-                      <TableCell>{o.buyer_email}</TableCell>
-                      <TableCell>{o.buyer_phone || "—"}</TableCell>
-                      <TableCell>{formatAmount(o.total_amount)}</TableCell>
-                      <TableCell>{getStatusBadge(o.status)}</TableCell>
-                      <TableCell>{formatDate(o.created_at)}</TableCell>
-                      <TableCell>
+                    <TableRow key={o.id} className="!py-1">
+                      <TableCell className="!py-1">{o.order_number}</TableCell>
+                      <TableCell className="!py-1">{o.buyer_name}</TableCell>
+                      <TableCell className="!py-1">{o.buyer_email}</TableCell>
+                      <TableCell className="!py-1">{o.buyer_phone || "—"}</TableCell>
+                      <TableCell className="!py-1">{formatAmount(o.total_amount)}</TableCell>
+                      <TableCell className="!py-1">{getStatusBadge(o.status)}</TableCell>
+                      <TableCell className="!py-1">{formatDate(o.created_at)}</TableCell>
+                      <TableCell className="!py-1">
                         <Select value={o.status} onValueChange={(v) => updateOrderStatus(o.id, v)}>
                           <SelectTrigger className="w-[130px]">
                             <SelectValue />

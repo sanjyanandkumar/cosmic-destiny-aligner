@@ -46,9 +46,9 @@ const VerticalCards = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="font-playfair text-4xl md:text-5xl font-bold text-white mb-4">
-              Karmic Divisions
+              BrahmaX verticals
             </h2>
-            <p className="font-inter text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            <p className="font-inter text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               Four Paths. One Purpose — to Align Karma with Creation
             </p>
           </div>

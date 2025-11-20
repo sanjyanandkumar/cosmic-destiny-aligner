@@ -10,28 +10,28 @@ const testimonials = [
     name: "Priya Sharma",
     role: "Fashion Designer",
     content:
-      "BrahmaX transformed how I understand my personal style. The karmic blueprint was eerily accurate and helped me align my wardrobe with my true self.",
+      "BrahmaX transformed how I understand my personal style. The karmic blueprint was very accurate and helped me align my wardrobe with my true self",
     rating: 5,
   },
   {
     name: "Rajesh Kumar",
     role: "Tech Entrepreneur",
     content:
-      "The consulting division helped me make strategic decisions at the right cosmic timing. My business growth has been phenomenal since working with BrahmaX.",
+      "The consulting division helped me make strategic decisions at the right cosmic timing. My business growth has been phenomenal since working with BrahmaX",
     rating: 5,
   },
   {
     name: "Ananya Patel",
     role: "Student",
     content:
-      "EduSeam's approach to education through karmic guidance is revolutionary. I finally found clarity in my career path and academic choices.",
+      "EduSeam's approach to education through karmic guidance is revolutionary. I finally found clarity in my career path and academic choices",
     rating: 5,
   },
   {
     name: "Vikram Mehta",
     role: "Travel Enthusiast",
     content:
-      "The leisure division curated a journey that was spiritually transformative. Every destination aligned perfectly with my astrological chart.",
+      "The leisure division curated a journey that was spiritually transformative. Every destination aligned perfectly with my astrological chart",
     rating: 5,
   },
 ];
@@ -52,10 +52,7 @@ const TrustProof = () => {
 
           <div className="text-center mb-12">
             <h2 className="font-playfair text-4xl md:text-5xl font-bold text-white mb-4">
-              Trusted by{" "}
-              <span className="bg-gradient-gold bg-clip-text text-transparent">
-                Cosmic Seekers
-              </span>
+              Trusted by thousands
             </h2>
             <p className="font-inter text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
               Join thousands who have unlocked their karmic potential with BrahmaX

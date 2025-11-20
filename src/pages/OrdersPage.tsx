@@ -79,7 +79,7 @@ export default function OrdersPage() {
     <CosmicPage>
       <Navigation />
 
-      <section className="py-24">
+      <section className="pt-32 pb-24">
         <div className="container mx-auto px-4 max-w-4xl text-white">
           <h1 className="font-playfair text-4xl md:text-5xl font-bold text-center mb-10">
             Your Orders

@@ -10,10 +10,10 @@ import wardrobeImg from "@/assets/cosmic-handbag.jpg";
 import CosmicPage from "@/components/CosmicPage";
 
 const items = [
-  { title: "Wardrobe", image: wardrobeImg, link: "/wardrobe" },
-  { title: "Bali Spiritual Journey", image: baliTripImg, link: "/leisure" },
-  { title: "Career Guidance", image: careerGuidanceImg, link: "/eduseam" },
-  { title: "Karmic Consulting", image: karmicConsultingImg, link: "/consulting" },
+  { title: "Karmic consulting", image: karmicConsultingImg, link: "/consulting" },
+  { title: "BrahmaX wardrobe", image: wardrobeImg, link: "/wardrobe" },
+  { title: "Eduseam", image: careerGuidanceImg, link: "/eduseam" },
+  { title: "Leisure", image: baliTripImg, link: "/leisure" },
 ];
 
 const AUTOPLAY_DELAY = 3000;
@@ -45,7 +45,7 @@ const KarmaKingdomsShowcase = () => {
 
         {/* 🔮 Image Track */}
         <div
-          className="flex h-full transition-transform duration-[1300ms] ease-[cubic-bezier(.22,.61,.36,1)]"
+          className="flex h-full transition-transform transition-transform duration-700 ease-out"
           style={{ transform: `translateX(-${index * 100}vw)` }}
         >
           {items.map((item, key) => (
@@ -57,7 +57,7 @@ const KarmaKingdomsShowcase = () => {
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-[1.05]"
+                className="w-full h-full object-cover transition-transform duration-500 ease-out will-change-transform"
               />
 
               {/* Overlay title */}
