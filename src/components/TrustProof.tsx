@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useState } from "react";
 import CosmicPage from "@/components/CosmicPage";
-import bg from "@/assets/cosmic-background.png";
+import { useEffect } from "react";
 
 const testimonials = [
   {
@@ -38,6 +38,7 @@ const testimonials = [
 
 const TrustProof = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
 
   const nextTestimonial = () =>
     setCurrentIndex((prev) => (prev + 1) % testimonials.length);
@@ -45,6 +46,17 @@ const TrustProof = () => {
   const prevTestimonial = () =>
     setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
+  // ⭐ Auto-play logic
+  useEffect(() => {
+    if (paused) return;
+
+    const interval = setInterval(() => {
+      nextTestimonial();
+    }, 4000); // every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [paused]);
+  
   return (
     <CosmicPage>
       <section id="trust" className="py-14 md:py-10">
@@ -60,8 +72,12 @@ const TrustProof = () => {
           </div>
 
           <div className="max-w-4xl mx-auto mb-12">
-            <Card className="bg-white/5 backdrop-blur-xl border border-white/20 rounded-2xl">
-              <CardContent className="p-8 md:p-12">
+                <Card
+                  className="bg-white/5 backdrop-blur-xl border border-white/20 rounded-2xl"
+                  onMouseEnter={() => setPaused(true)}
+                  onMouseLeave={() => setPaused(false)}
+                >
+                <CardContent className="p-8 md:p-12">
 
                 <div className="flex items-center justify-between mb-8">
                   <Button variant="ghost" size="icon" onClick={prevTestimonial} className="text-white hover:bg-white/10">
