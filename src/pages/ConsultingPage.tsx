@@ -1,30 +1,47 @@
 import * as React from "react";
-import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
 import CosmicPage from "@/components/CosmicPage";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useCart } from "@/contexts/CartContext";
-import { ShoppingCart } from "lucide-react";
+import { Link } from "react-router-dom";
+import karmicConsultingImg from "@/assets/karmic-consulting.jpg";
 
 const ConsultingPage: React.FC = () => {
-  const { addToCart } = useCart();
-  
-  const { data: services = [], isLoading } = useQuery({
-    queryKey: ["products", "consulting"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("products")
-        .select("*")
-        .eq("category", "consulting")
-        .order("created_at", { ascending: false });
-      
-      if (error) throw error;
-      return data;
+  const services = [
+    {
+      id: "blueprint",
+      name: "Karmic Business Blueprint",
+      price: 1000,
+      description:
+        "Decode your birth chart to craft a business model aligned with your innate strengths, purpose, and planetary timing.",
+      image: karmicConsultingImg,
     },
-  });
+    {
+      id: "brand-architecture",
+      name: "Strategic Brand Architecture",
+      price: 5000,
+      description:
+        "Build a brand ecosystem that communicates powerfully and scales effortlessly.",
+      image: karmicConsultingImg,
+    },
+    {
+      id: "communication",
+      name: "Communication & Positioning",
+      price: 5000,
+      description:
+        "Shape your narrative to magnetize the right clients, partners, and investors.",
+      image: karmicConsultingImg,
+    },
+    {
+      id: "karmic-colors",
+      name: "Website Creation Using Karmic Colors",
+      price: 5000,
+      description:
+        "Website design, creation, and hosting that aligns your digital energy with your karmic identity.",
+      image: karmicConsultingImg,
+    },
+  ];
 
   return (
     <CosmicPage>
@@ -47,49 +64,34 @@ const ConsultingPage: React.FC = () => {
           </div>
 
           {/* Services Grid */}
-          <div className="max-w-6xl mx-auto">
-            {isLoading ? (
-              <div className="text-center py-12 text-white">Loading services...</div>
-            ) : services.length === 0 ? (
-              <div className="text-center py-12 text-white">No services available yet.</div>
-            ) : (
-              <div className="grid md:grid-cols-2 gap-10">
-                {services.map((service) => (
-                  <Card
-                    key={service.id}
-                    className="overflow-hidden bg-white/10 backdrop-blur-md border border-white/20 hover:border-primary/60 transition-all duration-500"
-                  >
-                    <div className="relative h-[260px] overflow-hidden">
-                      <img
-                        src={service.image_url || "/placeholder.svg"}
-                        alt={service.name}
-                        className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                    </div>
+          <div className="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto">
+            {services.map((service) => (
+              <Link key={service.id} to={`/consulting/${service.id}`} className="group">
+                <Card className="overflow-hidden bg-white/10 backdrop-blur-md border border-white/20 hover:border-primary/60 transition-all duration-500 cursor-pointer">
+                  <div className="relative h-[260px] overflow-hidden">
+                    <img
+                      src={service.image}
+                      alt={service.name}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  </div>
 
-                    <div className="p-6">
-                      <h3 className="font-playfair text-2xl font-bold text-white mb-2">
-                        {service.name}
-                      </h3>
-                      <p className="text-muted-foreground mb-4 leading-relaxed">
-                        {service.description}
-                      </p>
-                      <p className="font-playfair text-3xl font-bold bg-gradient-gold bg-clip-text text-transparent mb-4">
-                        ₹{service.price.toLocaleString()}
-                      </p>
-                      <Button
-                        onClick={() => addToCart(service)}
-                        className="w-full"
-                      >
-                        <ShoppingCart className="mr-2 h-4 w-4" />
-                        Add to Cart
-                      </Button>
-                    </div>
-                  </Card>
-                ))}
-              </div>
-            )}
+                  <div className="p-6">
+                    <h3 className="font-playfair text-2xl font-bold text-white mb-2">
+                      {service.name}
+                    </h3>
+                    <p className="text-muted-foreground mb-4 leading-relaxed">
+                      {service.description}
+                    </p>
+                    <p className="font-playfair text-3xl font-bold bg-gradient-gold bg-clip-text text-transparent">
+                      ₹{service.price.toLocaleString()}
+                    </p>
+                    <Button className="w-full mt-4">View Details</Button>
+                  </div>
+                </Card>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

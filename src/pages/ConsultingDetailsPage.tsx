@@ -8,9 +8,12 @@ import karmicConsultingImg from "@/assets/karmic-consulting.jpg";
 import bg from "@/assets/cosmic-background.png";
 import { supabase } from "@/integrations/supabase/client";
 import GalaxyBackground from "@/components/GalaxyBackground";
+import { useCart } from "@/contexts/CartContext";
+import { toast } from "@/hooks/use-toast";
 
 const ConsultingDetailsPage = () => {
   const { experienceId } = useParams();
+  const { addToCart } = useCart();
   const {
     dialogOpen,
     currentProduct,
@@ -92,7 +95,7 @@ const ConsultingDetailsPage = () => {
 
       {/* 🌌 Cosmic Background Layer */}
       <main
-        className="relative py-24 bg-cover bg-center bg-no-repeat overflow-hidden"
+        className="relative pt-36 pb-16 bg-cover bg-center bg-no-repeat overflow-hidden"
         style={{ backgroundImage: `url(${bg})` }}
       >
         {/* 1️⃣ Dark translucent overlay (UNDER stars) */}
@@ -155,15 +158,28 @@ const ConsultingDetailsPage = () => {
                       window.location.href = `/login?redirect=/consulting/${experienceId}`;
                       return;
                     }
-                    startCheckout({
+
+                    addToCart({
+                      id: experienceId!,
                       name: exp.title,
                       price: exp.price,
-                      description: exp.goal,
+                      quantity: 1,
+                      image_url: karmicConsultingImg,
+                      category: "Consulting Service",
                     });
+
+                    // 🎉 Toast Confirmation
+                    toast({
+                      title: "Added to Cart!",
+                      description: `${exp.title} has been added to your cart.`,
+                    });
+
+                    // Optional: Redirect to cart (you already have)
+                    window.location.href = "/cart";
                   }}
                   className="w-full md:w-auto bg-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all"
                 >
-                  Book Now - ₹{exp.price.toLocaleString()}
+                  Add to Cart - ₹{exp.price.toLocaleString()}
                 </Button>
               </div>
             </div>

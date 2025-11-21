@@ -43,7 +43,7 @@ const HowItWorks = () => {
 
                     {/* step number */}
                     <div className="w-10 h-10 mx-auto mb-4 rounded-full bg-primary/20 flex items-center justify-center">
-                      <span className="font-playfair text-xl font-bold text-primary">
+                      <span className="font-playfair text-3xl font-bold text-primary">
                         {index + 1}
                       </span>
                     </div>
