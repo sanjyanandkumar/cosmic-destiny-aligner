@@ -7,17 +7,17 @@ import { useEffect } from "react";
 
 const testimonials = [
   {
-    name: "Priya Sharma",
-    role: "Fashion Designer",
-    content:
-      "BrahmaX transformed how I understand my personal style. The karmic blueprint was very accurate and helped me align my wardrobe with my true self",
-    rating: 5,
-  },
-  {
     name: "Rajesh Kumar",
     role: "Tech Entrepreneur",
     content:
       "The consulting division helped me make strategic decisions at the right cosmic timing. My business growth has been phenomenal since working with BrahmaX",
+    rating: 5,
+  },
+  {
+    name: "Priya Sharma",
+    role: "Fashion Designer",
+    content:
+      "BrahmaX transformed how I understand my personal style. The karmic blueprint was very accurate and helped me align my wardrobe with my true self",
     rating: 5,
   },
   {
@@ -59,38 +59,37 @@ const TrustProof = () => {
   
   return (
     <CosmicPage>
-      <section id="trust" className="py-14 md:py-10">
+      <section id="trust" className="py-14 md:py-2">
         <div className="container mx-auto px-4">
 
-          <div className="text-center mb-12">
+          <div className="text-center mb-6">
             <h2 className="font-playfair text-4xl md:text-5xl font-bold text-white mb-4">
               Trusted by thousands
             </h2>
-            <p className="font-inter text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
+            <p className="font-inter text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               Join thousands who have unlocked their karmic potential with BrahmaX
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto mb-12">
+          <div className="max-w-5xl mx-auto mb-8">
                 <Card
                   className="bg-white/5 backdrop-blur-xl border border-white/20 rounded-2xl"
                   onMouseEnter={() => setPaused(true)}
                   onMouseLeave={() => setPaused(false)}
                 >
-                <CardContent className="p-8 md:p-12">
+                <CardContent className="pt-4 pb-8 md:pt-6 md:pb-12 px-8">
 
-                <div className="flex items-center justify-between mb-8">
-                  <Button variant="ghost" size="icon" onClick={prevTestimonial} className="text-white hover:bg-white/10">
-                    <ChevronLeft className="h-6 w-6" />
-                  </Button>
+                  <div className="flex items-center justify-between mb-4">
+                    <Button variant="ghost" size="icon" onClick={prevTestimonial} className="text-white hover:bg-white/10">
+                      <ChevronLeft className="h-6 w-6" />
+                    </Button>
 
-                  <div className="flex-1 text-center px-8">
-                    {/* Rating stars */}
-                    <div className="flex justify-center gap-1 mb-6">
-                      {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                        <Star key={i} className="w-5 h-5 fill-primary text-primary" />
-                      ))}
-                    </div>
+                    <div className="flex-1 text-center px-8">
+                      <div className="flex justify-center gap-1 mb-4">
+                        {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
+                          <Star key={i} className="w-5 h-5 fill-primary text-primary" />
+                        ))}
+                      </div>
 
                     <p className="font-inter text-lg md:text-xl text-white/90 italic mb-6">
                       "{testimonials[currentIndex].content}"
@@ -99,7 +98,7 @@ const TrustProof = () => {
                     <p className="font-playfair text-xl font-semibold text-white">
                       {testimonials[currentIndex].name}
                     </p>
-                    <p className="font-inter text-sm text-white/60">
+                    <p className="font-inter text-sm text-muted-foreground">
                       {testimonials[currentIndex].role}
                     </p>
                   </div>

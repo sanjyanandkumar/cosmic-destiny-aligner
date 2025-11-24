@@ -15,8 +15,6 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { toast } from "@/hooks/use-toast";
 import { Pencil, Plus, Trash2, Image as ImageIcon, RefreshCw } from "lucide-react";
 
-import bg from "@/assets/cosmic-background.png";
-
 type Product = {
   id: string;
   name: string;
@@ -28,6 +26,13 @@ type Product = {
   created_at: string;
   updated_at: string;
 };
+
+const PRODUCT_CATEGORIES = [
+  "Wardrobe",
+  "Consulting",
+  "Leisure",
+  "EduSeam",
+];
 
 function useProducts(search: string) {
   return useQuery({
@@ -46,7 +51,7 @@ function useProducts(search: string) {
   });
 }
 
-export default function AdminProducts() {
+export default function AddProductsPage() {
   const qc = useQueryClient();
   const [search, setSearch] = useState("");
   const { data, isLoading, refetch, isFetching } = useProducts(search);
@@ -126,7 +131,7 @@ export default function AdminProducts() {
 
       <div className="container mx-auto px-6 pt-32 py-20 space-y-8 text-white">
         <div className="flex justify-between items-center">
-          <h1 className="text-4xl font-playfair font-bold">Products</h1>
+          <h1 className="text-4xl font-playfair font-bold">Manage Products</h1>
 
           <div className="flex gap-2">
             <Button variant="outline" onClick={() => refetch()} disabled={isFetching} className="border-white/40 text-white">
@@ -164,7 +169,7 @@ export default function AdminProducts() {
               {isLoading ? (
                 <TableRow><TableCell colSpan={6} className="text-center py-6 text-white/70">Loading…</TableCell></TableRow>
               ) : rows.length === 0 ? (
-                <TableRow><TableCell colSpan={6} className="text-center py-6 text-white/70">No products.</TableCell></TableRow>
+                <TableRow><TableCell colSpan={6} className="text-center py-6 text-white/70">No products found.</TableCell></TableRow>
               ) : rows.map(p => (
                 <TableRow key={p.id} className="text-white">
                   <TableCell>
@@ -178,7 +183,7 @@ export default function AdminProducts() {
                   </TableCell>
                   <TableCell>{p.name}</TableCell>
                   <TableCell>{p.category ?? "-"}</TableCell>
-                  <TableCell className="text-right">₹{Number(p.price).toFixed(2)}</TableCell>
+                  <TableCell className="text-right">₹{Number(p.price).toLocaleString()}</TableCell>
                   <TableCell className="text-right">{p.quantity_available}</TableCell>
                   <TableCell className="text-right">
                     <div className="flex justify-end gap-2">
@@ -199,9 +204,9 @@ export default function AdminProducts() {
 
       <Footer />
 
-      {/* Form Dialog */}
+      {/* FORM DIALOG */}
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent>
+        <DialogContent className="text-white">
           <DialogHeader>
             <DialogTitle>{editing ? "Edit Product" : "Add Product"}</DialogTitle>
           </DialogHeader>
@@ -217,7 +222,19 @@ export default function AdminProducts() {
             <Input value={form.name || ""} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
 
             <Label>Category</Label>
-            <Input value={form.category || ""} onChange={(e) => setForm({ ...form, category: e.target.value })} />
+            <select
+              value={form.category || ""}
+              onChange={(e) => setForm({ ...form, category: e.target.value })}
+              className="bg-white/10 border border-white/30 rounded-lg p-2 text-white"
+              required
+            >
+              <option value="">Select Category</option>
+              {PRODUCT_CATEGORIES.map((cat) => (
+                <option key={cat} value={cat} className="text-black">
+                  {cat}
+                </option>
+              ))}
+            </select>
 
             <Label>Description</Label>
             <Input value={form.description || ""} onChange={(e) => setForm({ ...form, description: e.target.value })} />
@@ -228,7 +245,7 @@ export default function AdminProducts() {
             <Label>Quantity</Label>
             <Input type="number" value={form.quantity_available || 0} onChange={(e) => setForm({ ...form, quantity_available: Number(e.target.value) })} required />
 
-            <Label>Image URL (path or full link)</Label>
+            <Label>Image URL (optional)</Label>
             <Input value={form.image_url || ""} onChange={(e) => setForm({ ...form, image_url: e.target.value })} />
 
             <DialogFooter className="gap-2">

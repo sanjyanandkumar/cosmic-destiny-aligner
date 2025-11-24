@@ -99,7 +99,7 @@ const BackgroundMusic = () => {
             ${isPlaying ? "bg-primary/20 text-primary hover:bg-primary/30" : "bg-black/40 text-white hover:bg-white/20"}
           `}
         >
-          {isPlaying ? "⏸ Pause Music" : "🎵 Play Music"}
+          {isPlaying ? "⏸" : "🎵"}
         </button>
       </div>
     </>

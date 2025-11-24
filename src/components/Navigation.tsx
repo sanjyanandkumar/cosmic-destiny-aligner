@@ -54,23 +54,24 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-30">
 
-          <Link to="/" className="flex flex-col items-start leading-tight group">
-            {/* Logo */}
+          <Link to="/" className="flex items-center gap-2 leading-tight group">
+
+            {/* Smaller logo */}
             <img
               src={brahmaXLogo}
               alt="BrahmaX Logo"
-              className="h-18 w-auto animate-pulse-glow"
+              className="h-14 w-auto animate-pulse-glow" 
             />
 
-            {/* Tagline + Orange Dot */}
-            <span className="flex items-center gap-1 text-[12px] md:text-[13px] font-inter text-white tracking-widest pl-[2px] opacity-100">
-              Karmic wisdom simplified
+            {/* Tagline next to logo, centered */}
+            <span className="flex items-center gap-2 text-[12px] md:text-[13px] font-inter text-white tracking-widest">
+              Karmic Wisdom Simplified
 
-              <span className="text-[#FF8C00] text-[11px] font-bold translate-y-[0.5px]">
-                ●
-              </span>
+              {/* Small Orange Square */}
+              <span className="inline-block w-1 h-1 bg-[#FF8C00]"></span>
             </span>
           </Link>
+
           <div className="hidden md:flex items-center space-x-8">
 
             {/* GROUPED ORIGIN MENU */}

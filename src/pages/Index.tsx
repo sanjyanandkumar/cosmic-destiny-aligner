@@ -23,9 +23,6 @@ const Index = () => {
         <HowItWorks />
       </div>
       <VerticalCards />
-      <div id="offers">
-        <FeaturedOffers />
-      </div>
       <div id="trust">
         <TrustProof />
       </div>

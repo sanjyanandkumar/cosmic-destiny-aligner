@@ -30,12 +30,9 @@ const Hero = () => {
           <div className="w-full mx-auto text-center space-y-4">
 
             <h1 className="text-[3.5rem] md:text-[2rem] font-bold text-white leading-[1.2] tracking-[0.02em]">
-              BrahmaX —{" "}
               <span className="text-[3.5rem] md:text-[2rem] font-bold text-white leading-[1.2] tracking-[0.02em]">
-                Karma isn't a punishment or a reward<br />
-                It's a divine design<br />
-
-                <span className="text-[1.8rem] md:text-[1.3rem] font-semibold opacity-90">
+                Karma isn't a punishment or a reward; It's a divine design!<br/>
+                <span className="text-[1.8rem] md:text-[1.3rem] font-inter text-sm text-muted-foreground">
                   Understand, imbibe, and master your destiny{" "}
                 </span>
 
@@ -43,7 +40,7 @@ const Hero = () => {
                   to="/consulting"
                   className="animate-flash font-bold px-5 py-2 ml-2 rounded-lg bg-gradient-to-r from-[#FF8C00] via-[#FFB347] to-[#FFD280] text-black drop-shadow-[0_0_20px_#FFD700] hover:scale-110 transition-transform cursor-pointer"
                 >
-                  NOW!!!
+                  NOW
                 </Link>
               </span>
             </h1>

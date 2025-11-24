@@ -10,10 +10,10 @@ import wardrobeImg from "@/assets/cosmic-handbag.jpg";
 import CosmicPage from "@/components/CosmicPage";
 
 const items = [
-  { title: "Karmic consulting", image: karmicConsultingImg, link: "/consulting" },
-  { title: "BrahmaX wardrobe", image: wardrobeImg, link: "/wardrobe" },
-  { title: "Eduseam", image: careerGuidanceImg, link: "/eduseam" },
-  { title: "Leisure", image: baliTripImg, link: "/leisure" },
+  { title: "Karmic Consulting", image: karmicConsultingImg, link: "/consulting" },
+  { title: "BrahmaX Wardrobe", image: wardrobeImg, link: "/wardrobe" },
+  { title: "EduSeam", image: careerGuidanceImg, link: "/eduseam" },
+  { title: "BrahmaX Leisure", image: baliTripImg, link: "/leisure" },
 ];
 
 const AUTOPLAY_DELAY = 3000;
