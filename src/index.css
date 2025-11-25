@@ -17,6 +17,11 @@ All colors MUST be HSL.
     --rose-quartz: 0 38% 81%;
     --mystic-teal: 180 24% 34%;
     --soft-gold: 45 58% 68%;
+    --cosmic-dark: 248 70% 8%;
+    --cosmic-deep: 265 60% 15%;
+    --cosmic-purple: 280 70% 55%;
+    --divine-gold: 45 95% 65%;
+    --divine-glow: 45 100% 75%;
 
     /* Base theme mapping */
     --background: 229 67% 15%;
@@ -54,10 +59,60 @@ All colors MUST be HSL.
     --gradient-celestial-veil: linear-gradient(180deg, hsl(240, 4%, 11%) 0%, hsl(229, 67%, 15%) 80%, hsl(30, 33%, 96%) 100%);
     --gradient-solar-drift: linear-gradient(120deg, hsl(229, 67%, 15%) 0%, hsl(41, 49%, 52%) 50%, hsl(0, 38%, 81%) 100%);
     --gradient-gold-shimmer: linear-gradient(90deg, hsl(41, 49%, 52%) 0%, hsl(45, 58%, 68%) 100%);
+    --gradient-cosmic: linear-gradient(135deg, hsl(248 70% 8%), hsl(265 60% 15%), hsl(280 50% 20%));
+    --gradient-divine: linear-gradient(135deg, hsl(45 95% 65%), hsl(35 90% 60%));
+    --shadow-planet: 0 0 30px hsl(var(--divine-gold) / 0.4);
+    --shadow-glow: 0 0 50px hsl(var(--divine-glow) / 0.6);
 
     /* Shadows */
     --shadow-cosmic: 0 10px 40px -10px hsla(41, 49%, 52%, 0.3);
     --shadow-deep: 0 20px 60px -15px hsla(240, 4%, 11%, 0.5);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 248 70% 8%;
+    --foreground: 45 100% 95%;
+
+    --card: 248 50% 12%;
+    --card-foreground: 45 100% 95%;
+
+    --popover: 248 60% 10%;
+    --popover-foreground: 45 100% 95%;
+
+    --primary: 45 95% 65%;
+    --primary-foreground: 248 70% 8%;
+
+    --secondary: 265 60% 45%;
+    --secondary-foreground: 45 100% 95%;
+
+    --muted: 248 40% 20%;
+    --muted-foreground: 45 40% 70%;
+
+    --accent: 280 70% 55%;
+    --accent-foreground: 45 100% 95%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 45 100% 95%;
+
+    --border: 248 40% 20%;
+    --input: 248 40% 20%;
+    --ring: 45 95% 65%;
   }
 }
 
