@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 
-import baliTripImg from "@/assets/bali-trip.jpg";
+import meditationImg from "@/assets/karmic-meditation.jpg";
 import careerGuidanceImg from "@/assets/career-guidance.jpg";
 import karmicConsultingImg from "@/assets/karmic-consulting.jpg";
 import wardrobeImg from "@/assets/cosmic-handbag.jpg";
@@ -13,7 +13,7 @@ const items = [
   { title: "Karmic Consulting", image: karmicConsultingImg, link: "/consulting" },
   { title: "BrahmaX Wardrobe", image: wardrobeImg, link: "/wardrobe" },
   { title: "EduSeam", image: careerGuidanceImg, link: "/eduseam" },
-  { title: "BrahmaX Leisure", image: baliTripImg, link: "/leisure" },
+  { title: "BrahmaX Wellness", image: meditationImg, link: "/leisure" },
 ];
 
 const AUTOPLAY_DELAY = 3000;
@@ -41,8 +41,16 @@ const KarmaKingdomsShowcase = () => {
 
   return (
     <CosmicPage>
-      <section className="relative w-screen h-screen overflow-hidden select-none">
+    <section className="relative w-screen h-screen overflow-hidden select-none pt-24">
 
+        {/* 🧿 Title on Top */}
+        <div className="absolute top-20 w-full flex justify-center z-[100]">
+          <div className="backdrop-blur-xl bg-white/10 border border-white/25 px-10 py-2 rounded-3xl shadow-[0_0_30px_rgba(255,255,255,0.25)]">
+            <h1 className="text-white text-3xl sm:text-4xl md:text-5xl font-bold tracking-[0.2em]">
+              Karmic Wisdom Simplified
+            </h1>
+          </div>
+        </div>
         {/* 🔮 Image Track */}
         <div
           className="flex h-full transition-transform transition-transform duration-700 ease-out"
@@ -61,8 +69,8 @@ const KarmaKingdomsShowcase = () => {
               />
 
               {/* Overlay title */}
-              <div className="absolute inset-0 flex items-end justify-center pb-20">
-                <div className="backdrop-blur-xl bg-white/10 border border-white/25 px-10 py-5 rounded-3xl shadow-[0_0_40px_rgba(255,255,255,0.25)]">
+              <div className="absolute inset-0 flex items-end justify-center pb-36">
+                <div className="backdrop-blur-xl bg-white/10 border border-white/25 px-10 py-2 rounded-3xl shadow-[0_0_40px_rgba(255,255,255,0.25)]">
                   <h3 className="text-white text-4xl md:text-5xl font-bold tracking-wide text-center">
                     {item.title}
                   </h3>

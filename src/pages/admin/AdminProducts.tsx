@@ -211,14 +211,27 @@ export default function AddProductsPage() {
             <DialogTitle>{editing ? "Edit Product" : "Add Product"}</DialogTitle>
           </DialogHeader>
 
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              upsert.mutate(form);
-            }}
-            className="space-y-4"
-          >
-            <Label>Name</Label>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+
+                  upsert.mutate({
+                    ...form,
+                    metadata: {
+                      tagline,
+                      priceRange,
+                      images: images.split(",").map(s => s.trim()),
+                      concept,
+                      highlights: highlights.split("\n").filter(Boolean),
+                      schedule: schedule.split("\n").filter(Boolean),
+                      pricingTiers,
+                      addOns
+                    }
+                  });
+                }}
+                className="space-y-4"
+              >
+              <Label>Name</Label>
             <Input value={form.name || ""} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
 
             <Label>Category</Label>

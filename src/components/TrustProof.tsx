@@ -31,7 +31,7 @@ const testimonials = [
     name: "Vikram Mehta",
     role: "Travel Enthusiast",
     content:
-      "The leisure division curated a journey that was spiritually transformative. Every destination aligned perfectly with my astrological chart",
+      "The wellness division curated a journey that was spiritually transformative. Every destination aligned perfectly with my astrological chart",
     rating: 5,
   },
 ];
@@ -59,7 +59,7 @@ const TrustProof = () => {
   
   return (
     <CosmicPage>
-      <section id="trust" className="py-14 md:py-2">
+      <section id="trust" className="py-14 md:py-6">
         <div className="container mx-auto px-4">
 
           <div className="text-center mb-6">
@@ -71,13 +71,13 @@ const TrustProof = () => {
             </p>
           </div>
 
-          <div className="max-w-5xl mx-auto mb-8">
+          <div className="max-w-5xl mx-auto mb-0">
                 <Card
                   className="bg-white/5 backdrop-blur-xl border border-white/20 rounded-2xl"
                   onMouseEnter={() => setPaused(true)}
                   onMouseLeave={() => setPaused(false)}
                 >
-                <CardContent className="pt-4 pb-8 md:pt-6 md:pb-12 px-8">
+                <CardContent className="pt-4 pb-8 md:pt-6 md:pb-6 px-8">
 
                   <div className="flex items-center justify-between mb-4">
                     <Button variant="ghost" size="icon" onClick={prevTestimonial} className="text-white hover:bg-white/10">

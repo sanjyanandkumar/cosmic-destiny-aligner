@@ -5,6 +5,7 @@ export interface Planet {
   name: string;
   sanskritName: string;
   color: string;
+  image: string;
   problems: {
     family: string[];
     relationship: string[];
@@ -24,6 +25,7 @@ export const planets: Planet[] = [
     name: "Sun",
     sanskritName: "Surya",
     color: "from-orange-500 to-yellow-500",
+    image: "/src/assets/surya.png",
     problems: {
       family: [
         "Father-son relationship conflicts",
@@ -71,6 +73,7 @@ export const planets: Planet[] = [
     name: "Moon",
     sanskritName: "Chandra",
     color: "from-slate-300 to-blue-200",
+    image: "/src/assets/chandra.png",
     problems: {
       family: [
         "Mother-child relationship issues",
@@ -118,6 +121,7 @@ export const planets: Planet[] = [
     name: "Mars",
     sanskritName: "Mangal",
     color: "from-red-600 to-orange-600",
+    image: "/src/assets/mangala.png",
     problems: {
       family: [
         "Sibling rivalry and conflicts",
@@ -165,6 +169,7 @@ export const planets: Planet[] = [
     name: "Mercury",
     sanskritName: "Budh",
     color: "from-green-500 to-emerald-500",
+    image: "/src/assets/budha.png",
     problems: {
       family: [
         "Communication gaps in family",
@@ -212,6 +217,7 @@ export const planets: Planet[] = [
     name: "Jupiter",
     sanskritName: "Guru",
     color: "from-yellow-500 to-amber-500",
+    image: "/src/assets/guru.png",
     problems: {
       family: [
         "Lack of wisdom and guidance",
@@ -259,6 +265,7 @@ export const planets: Planet[] = [
     name: "Venus",
     sanskritName: "Shukra",
     color: "from-pink-500 to-rose-500",
+    image: "/src/assets/shukra.png",
     problems: {
       family: [
         "Marital discord and relationship issues",
@@ -306,6 +313,7 @@ export const planets: Planet[] = [
     name: "Saturn",
     sanskritName: "Shani",
     color: "from-slate-700 to-gray-900",
+    image: "/src/assets/shani.png",
     problems: {
       family: [
         "Chronic family problems and delays",
@@ -353,6 +361,7 @@ export const planets: Planet[] = [
     name: "Rahu",
     sanskritName: "Rahu",
     color: "from-indigo-700 to-purple-900",
+    image: "/src/assets/rahu.png",
     problems: {
       family: [
         "Unexpected family crises",
@@ -400,6 +409,7 @@ export const planets: Planet[] = [
     name: "Ketu",
     sanskritName: "Ketu",
     color: "from-gray-600 to-slate-800",
+    image: "/src/assets/ketu.png",
     problems: {
       family: [
         "Spiritual disconnection in family",

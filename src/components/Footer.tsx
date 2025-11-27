@@ -22,7 +22,7 @@ const Footer = () => {
   	<div className="absolute inset-0 bg-black/75 backdrop-blur-sm"></div>
   <GalaxyBackground className="z-[1]" />
 		<div className="relative z-10 container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-4">
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
@@ -89,7 +89,7 @@ const Footer = () => {
               </li>
               <li>
                 <a href="/leisure" className="hover:text-primary transition-colors">
-                  BrahmaX Leisure
+                  BrahmaX Welness
                 </a>
               </li>
             </ul>
@@ -119,43 +119,43 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Newsletter */}
-          <div>
-            <h3 className="text-lg font-bold text-foreground mb-4">
-              Contact
-            </h3>
-            <div className="flex items-center gap-3 mb-3">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  className="h-5 w-5 text-primary"
-                >
-                  <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 .95-.26c1.04.26 2.16.4 3.31.4a1 1 0 0 1 1 1V21a1 1 0 0 1-1 1A18 18 0 0 1 3 4a1 1 0 0 1 1-1h3.69a1 1 0 0 1 1 1c0 1.15.14 2.27.4 3.31a1 1 0 0 1-.26.95l-2.2 2.2Z"/>
-                </svg>
-                <a href="tel:+91991212123" className="hover:text-primary transition-colors">
-                  +91 
-                </a>
-              </div>
-              {/* Email */}
-              <div className="flex items-center gap-3">
-                <Mail className="h-5 w-5 text-primary" />
-                <a href="mailto:askus@brahmax.in" className="hover:text-primary transition-colors">
-                  askus@brahmax.in
-                </a>
-              </div>
-            <div className="space-y-3 text-white/80 mb-4">
-              {/* Location */}
-              <div className="flex items-center gap-3">
-                <MapPin className="h-5 w-5 text-primary" />
-                <span>Bengaluru, India</span>
-              </div>
+                    {/* Newsletter */}
+          <div className="space-y-4 text-white/80">
+
+            {/* Phone */}
+            <div className="flex items-center gap-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                className="h-5 w-5 text-primary"
+              >
+                <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 .95-.26c1.04.26 2.16.4 3.31.4a1 1 0 0 1 1 1V21a1 1 0 0 1-1 1A18 18 0 0 1 3 4a1 1 0 0 1 1-1h3.69a1 1 0 0 1 1 1c0 1.15.14 2.27.4 3.31a1 1 0 0 1-.26.95l-2.2 2.2Z"/>
+              </svg>
+              <a href="tel:+91991212123" className="hover:text-primary transition-colors">
+                +91
+              </a>
             </div>
+
+            {/* Email */}
+            <div className="flex items-center gap-3">
+              <Mail className="h-5 w-5 text-primary" />
+              <a href="mailto:askus@brahmax.in" className="hover:text-primary transition-colors">
+                askus@brahmax.in
+              </a>
+            </div>
+
+            {/* Location */}
+            <div className="flex items-center gap-3">
+              <MapPin className="h-5 w-5 text-primary" />
+              <span>Bengaluru, India</span>
+            </div>
+
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-0 border-t border-cosmic-blue/30">
+        <div className="pt-1 border-t border-cosmic-blue/30">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-sm text-white/80">
               © 2025 DarkShadow Ventures LLP. All rights reserved.

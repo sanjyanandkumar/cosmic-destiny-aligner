@@ -63,13 +63,6 @@ const Navigation = () => {
               className="h-14 w-auto animate-pulse-glow" 
             />
 
-            {/* Tagline next to logo, centered */}
-            <span className="flex items-center gap-2 text-[12px] md:text-[13px] font-inter text-white tracking-widest">
-              Karmic Wisdom Simplified
-
-              {/* Small Orange Square */}
-              <span className="inline-block w-1 h-1 bg-[#FF8C00]"></span>
-            </span>
           </Link>
 
           <div className="hidden md:flex items-center space-x-8">
@@ -86,15 +79,11 @@ const Navigation = () => {
                 <DropdownMenuItem asChild>
                   <Link to="/leadership">Leadership</Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/awards">Awards</Link>
-                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 
             <Link to="/verticaldet" className="text-sm font-inter text-foreground hover:text-primary transition">Verticals</Link>
             <Link to="/orders" className="text-sm font-inter text-foreground hover:text-primary transition">Orders</Link>
-            <Link to="/contact" className="text-sm font-inter text-foreground hover:text-primary transition">Contact</Link>
             
             <Button variant="ghost" size="icon" onClick={() => navigate("/cart")} className="relative">
               <ShoppingCart className="h-5 w-5" />

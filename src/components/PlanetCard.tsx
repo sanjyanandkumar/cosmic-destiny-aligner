@@ -1,74 +1,107 @@
-import { createPortal } from "react-dom";
-import { useState } from "react";
+import { Planet, ProblemCategory } from "@/data/planets";
 import { Card } from "@/components/ui/card";
+import { X, Heart } from "lucide-react";
+
+interface PlanetCardProps {
+  planet: Planet;
+  style: React.CSSProperties;
+  category: ProblemCategory;
+}
+
+const problemCategories = [
+  { name: "Family", angle: 0 },
+  { name: "Relationship", angle: 90 },
+  { name: "Financial", angle: 180 },
+  { name: "Education", angle: 270 },
+];
 
 export const PlanetCard = ({ planet, style, category }: PlanetCardProps) => {
-  const [show, setShow] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
   return (
     <div
       className="absolute cursor-pointer group"
       style={style}
-      onMouseEnter={() => setShow(true)}
-      onMouseLeave={() => setShow(false)}
-      onMouseMove={(e) => {
-        // Calculate tooltip relative to window viewport
-        const rect = e.currentTarget.getBoundingClientRect();
-        setMousePos({
-          x: rect.left + rect.width / 2,
-          y: rect.top,
-        });
-      }}
     >
-      {/* Planet */}
-      <div
-        className={`w-16 h-16 rounded-full bg-gradient-to-br ${planet.color} shadow-planet group-hover:scale-110 transition`}
-      />
+      <div className="relative">
+        {/* Circular text around planet */}
+        <div className="absolute inset-0 w-40 h-40 -translate-x-12 -translate-y-12">
+          {problemCategories.map((cat, index) => {
+            const angle = (cat.angle * Math.PI) / 180;
+            const radius = 70;
+            const x = Math.cos(angle) * radius + 80;
+            const y = Math.sin(angle) * radius + 80;
+            
+            return (
+              <div
+                key={index}
+                className="absolute text-xs font-medium text-muted-foreground whitespace-nowrap"
+                style={{
+                  left: `${x}px`,
+                  top: `${y}px`,
+                  transform: 'translate(-50%, -50%)',
+                }}
+              >
+                {cat.name}
+              </div>
+            );
+          })}
+        </div>
 
-      {/* Labels */}
-      <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-center">
-        <p className="text-sm font-medium text-white">{planet.name}</p>
-        <p className="text-xs text-muted-foreground">{planet.sanskritName}</p>
+        {/* Planet image */}
+        <div className="relative w-20 h-20 group-hover:scale-110 transition-all duration-500">
+          <img
+            src={planet.image}
+            alt={planet.name}
+            className="w-full h-full object-contain drop-shadow-glow animate-glow"
+          />
+        </div>
+        
+        {/* Planet name */}
+        <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
+          <p className="text-sm font-medium text-foreground">{planet.name}</p>
+          <p className="text-xs text-muted-foreground">{planet.sanskritName}</p>
+        </div>
+
+        {/* Hover card */}
+        <Card
+          className="absolute bottom-24 left-1/2 transform -translate-x-1/2 
+          w-80 p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible
+          transition-all duration-300 z-50 border-primary/20 bg-card/95 backdrop-blur-sm"
+        >
+          <h3 className="text-lg font-bold mb-3 text-primary">
+            {planet.name} ({planet.sanskritName})
+          </h3>
+          
+          <div className="space-y-4">
+            <div>
+              <h4 className="text-sm font-semibold mb-2 text-accent flex items-center gap-2">
+                <X className="w-4 h-4 text-red-500" />
+                Problems:
+              </h4>
+              <ul className="space-y-1">
+                {planet.problems[category].map((problem, index) => (
+                  <li key={index} className="text-xs text-muted-foreground">
+                    • {problem}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-sm font-semibold mb-2 text-primary flex items-center gap-2">
+                <Heart className="w-4 h-4 text-green-500 fill-green-500" />
+                Solutions & Remedies:
+              </h4>
+              <ul className="space-y-1">
+                {planet.solutions[category].map((solution, index) => (
+                  <li key={index} className="text-xs text-foreground">
+                    • {solution}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </Card>
       </div>
-
-      {/* Tooltip via Portal */}
-      {show &&
-        createPortal(
-          <div
-            className="fixed z-[99999]"
-            style={{
-              top: mousePos.y - 20, // slightly above cursor
-              left: mousePos.x + 20, // offset so cursor doesn't cover tooltip
-              pointerEvents: "none",
-            }}
-          >
-            <Card className="w-72 p-5 bg-black/80 border border-white/20 rounded-xl shadow-xl">
-              <h3 className="text-lg font-bold text-primary mb-2">
-                {planet.name} ({planet.sanskritName})
-              </h3>
-
-              <p className="text-sm text-primary font-semibold">
-                {category.charAt(0).toUpperCase() + category.slice(1)} Challenges
-              </p>
-
-              <ul className="text-xs text-white/90 space-y-1 mb-3">
-                {planet.problems[category].map((p, i) => (
-                  <li key={i}>• {p}</li>
-                ))}
-              </ul>
-
-              <p className="text-sm text-primary font-semibold">Suggested Remedies ↓</p>
-
-              <ul className="text-xs text-white/90 space-y-1">
-                {planet.solutions[category].map((s, i) => (
-                  <li key={i}>✔ {s}</li>
-                ))}
-              </ul>
-            </Card>
-          </div>,
-          document.body
-        )}
     </div>
   );
 };

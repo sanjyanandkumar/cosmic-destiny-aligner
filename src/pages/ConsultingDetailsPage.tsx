@@ -10,6 +10,8 @@ import { supabase } from "@/integrations/supabase/client";
 import GalaxyBackground from "@/components/GalaxyBackground";
 import { useCart } from "@/contexts/CartContext";
 import { toast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
+import websiteImg from "@/assets/website.jpg";
 
 const ConsultingDetailsPage = () => {
   const { experienceId } = useParams();
@@ -36,8 +38,9 @@ const ConsultingDetailsPage = () => {
       ],
       outcome:
         "Client gains clarity on their ideal karmic-aligned industries, roles, and business types.",
+      image: karmicConsultingImg,
     },
-    "brand-architecture": {
+    "brand-architecture": { 
       title: "Stage 2 — Focuslab: Strategic Brand Architecture",
       price: 5000,
       goal:
@@ -52,6 +55,7 @@ const ConsultingDetailsPage = () => {
       ],
       outcome:
         "Client receives a ready-to-launch business blueprint, brand concept, and clear roadmap.",
+        image: karmicConsultingImg,
     },
     "communication": {
       title: "Stage 3 — Uplift: Communication & Positioning",
@@ -66,6 +70,7 @@ const ConsultingDetailsPage = () => {
       ],
       outcome:
         "Client builds revenue traction, raises funds, and grows sustainably under your guidance.",
+      image: karmicConsultingImg,
     },
     "karmic-colors": {
       title: "Stage 4 — Website Creation Using Karmic Colors",
@@ -80,6 +85,7 @@ const ConsultingDetailsPage = () => {
       ],
       outcome:
         "Client receives a full karmic-aligned website design blueprint ready for development.",
+      image: websiteImg,
     },
   };
 
@@ -95,7 +101,7 @@ const ConsultingDetailsPage = () => {
 
       {/* 🌌 Cosmic Background Layer */}
       <main
-        className="relative pt-36 pb-16 bg-cover bg-center bg-no-repeat overflow-hidden"
+        className="relative pt-20 pb-16 bg-cover bg-center bg-no-repeat overflow-hidden"
         style={{ backgroundImage: `url(${bg})` }}
       >
         {/* 1️⃣ Dark translucent overlay (UNDER stars) */}
@@ -114,7 +120,7 @@ const ConsultingDetailsPage = () => {
               {/* Left: Image */}
               <div className="relative h-[480px] overflow-hidden rounded-lg">
                 <img
-                  src={karmicConsultingImg}
+                  src={exp.image}
                   alt={exp.title}
                   className="w-full h-full object-cover rounded-lg shadow-[0_0_40px_rgba(255,255,255,0.15)]"
                 />
@@ -123,6 +129,13 @@ const ConsultingDetailsPage = () => {
 
               {/* Right: Details */}
               <div>
+                {/* 🔙 Back link */}
+                <Link
+                  to="/consulting/additional"
+                  className="inline-flex items-center gap-2 text-primary hover:text-primary/70 transition mb-4 text-lg"
+                >
+                  ← Back to Additional Consulting
+                </Link>
                 <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent leading-snug">
                   {exp.title}
                 </h1>

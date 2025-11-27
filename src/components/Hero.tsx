@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import { PlanetarySystem } from "@/components/PlanetarySystem";
 import { ProblemCategory } from "@/data/planets";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import problemImg from "@/assets/astrology problem.jpg";
+import solvedImg from "@/assets/astrology resolved.jpg";
+import xImg from "@/assets/X.png";
 
 const Hero = () => {
   const [category, setCategory] = useState<ProblemCategory>("family");
@@ -34,11 +37,14 @@ const Hero = () => {
         </div>
 
         <div className="relative z-10 container mx-auto px-4 text-center space-y-6">
-          <h1 className="text-[3.2rem] md:text-[2.4rem] font-bold text-white leading-tight">
-            Karma isn't a punishment or a reward —<br />
-            it's a divine design.
-          </h1>
+          <h1 className="mt-10 text-[3.2rem] md:text-[2.4rem] font-bold leading-tight">
+            <span className="text-white">Karma isn't a punishment or a reward</span><br />
 
+            <span className="bg-gradient-to-r from-[#FFB347] via-[#FFD280] to-[#FF8C00] 
+              text-transparent bg-clip-text drop-shadow-[0_0_18px_rgba(255,200,80,0.6)]">
+              It's a divine design!
+            </span>
+          </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Understand, imbibe, and master your destiny
           </p>
@@ -52,39 +58,34 @@ const Hero = () => {
             START NOW
           </Link>
 
-          {/* Supporting text */}
-          <div className="text-left text-lg md:text-xl max-w-7xl mx-auto space-y-3 leading-relaxed px-2 md:px-0">
-            <p>We build and guide business ventures that are cosmically aligned, strategically smart, and scalable enterprises in tune with the stars</p>
-            <p>Our BrahmaX wardrobe is the world’s first karmic fashion and lifestyle platform</p>
-            <p>EduSeam, is a stream passport that guides parents and children towards conscious learning – another proprietary product of BrahmaX</p>
-            <p>BrahmaX Leisure redefines wellness through the lens of karma into a meaningful, self-fulfilling divine experience</p>
-          </div>
-          <div className="relative z-20 container mx-auto px-4">
-            <h2 className="text-[3.2rem] md:text-[2.4rem] font-bold text-white text-center leading-tight">
-              Navagraha: The Cosmic Guardians
-            </h2>
+          {/* ⭐ Transformation Row */}
+          <div className="relative z-10 flex items-center justify-center gap-6 md:gap-12 mt-10">
 
-            <p className="text-center text-muted-foreground max-w-2xl mx-auto">
-              Hover each planet to reveal its influence and remedies.
-            </p>
-
-            <div className="flex justify-center my-6">
-              <Tabs value={category} onValueChange={(v) => setCategory(v as ProblemCategory)} className="w-full max-w-md">
-                <TabsList className="grid grid-cols-3 bg-white/10 backdrop-blur-md">
-                  <TabsTrigger value="family">Family</TabsTrigger>
-                  <TabsTrigger value="relationship">Relationship</TabsTrigger>
-                  <TabsTrigger value="financial">Financial</TabsTrigger>
-                </TabsList>
-              </Tabs>
+            {/* Problem Image */}
+            <div className="w-[300px] md:w-[450px] aspect-square rounded-xl overflow-hidden border border-white/20 shadow-lg backdrop-blur-sm">
+              <img 
+                src={problemImg}
+                alt="Problem" 
+                className="w-full h-full object-cover"
+              />
             </div>
 
-            <div className="flex justify-center">
-              <PlanetarySystem category={category} />
+            {/* BrahmaX X Logo Center */}
+            <img
+              src={xImg}
+              alt="Transformation"
+              className="w-[65px] md:w-[85px] animate-pulse drop-shadow-[0_0_20px_rgba(255,200,0,0.9)]"
+            />
+
+            {/* Resolved Image */}
+            <div className="w-[300px] md:w-[450px] aspect-square rounded-xl overflow-hidden border border-white/20 shadow-lg backdrop-blur-sm">
+              <img 
+                src={solvedImg}
+                alt="Resolved"
+                className="w-full h-full object-cover"
+              />
             </div>
 
-            <p className="text-center mt-1 text-sm text-muted-foreground max-w-xl mx-auto">
-              Each planet influences a different dimension of life. When aligned, karma becomes a guide — not a struggle.
-            </p>
           </div>
         </div>
       </section>

@@ -31,7 +31,7 @@ const verticals = [
     description: "Discover your dharma through guided learning.",
   },
   {
-    title: "BrahmaX Leisure",
+    title: "BrahmaX Wellness",
     subtitle: "The Karmic Wellness Division",
     image: leisureImg,
     link: "/leisure",
@@ -42,9 +42,9 @@ const verticals = [
 const VerticalCards = () => {
   return (
     <CosmicPage>
-      <section id="verticals" className="py-8 md:py-12">
+      <section id="verticals" className="py-10 md:py-0 bg-transparent !border-none !shadow-none">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="font-playfair text-4xl md:text-5xl font-bold text-white mb-4">
               BrahmaX verticals
             </h2>

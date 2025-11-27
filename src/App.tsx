@@ -32,6 +32,7 @@ import BackgroundMusic from "./components/BackgroundMusic";
 import ConsultingDetailsPage from "./pages/ConsultingDetailsPage";
 import InstallPage from "./pages/InstallPage";
 import VerticalDetails from "./pages/VerticalDetails"
+import ConsultingAdditionalPage from "./pages/ConsultingAddionalPage";
 
 const queryClient = new QueryClient();
 
@@ -57,6 +58,8 @@ const App = () => (
             <Route path="/leisure/:experienceId" element={<LeisureDetailsPage />} />
             <Route path="/eduseam" element={<EduSeamPage />} />
             <Route path="/consulting/:experienceId" element={<ConsultingDetailsPage />} />
+            {/* Additional consulting programs */}
+            <Route path="/consulting/additional" element={<ConsultingAdditionalPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/checkout" element={<CheckoutPage />} />
