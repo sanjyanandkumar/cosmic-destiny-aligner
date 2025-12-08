@@ -2,20 +2,36 @@ import CosmicPage from "@/components/CosmicPage";
 import { useState } from "react";
 import { Star } from "lucide-react";
 import { Link } from "react-router-dom";
-import { PlanetarySystem } from "@/components/PlanetarySystem";
 import { ProblemCategory } from "@/data/planets";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import problemImg from "@/assets/astrology problem.jpg";
-import solvedImg from "@/assets/astrology resolved.jpg";
-import xImg from "@/assets/X.png";
+
+// Graha Images
+import surya from "@/assets/surya.png";
+import chandra from "@/assets/chandra.png";
+import mangala from "@/assets/mangala.png";
+import budha from "@/assets/budha.png";
+import guru from "@/assets/guru.png";
+import shukra from "@/assets/shukra.png";
+import shani from "@/assets/shani.png";
+import rahu from "@/assets/rahu.png";
+import ketu from "@/assets/ketu.png";
+import handshake from "@/assets/handshake.png";
 
 const Hero = () => {
   const [category, setCategory] = useState<ProblemCategory>("family");
 
+  const grahaData = [
+    { name: "Chandra", img: chandra, angle: 0, problems: ["Anxiety & mood swings", "Emotional instability", "Attachment issues"] },
+    { name: "Mangala", img: mangala, angle: 45, problems: ["Anger & aggression", "Rash decisions", "Accidents & conflicts"] },
+    { name: "Budha", img: budha, angle: 90, problems: ["Communication issues", "Overthinking", "Business mistakes"] },
+    { name: "Guru", img: guru, angle: 135, problems: ["Overconfidence", "Poor financial judgement", "Laziness / procrastination"] },
+    { name: "Shukra", img: shukra, angle: 180, problems: ["Relationship issues", "Excessive indulgence", "Money spent on luxury"] },
+    { name: "Shani", img: shani, angle: 225, problems: ["Delays & obstacles", "Depression", "Hard karmic lessons"] },
+    { name: "Rahu", img: rahu, angle: 270, problems: ["Confusion", "Addiction & obsession", "Sudden chaos"] },
+    { name: "Ketu", img: ketu, angle: 315, problems: ["Detachment", "Lack of clarity", "Self-sabotage"] },
+  ];
+
   return (
     <CosmicPage>
-
-      {/* ⭐ SECTION 1 — HERO TEXT */}
       <section className="relative py-4 overflow-hidden">
 
         {/* Floating Stars */}
@@ -29,67 +45,144 @@ const Hero = () => {
                 left: `${Math.random() * 100}%`,
                 width: `${Math.random() * 7 + 5}px`,
                 height: `${Math.random() * 7 + 5}px`,
-                animationDelay: `${Math.random() * 4}s`,
-                animationDuration: `${Math.random() * 2 + 3}s`,
               }}
             />
           ))}
         </div>
 
+        {/* HERO TEXT */}
         <div className="relative z-10 container mx-auto px-4 text-center space-y-6">
           <h1 className="mt-10 text-[3.2rem] md:text-[2.4rem] font-bold leading-tight">
-            <span className="text-white">Karma isn't a punishment or a reward</span><br />
-
-            <span className="bg-gradient-to-r from-[#FFB347] via-[#FFD280] to-[#FF8C00] 
+            <span className="text-white">Karma isn't a punishment or a reward</span>
+            <br />
+            <span className="bg-gradient-to-r from-[#FFB347] via-[#FFD280] to-[#FF8C00]
               text-transparent bg-clip-text drop-shadow-[0_0_18px_rgba(255,200,80,0.6)]">
               It's a divine design!
             </span>
           </h1>
+
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Understand, imbibe, and master your destiny
           </p>
 
-          {/* CTA */}
           <Link
             to="/consulting"
-            className="inline-block animate-flash font-bold px-6 py-3 rounded-lg bg-gradient-to-r
-             from-[#FF8C00] via-[#FFB347] to-[#FFD280] text-black shadow-lg hover:scale-110 transition-transform"
+            className="inline-block font-bold px-6 py-3 rounded-lg bg-gradient-to-r
+            from-[#FF8C00] via-[#FFB347] to-[#FFD280] text-black shadow-lg hover:scale-110 transition-transform"
           >
             START NOW
           </Link>
+        </div>
 
-          {/* ⭐ Transformation Row */}
-          <div className="relative z-10 flex items-center justify-center gap-6 md:gap-12 mt-10">
+        {/* ORBIT */}
+        {/* 3-COLUMN LAYOUT */}
+        <div className="relative flex justify-center items-start mt-40 mb-24 gap-10">
 
-            {/* Problem Image */}
-            <div className="w-[300px] md:w-[450px] aspect-square rounded-xl overflow-hidden border border-white/20 shadow-lg backdrop-blur-sm">
-              <img 
-                src={problemImg}
-                alt="Problem" 
-                className="w-full h-full object-cover"
-              />
-            </div>
+          {/* LEFT → PLANETARY SYSTEM */}
+          <div className="relative w-[360px] h-[360px] md:w-[440px] md:h-[440px] flex items-center justify-center">
 
-            {/* BrahmaX X Logo Center */}
+            {/* Center Surya */}
             <img
-              src={xImg}
-              alt="Transformation"
-              className="w-[65px] md:w-[85px] animate-pulse drop-shadow-[0_0_20px_rgba(255,200,0,0.9)]"
+              src={surya}
+              alt="Surya"
+              className="absolute w-[70px] md:w-[90px] drop-shadow-[0_0_18px_rgba(255,180,80,0.9)] z-20"
+              style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}
             />
 
-            {/* Resolved Image */}
-            <div className="w-[300px] md:w-[450px] aspect-square rounded-xl overflow-hidden border border-white/20 shadow-lg backdrop-blur-sm">
-              <img 
-                src={solvedImg}
-                alt="Resolved"
-                className="w-full h-full object-cover"
-              />
-            </div>
+            {/* Planets */}
+            {grahaData.map((p, index) => {
+              let textStyle: any = {};
+              let textAlign = "center";
 
+              switch (p.name) {
+                case "Chandra":
+                  textStyle = { top: "-75px", left: "50%", transform: "translateX(-50%)" };
+                  textAlign = "center";
+                  break;
+
+                case "Mangala":
+                  textStyle = { top: "50%", left: "90px", transform: "translateY(-50%)" };
+                  textAlign = "left";
+                  break;
+
+                case "Budha":
+                  textStyle = { top: "50%", left: "55px", transform: "translateY(-50%)" };
+                  textAlign = "left";
+                  break;
+
+                case "Guru":  
+                  textStyle = { top: "50%", left: "100px", transform: "translateY(-50%)" };
+                  textAlign = "left";
+                  break;
+
+                case "Shukra":
+                  textStyle = { top: "110px", left: "50%", transform: "translateX(-50%)" };
+                  textAlign = "center";
+                  break;
+
+                case "Shani":
+                  textStyle = { top: "10%", left: "-90px", transform: "translateX(-50%)" };
+                  textAlign = "center";
+                  break;
+
+                case "Rahu":
+                  textStyle = { top: "50%", left: "-160px", transform: "translateY(-50%)" };
+                  textAlign = "right";
+                  break;
+
+                case "Ketu":
+                  textStyle = { top: "10px", left: "-60px", transform: "translateX(-50%)" };
+                  textAlign = "center";
+                  break;
+
+                default:
+                  textStyle = { top: "0px", left: "0px" };
+              }
+
+              return (
+                <div
+                  key={index}
+                  className="absolute"
+                  style={{
+                    top: `calc(50% - ${180 * Math.cos((p.angle * Math.PI) / 180)}px)`,
+                    left: `calc(50% + ${180 * Math.sin((p.angle * Math.PI) / 180)}px)`,
+                    transform: "translate(-50%, -50%)",
+                  }}
+                >
+                  <div className="relative flex items-center justify-center">
+                    <img src={p.img} alt={p.name} className="w-[65px] md:w-[85px]" />
+                    <div
+                      className="absolute text-white text-sm md:text-base leading-tight"
+                      style={{ ...textStyle, textAlign, whiteSpace: "nowrap" }}
+                    >
+                      {p.problems.map((prob, i) => (
+                        <p key={i}>{prob}</p>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
-        </div>
-      </section>
 
+          {/* CENTER → HANDSHAKE IMAGE */}
+          <div className="flex items-center justify-center w-[350px] mt-32">
+            <img
+              src={handshake}
+              alt="Handshake"
+              className="w-[150px] object-contain"
+            />
+          </div>
+
+          {/* RIGHT → SPACE FOR FUTURE IMAGE */}
+          <div className="w-[300px] flex items-center justify-center">
+            {/* Keep empty OR add a placeholder */}
+            {/* <img src="/future.png" className="w-[250px]" /> */}
+          </div>
+
+        </div>
+
+      </section>
     </CosmicPage>
   );
 };
