@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 
 import meditationImg from "@/assets/karmic-meditation.jpg";
-import careerGuidanceImg from "@/assets/career-guidance.jpg";
+import careerGuidanceImg from "@/assets/career-guidance.png";
 import karmicConsultingImg from "@/assets/karmic-consulting.jpg";
-import wardrobeImg from "@/assets/cosmic-handbag.jpg";
+import wardrobeImg from "@/assets/cosmic-handbag.png";
 
 import CosmicPage from "@/components/CosmicPage";
 
@@ -23,7 +23,7 @@ const KarmaKingdomsShowcase = () => {
   const [paused, setPaused] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // 🕓 Autoplay logic with pause/resume
+  // Autoplay logic
   useEffect(() => {
     if (!paused) {
       intervalRef.current = setInterval(() => {
@@ -41,7 +41,7 @@ const KarmaKingdomsShowcase = () => {
 
   return (
     <CosmicPage>
-    <section className="relative w-screen h-screen overflow-hidden select-none pt-16">
+      <section className="relative w-screen h-screen overflow-hidden">
 
         {/* 🧿 Title on Top */}
         <div className="absolute top-20 w-full flex justify-center z-[100]">
@@ -51,33 +51,38 @@ const KarmaKingdomsShowcase = () => {
             </h1>
           </div>
         </div>
-        {/* 🔮 Image Track */}
-        <div
-          className="flex h-full transition-transform transition-transform duration-700 ease-out"
-          style={{ transform: `translateX(-${index * 100}vw)` }}
-        >
-          {items.map((item, key) => (
-            <Link
-              key={key}
-              to={item.link}
-              className="w-screen h-screen flex-shrink-0 relative group"
-            >
-              <img
-                src={item.image}
-                alt={item.title}
-                className="w-full h-full object-cover transition-transform duration-500 ease-out will-change-transform"
-              />
 
-              {/* Overlay title */}
-              <div className="absolute inset-0 flex items-end justify-center pb-36">
-                <div className="backdrop-blur-xl bg-white/10 border border-white/25 px-10 py-2 rounded-3xl shadow-[0_0_40px_rgba(255,255,255,0.25)]">
-                  <h3 className="text-white text-4xl md:text-5xl font-bold tracking-wide text-center">
-                    {item.title}
-                  </h3>
-                </div>
+        {/* 🔮 Fullscreen Image Track */}
+        <div className="absolute inset-0">
+          <div
+            className="flex h-screen transition-transform duration-700 ease-out"
+            style={{ transform: `translateX(-${index * 100}vw)` }}
+          >
+            {items.map((item, key) => (
+              <Link
+                key={key}
+                to={item.link}
+                className="w-screen h-screen flex-shrink-0 relative group"
+              >
+              <div className="w-full h-full flex items-center justify-center">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="max-w-full max-h-full object-contain"
+                />
               </div>
-            </Link>
-          ))}
+
+                {/* Overlay title */}
+                <div className="absolute inset-0 flex items-end justify-center pb-36">
+                  <div className="backdrop-blur-xl bg-white/10 border border-white/25 px-10 py-2 rounded-3xl shadow-[0_0_40px_rgba(255,255,255,0.25)]">
+                    <h3 className="text-white text-4xl md:text-5xl font-bold tracking-wide text-center">
+                      {item.title}
+                    </h3>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
 
         {/* ⬅️ Prev Button */}
@@ -101,13 +106,8 @@ const KarmaKingdomsShowcase = () => {
           onClick={() => setPaused((p) => !p)}
           className="absolute bottom-6 right-8 z-[10] p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/30 text-white hover:bg-white/20 transition flex items-center justify-center"
         >
-          {paused ? (
-            <Play size={26} className="text-white" />
-          ) : (
-            <Pause size={26} className="text-white" />
-          )}
+          {paused ? <Play size={26} /> : <Pause size={26} />}
         </button>
-
       </section>
     </CosmicPage>
   );

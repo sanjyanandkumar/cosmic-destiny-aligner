@@ -7,7 +7,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
 import { toast } from "@/hooks/use-toast";
-import careerGuidanceImg from "@/assets/career-guidance.jpg";
+import careerGuidanceImg from "@/assets/career-guidance.png";
 import { useCheckout } from "@/hooks/use-checkout";
 import { supabase } from "@/integrations/supabase/client";
 import { CheckoutDialog } from "@/components/CheckoutDialog";

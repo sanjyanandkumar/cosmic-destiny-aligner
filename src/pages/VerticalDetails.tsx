@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 // Import images
 import consultingImg from "@/assets/karmic-consulting.jpg";
 import wardrobeImg from "@/assets/cosmic-wallet.jpg";
-import eduseamImg from "@/assets/career-guidance.jpg";
+import eduseamImg from "@/assets/career-guidance.png";
 import leisureImg from "@/assets/karmic-meditation.jpg";
 
 const verticals = [
