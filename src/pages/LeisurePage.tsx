@@ -148,7 +148,7 @@ const LeisurePage: React.FC = () => {
                             }}
                             className="mt-4 w-full bg-primary/20 text-primary hover:bg-primary hover:text-black transition-all"
                           >
-                            Add to Cart
+                            Reserve now
                           </Button>
                         </div>
                       </Card>

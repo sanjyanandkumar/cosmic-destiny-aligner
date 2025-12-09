@@ -19,6 +19,7 @@ export function useCheckout() {
   };
 
   const handleConfirmCheckout = async () => {
+    console.log("Entered here");
     if (!currentProduct) return;
 
     setProcessing(true);

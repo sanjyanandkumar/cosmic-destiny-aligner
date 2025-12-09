@@ -22,11 +22,11 @@ const Hero = () => {
   const grahaData = [
     { name: "Chandra", img: chandra, angle: 0, problems: ["Anxiety & mood swings", "Emotional instability", "Attachment issues"] },
     { name: "Mangala", img: mangala, angle: 45, problems: ["Anger & aggression", "Rash decisions", "Accidents & conflicts"] },
-    { name: "Budha", img: budha, angle: 90, problems: ["Communication issues", "Overthinking", "Business mistakes"] },
-    { name: "Guru", img: guru, angle: 135, problems: ["Overconfidence", "Poor financial judgement", "Laziness / procrastination"] },
+    { name: "Budha", img: budha, angle: 90, problems: ["Communication", "Overthinking", "Business mistakes"] },
+    { name: "Guru", img: guru, angle: 135, problems: ["Overconfidence", "Poor finance", "Laziness"] },
     { name: "Shukra", img: shukra, angle: 180, problems: ["Relationship issues", "Excessive indulgence", "Money spent on luxury"] },
     { name: "Shani", img: shani, angle: 225, problems: ["Delays & obstacles", "Depression", "Hard karmic lessons"] },
-    { name: "Rahu", img: rahu, angle: 270, problems: ["Confusion", "Addiction & obsession", "Sudden chaos"] },
+    { name: "Rahu", img: rahu, angle: 270, problems: ["Confusion", "Addiction", "Sudden chaos"] },
     { name: "Ketu", img: ketu, angle: 315, problems: ["Detachment", "Lack of clarity", "Self-sabotage"] },
   ];
 
@@ -52,12 +52,19 @@ const Hero = () => {
 
         {/* HERO TEXT */}
         <div className="relative z-10 container mx-auto px-4 text-center space-y-6">
-          <h1 className="mt-10 text-[3.2rem] md:text-[2.4rem] font-bold leading-tight">
-            <span className="text-white">Karma isn't a punishment or a reward</span>
+          <h1 className="mt-2 text-[3.2rem] md:text-[2.4rem] font-bold leading-relaxed">
+            <span className="text-white">Karma isn't a punishment or a reward...</span>
             <br />
-            <span className="bg-gradient-to-r from-[#FFB347] via-[#FFD280] to-[#FF8C00]
-              text-transparent bg-clip-text drop-shadow-[0_0_18px_rgba(255,200,80,0.6)]">
-              It's a divine design!
+
+            <span className="text-white">
+              It's a{" "}
+              <span
+                className="bg-gradient-to-r from-[#FFB347] via-[#FFD280] to-[#FF8C00]
+                text-transparent bg-clip-text drop-shadow-[0_0_18px_rgba(255,200,80,0.6)]"
+              >
+                divine
+              </span>
+              {" "}design!
             </span>
           </h1>
 
@@ -106,7 +113,7 @@ const Hero = () => {
                   break;
 
                 case "Budha":
-                  textStyle = { top: "50%", left: "55px", transform: "translateY(-50%)" };
+                  textStyle = { top: "50%", left: "70px", transform: "translateY(-50%)" };
                   textAlign = "left";
                   break;
 
@@ -116,17 +123,17 @@ const Hero = () => {
                   break;
 
                 case "Shukra":
-                  textStyle = { top: "110px", left: "50%", transform: "translateX(-50%)" };
+                  textStyle = { top: "90px", left: "50%", transform: "translateX(-50%)" };
                   textAlign = "center";
                   break;
 
                 case "Shani":
-                  textStyle = { top: "10%", left: "-90px", transform: "translateX(-50%)" };
+                  textStyle = { top: "10%", left: "-80px", transform: "translateX(-50%)" };
                   textAlign = "center";
                   break;
 
                 case "Rahu":
-                  textStyle = { top: "50%", left: "-160px", transform: "translateY(-50%)" };
+                  textStyle = { top: "50%", left: "-120px", transform: "translateY(-50%)" };
                   textAlign = "right";
                   break;
 
@@ -145,12 +152,12 @@ const Hero = () => {
                   className="absolute"
                   style={{
                     top: `calc(50% - ${180 * Math.cos((p.angle * Math.PI) / 180)}px)`,
-                    left: `calc(50% + ${180 * Math.sin((p.angle * Math.PI) / 180)}px)`,
+                    left: `calc(50% + ${180 * Math.sin((p.angle * Math.PI) / 180)}px - 25px)`,
                     transform: "translate(-50%, -50%)",
                   }}
                 >
                   <div className="relative flex items-center justify-center">
-                    <img src={p.img} alt={p.name} className="w-[65px] md:w-[85px]" />
+                    <img src={p.img} alt={p.name} className="w-[50px] md:w-[70px]" />
                     <div
                       className="absolute text-white text-sm md:text-base leading-tight"
                       style={{ ...textStyle, textAlign, whiteSpace: "nowrap" }}

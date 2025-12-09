@@ -8,34 +8,45 @@ import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
 import { toast } from "@/hooks/use-toast";
 import careerGuidanceImg from "@/assets/career-guidance.jpg";
+import { useCheckout } from "@/hooks/use-checkout";
+import { supabase } from "@/integrations/supabase/client";
+import { CheckoutDialog } from "@/components/CheckoutDialog";
 
 const EduSeamPage: React.FC = () => {
   const navigate = useNavigate();
   const { addToCart } = useCart();
+  const {
+    dialogOpen,
+    currentProduct,
+    processing,
+    startCheckout,
+    handleConfirmCheckout,
+    handleCloseDialog,
+  } = useCheckout();
 
   const product = {
     id: "career-guidance",
     name: "Career Guidance",
-    price: 1000,
+    price: 999,
     description:
       "Karmic career guidance to help you discover your unique dharma and translate it into meaningful work.",
     image: careerGuidanceImg,
   };
 
-  // 🛍 Add To Cart Handler
-  const handleAddToCart = () => {
-    addToCart({
+  const handleCheckout = async () => {
+    const { data } = await supabase.auth.getUser();
+
+    if (!data?.user) {
+      window.location.href = `/login?redirect=/eduseam`;
+      return;
+    }
+
+    // 🔥 Direct Payment – No Cart
+    startCheckout({
       id: product.id,
       name: product.name,
       price: product.price,
       quantity: 1,
-      image_url: product.image,
-      category: "EduSeam Program",
-    });
-
-    toast({
-      title: "Added to Cart!",
-      description: `${product.name} has been added to your cart.`,
     });
   };
 
@@ -49,7 +60,7 @@ const EduSeamPage: React.FC = () => {
           {/* Heading */}
           <div className="max-w-6xl mx-auto text-center mb-8">
             <h1 className="font-playfair text-5xl font-bold text-white mb-6 leading-tight">
-              EduSeam
+              BrahmaX Gurukul
             </h1>
 
             <p className="font-inter text-xl text-primary italic mb-6">
@@ -62,7 +73,7 @@ const EduSeamPage: React.FC = () => {
 
             <div className="max-w-6xl mx-auto">
               <p className="font-inter text-lg text-muted-foreground leading-relaxed px-4">
-                EduSeam bridges karmic wisdom with real-world learning. The “Passport Concept”
+                BrahmaX Gurukul bridges karmic wisdom with real-world learning. The “Passport Concept”
                 allows you to journey through subjects — astrology, global culture, branding,
                 business, and purpose — to discover your true <em>dharma</em> through experience
                 and expansion.
@@ -105,10 +116,10 @@ const EduSeamPage: React.FC = () => {
                   {/* 🛍 Updated Button */}
                   <Button
                     size="lg"
-                    onClick={handleAddToCart}
+                    onClick={handleCheckout}
                     className="w-full font-semibold bg-primary/20 text-primary hover:bg-primary hover:text-black transition-all"
                   >
-                    Add to Cart
+                    Consult Gurukul
                   </Button>
                 </div>
               </div>
@@ -118,6 +129,14 @@ const EduSeamPage: React.FC = () => {
       </section>
 
       <Footer />
+      <CheckoutDialog
+        open={dialogOpen}
+        onOpenChange={handleCloseDialog}
+        productName={currentProduct?.name || ""}
+        price={currentProduct?.price || 0}
+        onConfirm={handleConfirmCheckout}
+        processing={processing}
+      />
     </CosmicPage>
   );
 };

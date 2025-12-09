@@ -5,7 +5,7 @@ import CosmicPage from "@/components/CosmicPage";
 import consultingImg from "@/assets/karmic-consulting.jpg";
 import wardrobeImg from "@/assets/cosmic-wallet.jpg";
 import eduseamImg from "@/assets/career-guidance.jpg";
-import leisureImg from "@/assets/bali-trip.jpg";
+import leisureImg from "@/assets/karmic-meditation.jpg";
 import bg from "@/assets/cosmic-background.png";
 
 const verticals = [
@@ -24,7 +24,7 @@ const verticals = [
     description: "Luxury fashion aligned with your planets.",
   },
   {
-    title: "EduSeam",
+    title: "BrahmaX Gurukul",
     subtitle: "The Passport to Conscious Learning",
     image: eduseamImg,
     link: "/eduseam",

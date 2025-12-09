@@ -27,11 +27,11 @@ const ConsultingDetailsPage = () => {
 
   const experiences = {
     "blueprint": {
-      title: "Stage 1 — Illusion: Karmic Business Blueprint",
-      price: 1000,
+      title: "Karmic Blueprint",
+      price: 999,
       goal: "Uncover the client’s core karmic blueprint and align it with real-world opportunities.",
       includes: [
-        "Personal astro-business chart reading",
+        "Personal astro chart reading",
         "Discovery session",
         "Initial business direction suggestions",
         "High-level feasibility and personality-fit analysis",
@@ -41,7 +41,7 @@ const ConsultingDetailsPage = () => {
       image: karmicConsultingImg,
     },
     "brand-architecture": { 
-      title: "Stage 2 — Focuslab: Strategic Brand Architecture",
+      title: "Strategic Brand Architecture",
       price: 5000,
       goal:
         "To initiate the complete process and move forward for creating the complete business concept, model, and brand system from scratch.",
@@ -58,7 +58,7 @@ const ConsultingDetailsPage = () => {
         image: karmicConsultingImg,
     },
     "communication": {
-      title: "Stage 3 — Uplift: Communication & Positioning",
+      title: "Communication & Positioning",
       price: 5000,
       goal: "Act as their growth partner to scale the business.",
       includes: [
@@ -172,27 +172,17 @@ const ConsultingDetailsPage = () => {
                       return;
                     }
 
-                    addToCart({
+                    // 🔥 Direct checkout trigger
+                    startCheckout({
                       id: experienceId!,
                       name: exp.title,
                       price: exp.price,
                       quantity: 1,
-                      image_url: karmicConsultingImg,
-                      category: "Consulting Service",
                     });
-
-                    // 🎉 Toast Confirmation
-                    toast({
-                      title: "Added to Cart!",
-                      description: `${exp.title} has been added to your cart.`,
-                    });
-
-                    // Optional: Redirect to cart (you already have)
-                    window.location.href = "/cart";
                   }}
                   className="w-full md:w-auto bg-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all"
                 >
-                  Add to Cart - ₹{exp.price.toLocaleString()}
+                  Consult now - ₹{exp.price.toLocaleString()}
                 </Button>
               </div>
             </div>

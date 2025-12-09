@@ -11,8 +11,8 @@ const ConsultingPage: React.FC = () => {
 
   const blueprintService = {
     id: "blueprint",
-    name: "Karmic Business Blueprint",
-    price: 1000,
+    name: "Karmic Blueprint",
+    price: 999,
     description:
       "Decode your birth chart to craft a business model aligned with your innate strengths, purpose, and planetary timing.",
     image: karmicConsultingImg,
@@ -28,11 +28,11 @@ const ConsultingPage: React.FC = () => {
           {/* Header */}
           <div className="max-w-4xl mx-auto text-center mb-6">
             <h1 className="font-playfair text-5xl font-bold text-white mb-4 leading-tight">
-              BrahmaX Consulting
+              BrahmaX Karmic Consulting
             </h1>
 
             <p className="font-inter text-xl text-primary italic mb-6">
-              The Karmic Business Division
+              The Karmic Consulting Division
             </p>
 
             <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
@@ -85,7 +85,7 @@ const ConsultingPage: React.FC = () => {
               to="/consulting/additional"
               className="text-primary text-lg underline hover:text-primary/70 transition-all"
             >
-              View Additional Consulting Programs →
+              View Additional Consulting Services →
             </Link>
           </div>
 

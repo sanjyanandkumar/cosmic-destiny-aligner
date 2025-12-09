@@ -24,7 +24,7 @@ const testimonials = [
     name: "Ananya Patel",
     role: "Student",
     content:
-      "EduSeam's approach to education through karmic guidance is revolutionary. I finally found clarity in my career path and academic choices",
+      "BrahmaX's Gurukul approach to education through karmic guidance is revolutionary. I finally found clarity in my career path and academic choices",
     rating: 5,
   },
   {
@@ -64,10 +64,10 @@ const TrustProof = () => {
 
           <div className="text-center mb-6">
             <h2 className="font-playfair text-4xl md:text-5xl font-bold text-white mb-4">
-              Trusted by thousands
+              Trusted by many
             </h2>
             <p className="font-inter text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Join thousands who have unlocked their karmic potential with BrahmaX
+              Join many who have unlocked their karmic potential with BrahmaX
             </p>
           </div>
 

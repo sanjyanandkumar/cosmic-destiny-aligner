@@ -14,7 +14,7 @@ import karmicConsultingImg from "@/assets/karmic-consulting.jpg";
 const additionalStages = [
   {
     id: "brand-architecture",
-    title: "Stage 2 — Focuslab: Strategic Brand Architecture",
+    title: "Strategic Brand Architecture",
     tagline: "Where identity meets destiny.",
     price: "₹5,000",
     link: "/consulting/brand-architecture",
@@ -24,7 +24,7 @@ const additionalStages = [
   },
   {
     id: "communication",
-    title: "Stage 3 — Uplift: Communication & Positioning",
+    title: "Communication & Positioning",
     tagline: "Presence creates power.",
     price: "₹5,000",
     link: "/consulting/communication",
@@ -34,7 +34,7 @@ const additionalStages = [
   },
   {
     id: "karmic-colors",
-    title: "Stage 4 — Website Creation Using Karmic Colors",
+    title: "Website Creation Using Karmic Colors",
     tagline: "A digital identity aligned with cosmic design.",
     price: "₹5,000",
     link: "/consulting/karmic-colors",

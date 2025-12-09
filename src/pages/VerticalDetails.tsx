@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import consultingImg from "@/assets/karmic-consulting.jpg";
 import wardrobeImg from "@/assets/cosmic-wallet.jpg";
 import eduseamImg from "@/assets/career-guidance.jpg";
-import leisureImg from "@/assets/bali-trip.jpg";
+import leisureImg from "@/assets/karmic-meditation.jpg";
 
 const verticals = [
   {
@@ -31,21 +31,21 @@ const verticals = [
       "BrahmaX Wardrobe is the world’s first karmic fashion and lifestyle platform, curating collections that blend design, astrology, and consciousness. Each piece is energetically aligned — crafted with colors, fabrics, and symbols tuned to your zodiac, lagna, and planetary energies. More than fashion — it's cosmic alignment in wearable form.",
   },
   {
-    title: "EduSeam",
+    title: "BrahmaX Gurukul",
     tagline: "Align learning outcomes karmically – for guaranteed success in life.",
     image: eduseamImg,
     link: "/eduseam",
     description:
-      "EduSeam bridges karmic awareness with real-world learning paths. Students follow a karmically aligned ‘Passport System’ to study only subjects that match their destiny — saving time, money, and emotional effort. Our courses guide students into their dharma and help translate it into meaningful, purpose-aligned work.",
+      "BrahmaX Gurukul bridges karmic awareness with real-world learning paths. Students follow a karmically aligned ‘Passport System’ to study only subjects that match their destiny — saving time, money, and emotional effort. Our courses guide students into their dharma and help translate it into meaningful, purpose-aligned work.",
   },
   {
-    title: "BrahmaX Leisure",
+    title: "BrahmaX Wellness",
     tagline: "Relaxation, Realigned.",
     quote: "Wellness isn’t an escape — it’s a return to your divine frequency.",
     image: leisureImg,
     link: "/leisure",
     description:
-      "BrahmaX Leisure redefines luxury wellness through karma-based experiences — spas, retreats, cafés, immersive healing, and consciousness-based travel. Each space is designed to elevate vibration, unlock alignment, and create transformation, not escape.",
+      "BrahmaX Wellness redefines luxury wellness through karma-based experiences — spas, retreats, cafés, immersive healing, and consciousness-based travel. Each space is designed to elevate vibration, unlock alignment, and create transformation, not escape.",
   },
 ];
 

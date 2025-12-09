@@ -10,9 +10,9 @@ import wardrobeImg from "@/assets/cosmic-handbag.jpg";
 import CosmicPage from "@/components/CosmicPage";
 
 const items = [
-  { title: "Karmic Consulting", image: karmicConsultingImg, link: "/consulting" },
+  { title: "BrahmaX Karmic Consulting", image: karmicConsultingImg, link: "/consulting" },
   { title: "BrahmaX Wardrobe", image: wardrobeImg, link: "/wardrobe" },
-  { title: "EduSeam", image: careerGuidanceImg, link: "/eduseam" },
+  { title: "BrahmaX Gurukul", image: careerGuidanceImg, link: "/eduseam" },
   { title: "BrahmaX Wellness", image: meditationImg, link: "/leisure" },
 ];
 
@@ -41,12 +41,12 @@ const KarmaKingdomsShowcase = () => {
 
   return (
     <CosmicPage>
-    <section className="relative w-screen h-screen overflow-hidden select-none pt-24">
+    <section className="relative w-screen h-screen overflow-hidden select-none pt-16">
 
         {/* 🧿 Title on Top */}
         <div className="absolute top-20 w-full flex justify-center z-[100]">
           <div className="backdrop-blur-xl bg-white/10 border border-white/25 px-10 py-2 rounded-3xl shadow-[0_0_30px_rgba(255,255,255,0.25)]">
-            <h1 className="text-white text-3xl sm:text-4xl md:text-5xl font-bold tracking-[0.2em]">
+            <h1 className="text-white text-3xl sm:text-4xl md:text-5xl font-inter tracking-normal">
               Karmic Wisdom Simplified
             </h1>
           </div>

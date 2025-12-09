@@ -84,7 +84,7 @@ const Footer = () => {
               </li>
               <li>
                 <a href="/eduseam" className="hover:text-primary transition-colors">
-                  EduSeam
+                  BrahmaX Gurukul
                 </a>
               </li>
               <li>
@@ -148,7 +148,7 @@ const Footer = () => {
             {/* Location */}
             <div className="flex items-center gap-3">
               <MapPin className="h-5 w-5 text-primary" />
-              <span>Bengaluru, India</span>
+              <span>Hq - Bengaluru, India</span>
             </div>
 
           </div>
