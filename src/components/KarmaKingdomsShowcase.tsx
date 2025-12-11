@@ -45,10 +45,10 @@ const KarmaKingdomsShowcase = () => {
       <section className="relative w-screen h-screen overflow-hidden">
 
         {/* 🧿 Title on Top */}
-        <div className="absolute top-20 w-full flex justify-center z-[100]">
+        <div className="absolute top-16 w-full flex justify-center z-[100]">
           <div className="backdrop-blur-xl bg-white/10 border border-white/25 px-10 py-2 rounded-3xl shadow-[0_0_30px_rgba(255,255,255,0.25)]">
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl font-inter tracking-normal">
-              <span>Karmic <span className="text-orange-400">Wisdom</span></span>
+              <span>Karmic Wisdom</span>
               <span className="text-red-500">.</span>
               <span> Simplified</span>
               <span className="text-red-500">.</span>
@@ -77,7 +77,7 @@ const KarmaKingdomsShowcase = () => {
               </div>
 
                 {/* Overlay title */}
-                <div className="absolute inset-0 flex items-end justify-center pb-36">
+                <div className="absolute inset-0 flex items-end justify-center pb-16">
                   <div className="backdrop-blur-xl bg-white/10 border border-white/25 px-10 py-2 rounded-3xl shadow-[0_0_40px_rgba(255,255,255,0.25)]">
                     <h3 className="text-white text-4xl md:text-5xl font-bold tracking-wide text-center">
                       {item.title}
