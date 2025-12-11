@@ -327,3 +327,9 @@ body {
   50%  { transform: translate(-50%, -50%) translateY(-12px); }
   100% { transform: translate(-50%, -50%) translateY(0px); }
 }
+
+.hero-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain !important;
+}

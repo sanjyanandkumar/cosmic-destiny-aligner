@@ -38,6 +38,7 @@ const KarmaKingdomsShowcase = () => {
 
   const prev = () => setIndex((i) => (i === 0 ? items.length - 1 : i - 1));
   const next = () => setIndex((i) => (i === items.length - 1 ? 0 : i + 1));
+    console.log("Viewport:", window.innerWidth, window.innerHeight, window.devicePixelRatio);
 
   return (
     <CosmicPage>
@@ -47,7 +48,10 @@ const KarmaKingdomsShowcase = () => {
         <div className="absolute top-20 w-full flex justify-center z-[100]">
           <div className="backdrop-blur-xl bg-white/10 border border-white/25 px-10 py-2 rounded-3xl shadow-[0_0_30px_rgba(255,255,255,0.25)]">
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl font-inter tracking-normal">
-              Karmic Wisdom Simplified
+              <span>Karmic <span className="text-orange-400">Wisdom</span></span>
+              <span className="text-red-500">.</span>
+              <span> Simplified</span>
+              <span className="text-red-500">.</span>
             </h1>
           </div>
         </div>
@@ -64,7 +68,7 @@ const KarmaKingdomsShowcase = () => {
                 to={item.link}
                 className="w-screen h-screen flex-shrink-0 relative group"
               >
-              <div className="w-full h-full flex items-center justify-center">
+              <div className="w-full h-[80vh] overflow-hidden flex items-center justify-center">
                 <img
                   src={item.image}
                   alt={item.title}

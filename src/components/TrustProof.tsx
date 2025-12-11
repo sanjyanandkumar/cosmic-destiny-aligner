@@ -64,7 +64,7 @@ const TrustProof = () => {
 
           <div className="text-center mb-6">
             <h2 className="font-playfair text-4xl md:text-5xl font-bold text-white mb-4">
-              Trusted by many
+              Trusted by many...
             </h2>
             <p className="font-inter text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               Join many who have unlocked their karmic potential with BrahmaX

@@ -41,19 +41,23 @@ const ConsultingPage: React.FC = () => {
           </div>
 
           {/* Single Primary Service */}
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             <Link to={`/consulting/${blueprintService.id}`} className="group">
-              <Card className="overflow-hidden bg-white/10 backdrop-blur-md border border-white/20 hover:border-primary/60 transition-all duration-500 cursor-pointer">
-                <div className="relative h-[260px] overflow-hidden">
+              <Card className="flex flex-col md:flex-row overflow-hidden bg-white/10 backdrop-blur-md 
+                border border-white/20 hover:border-primary/60 transition-all duration-500 cursor-pointer">
+
+                {/* IMAGE LEFT */}
+                <div className="relative w-full md:w-1/2 h-[300px] md:h-[460px] overflow-hidden">
                   <img
                     src={blueprintService.image}
                     alt={blueprintService.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 </div>
 
-                <div className="p-6">
+                {/* TEXT RIGHT */}
+                <div className="p-6 flex flex-col justify-center md:w-1/2">
                   <h3 className="font-playfair text-2xl font-bold text-white mb-2">
                     {blueprintService.name}
                   </h3>
@@ -62,19 +66,19 @@ const ConsultingPage: React.FC = () => {
                     {blueprintService.description}
                   </p>
 
-                  <p className="font-playfair text-3xl font-bold bg-gradient-gold bg-clip-text text-transparent">
+                  <p className="font-playfair text-3xl font-bold bg-gradient-gold bg-clip-text text-transparent mb-4">
                     ₹{blueprintService.price.toLocaleString()}
                   </p>
 
-                  <div className="flex justify-center">
-                    <Button 
+                  <Button
                     size="sm"
-                    className="mt-4 rounded-full bg-gradient-to-r from-[#FFB347] via-[#FFD280] to-[#FF8C00] text-black font-semibold hover:scale-105 hover:shadow-[0_0_22px_rgba(255,200,100,0.7)] transition-all"
+                    className="mt-2 rounded-full bg-gradient-to-r from-[#FFB347] via-[#FFD280] 
+                    to-[#FF8C00] text-black font-semibold hover:scale-105 hover:shadow-[0_0_22px_rgba(255,200,100,0.7)] transition-all"
                   >
                     View Details →
                   </Button>
-                  </div>
                 </div>
+
               </Card>
             </Link>
           </div>

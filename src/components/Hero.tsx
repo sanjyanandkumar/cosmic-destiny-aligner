@@ -20,14 +20,14 @@ const Hero = () => {
   const [category, setCategory] = useState<ProblemCategory>("family");
 
   const grahaData = [
-    { name: "Chandra", img: chandra, angle: 0, problems: ["Anxiety & mood swings", "Emotional instability", "Attachment issues"] },
-    { name: "Mangala", img: mangala, angle: 45, problems: ["Anger & aggression", "Rash decisions", "Accidents & conflicts"] },
-    { name: "Budha", img: budha, angle: 90, problems: ["Communication", "Overthinking", "Business mistakes"] },
-    { name: "Guru", img: guru, angle: 135, problems: ["Overconfidence", "Poor finance", "Laziness"] },
-    { name: "Shukra", img: shukra, angle: 180, problems: ["Relationship issues", "Excessive indulgence", "Money spent on luxury"] },
-    { name: "Shani", img: shani, angle: 225, problems: ["Delays & obstacles", "Depression", "Hard karmic lessons"] },
-    { name: "Rahu", img: rahu, angle: 270, problems: ["Confusion", "Addiction", "Sudden chaos"] },
-    { name: "Ketu", img: ketu, angle: 315, problems: ["Detachment", "Lack of clarity", "Self-sabotage"] },
+    { name: "Chandra", img: chandra, angle: 0, problems: ["Worried about future?"] },
+    { name: "Mangala", img: mangala, angle: 45, problems: ["Wrong decisions?", "Money problems?"] },
+    { name: "Budha", img: budha, angle: 90, problems: ["Financial losses?", "Business losses?"] },
+    { name: "Guru", img: guru, angle: 135, problems: ["Job issues?", "Career problems?"] },
+    { name: "Shukra", img: shukra, angle: 180, problems: ["Family problems?"] },
+    { name: "Shani", img: shani, angle: 225, problems: ["Late marriage?", "Child issues?"] },
+    { name: "Rahu", img: rahu, angle: 270, problems: ["Child's poor grades?"] },
+    { name: "Ketu", img: ketu, angle: 315, problems: ["Health issues?", "Chronic pain?"] },
   ];
 
   return (
@@ -71,23 +71,13 @@ const Hero = () => {
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Understand, imbibe, and master your destiny
           </p>
-
-          <Link
-            to="/consulting"
-            className="inline-block font-bold px-6 py-3 rounded-lg bg-gradient-to-r
-            from-[#FF8C00] via-[#FFB347] to-[#FFD280] text-black shadow-lg hover:scale-110 transition-transform"
-          >
-            START NOW
-          </Link>
         </div>
 
-        {/* ORBIT */}
-        {/* 3-COLUMN LAYOUT */}
-        <div className="relative flex justify-center items-start mt-40 mb-24 gap-10">
-
-          {/* LEFT → PLANETARY SYSTEM */}
-          <div className="relative w-[360px] h-[360px] md:w-[440px] md:h-[440px] flex items-center justify-center">
-
+        <div className="relative flex justify-center items-center mt-20 mb-0">
+          <div className="relative flex flex-col items-center gap-10">
+          {/* PLANETARY SYSTEM ONLY */}
+          <div className="relative w-[360px] h-[360px] md:w-[440px] md:h-[440px] mb-8 flex items-center justify-center">
+            
             {/* Center Surya */}
             <img
               src={surya}
@@ -96,54 +86,42 @@ const Hero = () => {
               style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}
             />
 
-            {/* Planets */}
+            {/* All planets remain unchanged */}
             {grahaData.map((p, index) => {
               let textStyle: any = {};
               let textAlign = "center";
 
               switch (p.name) {
                 case "Chandra":
-                  textStyle = { top: "-75px", left: "50%", transform: "translateX(-50%)" };
-                  textAlign = "center";
+                  textStyle = { top: "-40px", left: "50%", transform: "translateX(-50%)" };
                   break;
-
                 case "Mangala":
-                  textStyle = { top: "50%", left: "90px", transform: "translateY(-50%)" };
+                  textStyle = { top: "50%", left: "80px", transform: "translateY(-50%)" };
                   textAlign = "left";
                   break;
-
                 case "Budha":
-                  textStyle = { top: "50%", left: "70px", transform: "translateY(-50%)" };
+                  textStyle = { top: "50%", left: "75px", transform: "translateY(-50%)" };
                   textAlign = "left";
                   break;
-
-                case "Guru":  
-                  textStyle = { top: "50%", left: "100px", transform: "translateY(-50%)" };
+                case "Guru":
+                  textStyle = { top: "50%", left: "85px", transform: "translateY(-50%)" };
                   textAlign = "left";
                   break;
-
                 case "Shukra":
                   textStyle = { top: "90px", left: "50%", transform: "translateX(-50%)" };
-                  textAlign = "center";
                   break;
-
                 case "Shani":
-                  textStyle = { top: "10%", left: "-80px", transform: "translateX(-50%)" };
-                  textAlign = "center";
+                  textStyle = { top: "10%", left: "-65px", transform: "translateX(-50%)" };
                   break;
-
                 case "Rahu":
-                  textStyle = { top: "50%", left: "-120px", transform: "translateY(-50%)" };
+                  textStyle = { top: "50%", left: "-150px", transform: "translateY(-50%)" };
                   textAlign = "right";
                   break;
-
                 case "Ketu":
                   textStyle = { top: "10px", left: "-60px", transform: "translateX(-50%)" };
-                  textAlign = "center";
                   break;
-
                 default:
-                  textStyle = { top: "0px", left: "0px" };
+                  textStyle = {};
               }
 
               return (
@@ -171,22 +149,17 @@ const Hero = () => {
               );
             })}
           </div>
-
-          {/* CENTER → HANDSHAKE IMAGE */}
-          <div className="flex items-center justify-center w-[350px] mt-32">
-            <img
-              src={handshake}
-              alt="Handshake"
-              className="w-[150px] object-contain"
-            />
+            <p className="text-3xl text-muted-foreground max-w-3xl mx-auto">
+              Karmic wisdom has the answers to your questions...
+            </p>
+            <Link
+              to="/consulting"
+              className="inline-block font-bold mt-4 px-6 py-3 rounded-lg bg-gradient-to-r
+              from-[#FF8C00] via-[#FFB347] to-[#FFD280] text-black shadow-lg hover:scale-110 transition-transform"
+            >
+              Consult NOW
+            </Link>
           </div>
-
-          {/* RIGHT → SPACE FOR FUTURE IMAGE */}
-          <div className="w-[300px] flex items-center justify-center">
-            {/* Keep empty OR add a placeholder */}
-            {/* <img src="/future.png" className="w-[250px]" /> */}
-          </div>
-
         </div>
 
       </section>

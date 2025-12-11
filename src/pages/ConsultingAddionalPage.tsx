@@ -55,7 +55,7 @@ export default function ConsultingAdditionalPage() {
           {/* Header */}
           <div className="text-center max-w-4xl mx-auto mb-6">
             <h1 className="font-playfair text-5xl md:text-6xl font-bold text-white mb-4">
-              Advanced Consulting Programs
+              Additional Consulting Services
             </h1>
 
             <p className="font-inter text-xl text-primary italic mb-6">
