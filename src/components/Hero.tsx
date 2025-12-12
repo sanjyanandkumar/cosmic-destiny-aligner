@@ -22,7 +22,7 @@ const Hero = () => {
   const grahaData = [
     { name: "Chandra", img: chandra, angle: 0, problems: ["Worried about future?"] },
     { name: "Mangala", img: mangala, angle: 45, problems: ["Wrong decisions?", "Money problems?"] },
-    { name: "Budha", img: budha, angle: 90, problems: ["Financial losses?", "Business losses?"] },
+    { name: "Budha", img: budha, angle: 90, problems: ["Financial issues?", "Business losses?"] },
     { name: "Guru", img: guru, angle: 135, problems: ["Job issues?", "Career problems?"] },
     { name: "Shukra", img: shukra, angle: 180, problems: ["Family problems?"] },
     { name: "Shani", img: shani, angle: 225, problems: ["Late marriage?", "Child issues?"] },
@@ -53,7 +53,14 @@ const Hero = () => {
         {/* HERO TEXT */}
         <div className="relative z-10 container mx-auto px-4 text-center space-y-6">
           <h1 className="mt-2 text-[3.2rem] md:text-[2.4rem] font-bold leading-relaxed">
-            <span className="text-white">Karma isn't a punishment or a reward...</span>
+            <span className="text-white">Karma isn't a punishment or a reward
+              <span
+                className="bg-gradient-to-r from-[#FFB347] via-[#FFD280] to-[#FF8C00]
+                text-transparent bg-clip-text drop-shadow-[0_0_18px_rgba(255,200,80,0.6)]"
+              >
+                ...
+              </span>
+            </span>
             <br />
 
             <span className="text-white">
@@ -78,13 +85,28 @@ const Hero = () => {
           {/* PLANETARY SYSTEM ONLY */}
           <div className="relative w-[360px] h-[360px] md:w-[440px] md:h-[440px] mb-8 flex items-center justify-center">
             
-            {/* Center Surya */}
-            <img
-              src={surya}
-              alt="Surya"
-              className="absolute w-[70px] md:w-[90px] drop-shadow-[0_0_18px_rgba(255,180,80,0.9)] z-20"
-              style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}
-            />
+            {/* Center Surya + Labels */}
+            <div className="absolute flex flex-col items-center z-20"
+                style={{ top: "50%", left: "45%", transform: "translate(-50%, -50%)" }}>
+
+              {/* Text ABOVE Surya */}
+              <p className="text-white text-sm md:text-base mb-2 whitespace-nowrap">
+                Feeling low?
+              </p>
+
+              {/* Surya Image */}
+              <img
+                src={surya}
+                alt="Surya"
+                className="w-[65px] md:w-[85px] drop-shadow-[0_0_18px_rgba(255,180,80,0.9)]"
+              />
+
+              {/* Text BELOW Surya */}
+              <p className="text-white text-sm md:text-base mt-2 whitespace-nowrap">
+                Burnt out?
+              </p>
+
+            </div>
 
             {/* All planets remain unchanged */}
             {grahaData.map((p, index) => {
@@ -93,7 +115,7 @@ const Hero = () => {
 
               switch (p.name) {
                 case "Chandra":
-                  textStyle = { top: "-40px", left: "50%", transform: "translateX(-50%)" };
+                  textStyle = { top: "-35px", left: "50%", transform: "translateX(-50%)" };
                   break;
                 case "Mangala":
                   textStyle = { top: "50%", left: "80px", transform: "translateY(-50%)" };
@@ -149,12 +171,31 @@ const Hero = () => {
               );
             })}
           </div>
-            <p className="text-3xl text-muted-foreground max-w-3xl mx-auto">
-              Karmic wisdom has the answers to your questions...
+            <p className="text-3xl text-muted-foreground max-w-4xl mx-auto">
+              Karmic wisdom has the{" "}
+              
+              <span className="bg-gradient-to-r from-[#FFB347] via-[#FFD280] to-[#FF8C00]
+                text-transparent bg-clip-text">
+                all
+              </span>
+
+              {" "}the{" "}
+
+              <span className="bg-gradient-to-r from-[#FFB347] via-[#FFD280] to-[#FF8C00]
+                text-transparent bg-clip-text">
+                answers
+              </span>
+
+              {" "}to your questions{" "}
+
+              <span className="bg-gradient-to-r from-[#FFB347] via-[#FFD280] to-[#FF8C00]
+                text-transparent bg-clip-text">
+                ...
+              </span>
             </p>
             <Link
               to="/consulting"
-              className="inline-block font-bold mt-4 px-6 py-3 rounded-lg bg-gradient-to-r
+              className="inline-block font-bold mt-0 px-6 py-3 rounded-lg bg-gradient-to-r
               from-[#FF8C00] via-[#FFB347] to-[#FFD280] text-black shadow-lg hover:scale-110 transition-transform"
             >
               Consult NOW

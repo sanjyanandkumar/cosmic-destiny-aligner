@@ -14,28 +14,28 @@ const verticals = [
     subtitle: "The Karmic Business Division",
     image: consultingImg,
     link: "/consulting",
-    description: "Strategic cosmic guidance for founders & creators.",
+    description: "Know your karmic blueprint and change your destiny",
   },
   {
     title: "BrahmaX Wardrobe",
     subtitle: "The Astro-Fashion Division",
     image: wardrobeImg,
     link: "/wardrobe",
-    description: "Luxury fashion aligned with your planets.",
+    description: "Know your karmic blueprint and change your destiny",
   },
   {
     title: "BrahmaX Gurukul",
     subtitle: "The Passport to Conscious Learning",
     image: eduseamImg,
     link: "/eduseam",
-    description: "Discover your dharma through guided learning.",
+    description: "A Karmic passport for student’s career goal",
   },
   {
     title: "BrahmaX Wellness",
     subtitle: "The Karmic Wellness Division",
     image: leisureImg,
     link: "/leisure",
-    description: "Travel & retreats for deep energetic alignment.",
+    description: "An experiencial space aligned with divine frequency",
   },
 ];
 
@@ -74,7 +74,6 @@ const VerticalCards = () => {
                     <h3 className="font-playfair text-2xl font-bold text-white">
                       {item.title}
                     </h3>
-                    <p className="text-sm text-primary/80 mb-3">{item.subtitle}</p>
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       {item.description}
                     </p>

@@ -15,8 +15,27 @@ const HowItWorks = () => {
         <div className="container mx-auto px-4">
 
           <div className="text-center mb-10">
-            <h2 className="font-playfair text-4xl md:text-4xl font-bold text-white mb-4 leading-tight">
-              Change your destiny in 3 simple steps
+            <h2 className="font-playfair text-4xl md:text-4xl font-bold mb-4 leading-tight text-white">
+              <span className="bg-gradient-to-r from-[#FFB347] via-[#FFD280] to-[#FF8C00]
+                text-transparent bg-clip-text">
+                Change
+              </span>
+
+              {" "}your{" "}
+
+              <span className="bg-gradient-to-r from-[#FFB347] via-[#FFD280] to-[#FF8C00]
+                text-transparent bg-clip-text">
+                destiny
+              </span>
+
+              {" "}in{" "}
+
+              <span className="bg-gradient-to-r from-[#FFB347] via-[#FFD280] to-[#FF8C00]
+                text-transparent bg-clip-text">
+                3
+              </span>
+
+              {" "}simple steps
             </h2>
           </div>
 

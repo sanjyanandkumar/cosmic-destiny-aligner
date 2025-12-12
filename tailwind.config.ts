@@ -17,6 +17,7 @@ export default {
         sans: ["Inter", "sans-serif"],
         playfair: ["Playfair Display", "serif"],
         inter: ["Inter", "sans-serif"],
+        caveat: ["Caveat", "cursive"],
 		poppins: ["Poppins", "sans-serif"],
       },
       colors: {
