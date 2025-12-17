@@ -184,7 +184,7 @@ export default function ConsultingAdditionalPage() {
       {openLeadDialog && selectedService && (
         <SpeakToFounderDialog
           open={openLeadDialog}
-          onClose={() => setOpenLeadDialog(false)}
+          onOpenChange={setOpenLeadDialog}
           serviceId={selectedService.id}
           serviceTitle={selectedService.title}
         />
