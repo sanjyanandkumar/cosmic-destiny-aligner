@@ -18,6 +18,7 @@ export default {
         playfair: ["Playfair Display", "serif"],
         inter: ["Inter", "sans-serif"],
         caveat: ["Caveat", "cursive"],
+        ganesha: ["TheGanesha", "serif"],
 		poppins: ["Poppins", "sans-serif"],
       },
       colors: {

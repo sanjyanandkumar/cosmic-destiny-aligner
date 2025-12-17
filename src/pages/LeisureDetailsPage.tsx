@@ -58,7 +58,7 @@ const LeisureDetailsPage = () => {
   > = {
     // 🌞 Temple Run
     "temple-run": {
-      name: "Temple Run (Kumbakonam Edition)",
+      name: "Temple Run",
       priceRange: "₹16,999 – ₹25,999",
       tagline: "Travel through temples, align through planets.",
       description:
@@ -294,7 +294,7 @@ const LeisureDetailsPage = () => {
               {/* Pricing */}
               {experience.pricingTiers && (
                 <div className="mb-8">
-                  <h2 className="text-2xl font-bold mb-3">💰 Pricing Structure</h2>
+                  <h2 className="text-2xl font-bold mb-3">💰 Tier Structure</h2>
                   <div className="space-y-4">
                     {experience.pricingTiers.map((tier, i) => (
                       <div
@@ -303,7 +303,6 @@ const LeisureDetailsPage = () => {
                       >
                         <div className="flex justify-between mb-1">
                           <span className="font-semibold text-primary">{tier.tier}</span>
-                          <span className="font-bold text-white">{tier.price}</span>
                         </div>
                         <p className="text-muted-foreground text-sm">{tier.description}</p>
                       </div>
@@ -344,9 +343,7 @@ const LeisureDetailsPage = () => {
                 disabled={processing}
                 className="w-full md:w-auto bg-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all"
               >
-                {experience.priceRange
-                  ? `Book Now — from ${experience.priceRange.split("–")[0]}`
-                  : `Book Now — ₹${experience.price?.toLocaleString()}`}
+                Tell me more
               </Button>
             </div>
           </div>

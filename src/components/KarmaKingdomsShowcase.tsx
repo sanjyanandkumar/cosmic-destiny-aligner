@@ -47,7 +47,7 @@ const KarmaKingdomsShowcase = () => {
         {/* 🧿 Title on Top */}
         <div className="absolute top-16 w-full flex justify-center z-[100]">
           <div className="backdrop-blur-xl bg-white/10 border border-white/25 px-10 py-2 rounded-3xl shadow-[0_0_30px_rgba(255,255,255,0.25)]">
-            <h1 className="text-white text-3xl sm:text-4xl md:text-4xl font-caveat tracking-normal">
+            <h1 className="text-white text-4xl sm:text-4xl md:text-4xl font-ganesha tracking-normal">
               <span>Karmic Wisdom</span>
               <span className="text-red-500">.</span>
               <span> Simplified</span>

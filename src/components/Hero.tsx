@@ -71,7 +71,13 @@ const Hero = () => {
               >
                 divine
               </span>
-              {" "}design!
+              {" "}design
+              <span
+                className="bg-gradient-to-r from-[#FFB347] via-[#FFD280] to-[#FF8C00]
+                text-transparent bg-clip-text drop-shadow-[0_0_18px_rgba(255,200,80,0.6)]"
+              >
+              !
+              </span>
             </span>
           </h1>
 
@@ -118,11 +124,11 @@ const Hero = () => {
                   textStyle = { top: "-35px", left: "50%", transform: "translateX(-50%)" };
                   break;
                 case "Mangala":
-                  textStyle = { top: "50%", left: "80px", transform: "translateY(-50%)" };
+                  textStyle = { top: "50%", left: "82px", transform: "translateY(-50%)" };
                   textAlign = "left";
                   break;
                 case "Budha":
-                  textStyle = { top: "50%", left: "75px", transform: "translateY(-50%)" };
+                  textStyle = { top: "50%", left: "78px", transform: "translateY(-50%)" };
                   textAlign = "left";
                   break;
                 case "Guru":
@@ -136,11 +142,11 @@ const Hero = () => {
                   textStyle = { top: "10%", left: "-65px", transform: "translateX(-50%)" };
                   break;
                 case "Rahu":
-                  textStyle = { top: "50%", left: "-150px", transform: "translateY(-50%)" };
+                  textStyle = { top: "50%", left: "-154px", transform: "translateY(-50%)" };
                   textAlign = "right";
                   break;
                 case "Ketu":
-                  textStyle = { top: "10px", left: "-60px", transform: "translateX(-50%)" };
+                  textStyle = { top: "10px", left: "-62px", transform: "translateX(-50%)" };
                   break;
                 default:
                   textStyle = {};
@@ -171,7 +177,7 @@ const Hero = () => {
               );
             })}
           </div>
-            <p className="text-3xl text-muted-foreground max-w-4xl mx-auto">
+            <p className="text-3xl text-white max-w-4xl mx-auto">
               Karmic wisdom has the{" "}
               
               <span className="bg-gradient-to-r from-[#FFB347] via-[#FFD280] to-[#FF8C00]

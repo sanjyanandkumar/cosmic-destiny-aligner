@@ -63,11 +63,17 @@ const TrustProof = () => {
         <div className="container mx-auto px-4">
 
           <div className="text-center mb-6">
-            <h2 className="font-playfair text-4xl md:text-4xl font-bold mb-4
+            <h2 className="text-white text-3xl md:text-4xl font-bold mb-4
               bg-gradient-to-r from-[#FFB347] via-[#FFD280] to-[#FF8C00]
               text-transparent bg-clip-text">
-              Trusted by many...
-            </h2>
+              Trusted by many
+              <span
+                className="bg-gradient-to-r from-[#FFB347] via-[#FFD280] to-[#FF8C00]
+                text-transparent bg-clip-text"
+              >
+                ...
+              </span>
+              </h2>
             <p className="font-inter text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               Join thousands who have unlocked their karmic potential with BrahmaX
             </p>
@@ -123,8 +129,14 @@ const TrustProof = () => {
                   ))}
                 </div>
                 {/* Subtitle Below Carousel */}
-                <p className="mt-8 text-center text-3xl font-inter text-muted-foreground">
-                  Join them and transform yours too
+                <p className="mt-8 text-center text-3xl font-inter text-white">
+                  Like them - transform your life too
+                  <span
+                    className="bg-gradient-to-r from-[#FFB347] via-[#FFD280] to-[#FF8C00]
+                    text-transparent bg-clip-text"
+                  >
+                    !
+                  </span>
                 </p>
 
               </CardContent>

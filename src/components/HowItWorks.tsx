@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const steps = [
   { icon: Search, title: "Analyze", description: "Provide your birth details to decode your cosmic blueprint", link: "/consulting" },
-  { icon: FileText, title: "Align", description: "Receive detailed reports and personalized consultations", link: "/sample" },
+  { icon: FileText, title: "Align", description: "Receive detailed reports and personalized consultations", link: "/sample-reports" },
   { icon: Zap, title: "Activate", description: "Browse and buy curated products to transform your destiny", link: "/wardrobe" },
 ];
 
@@ -16,23 +16,26 @@ const HowItWorks = () => {
 
           <div className="text-center mb-10">
             <h2 className="font-playfair text-4xl md:text-4xl font-bold mb-4 leading-tight text-white">
-              <span className="bg-gradient-to-r from-[#FFB347] via-[#FFD280] to-[#FF8C00]
+              <span className="signature-stroketext bg-gradient-to-r from-[#FFB347] via-[#FFD280] to-[#FF8C00]
                 text-transparent bg-clip-text">
                 Change
               </span>
 
               {" "}your{" "}
 
-              <span className="bg-gradient-to-r from-[#FFB347] via-[#FFD280] to-[#FF8C00]
+              <span className="signature-stroketext bg-gradient-to-r from-[#FFB347] via-[#FFD280] to-[#FF8C00]
                 text-transparent bg-clip-text">
                 destiny
               </span>
 
               {" "}in{" "}
 
-              <span className="bg-gradient-to-r from-[#FFB347] via-[#FFD280] to-[#FF8C00]
-                text-transparent bg-clip-text">
-                3
+              <span
+                className="signature-stroke signature-stroke--single
+                bg-gradient-to-r from-[#FFB347] via-[#FFD280] to-[#FF8C00]
+                text-transparent bg-clip-text"
+              >
+                  3
               </span>
 
               {" "}simple steps

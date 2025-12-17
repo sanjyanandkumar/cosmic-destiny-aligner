@@ -18,12 +18,13 @@ const LeisurePage: React.FC = () => {
 
   const experiences = [
     {
-      id: "bali-retreat",
-      name: "Bali Wellness Retreat",
-      price: 50000,
+      id: "temple-run",
+      name: "Temple Run",
+      priceRange: "₹16,999 – ₹25,999",
+      price: 16999,
       description:
-        "Luxurious karmic wellness retreat in Bali with spiritual temples and cosmic energy experiences.",
-      image: baliTripImg,
+        "A planetary-aligned spiritual journey across the Navagraha temples of Kumbakonam — South India’s sacred axis of divine geometry.",
+      image: kumbakonamImg,
     },
     {
       id: "karmic-meditation",
@@ -34,13 +35,12 @@ const LeisurePage: React.FC = () => {
       image: karmicMeditationImg,
     },
     {
-      id: "temple-run",
-      name: "Temple Run (Kumbakonam Edition)",
-      priceRange: "₹16,999 – ₹25,999",
-      price: 16999,
+      id: "bali-retreat",
+      name: "Bali Wellness Retreat",
+      price: 50000,
       description:
-        "A planetary-aligned spiritual journey across the Navagraha temples of Kumbakonam — South India’s sacred axis of divine geometry.",
-      image: kumbakonamImg,
+        "Luxurious karmic wellness retreat in Bali with spiritual temples and cosmic energy experiences.",
+      image: baliTripImg,
     },
     {
       id: "bandipur-retreat",
@@ -69,23 +69,17 @@ const LeisurePage: React.FC = () => {
           <div className="max-w-5xl mx-auto">
 
             {/* Heading */}
-            <div className="text-center mb-14">
+            <div className="text-center mb-8">
               <h1 className="font-playfair text-5xl font-bold text-white mb-6 leading-tight">
                 BrahmaX Leisure
               </h1>
 
               <p className="font-inter text-xl text-primary italic mb-6">
-                The Karmic Wellness Division
+                An experiential space aligned with divine frequency
               </p>
 
-              <p className="text-2xl font-semibold text-white mb-4">
-                Relaxation, Realigned.
-              </p>
-
-              <p className="font-inter text-lg text-white/70 leading-relaxed max-w-3xl mx-auto">
-                BrahmaX Leisure curates divine experiences through travel, meditation,
-                and cosmic realignment. Each offering is designed to restore spiritual harmony,
-                awaken planetary consciousness, and return you to your divine rhythm.
+              <p className="font-inter text-lg text-white/70 leading-relaxed max-w-4xl mx-auto">
+                BrahmaX Wellness curates divine experiences through travel, meditation, and cosmic realignment. Each offering is designed to restore spiritual harmony, awaken planetary consciousness, and return you to your divine rhythm
               </p>
 
               <p className="mt-4 text-lg italic text-primary">
@@ -121,12 +115,6 @@ const LeisurePage: React.FC = () => {
                             {exp.description}
                           </p>
 
-                          <p className="font-playfair text-3xl font-bold bg-gradient-gold bg-clip-text text-transparent">
-                            {exp.priceRange
-                              ? exp.priceRange
-                              : `₹${exp.price.toLocaleString()}`}
-                          </p>
-
                           {/* ⭐ Add to Cart Button */}
                           <Button
                             onClick={(e) => {
@@ -148,7 +136,7 @@ const LeisurePage: React.FC = () => {
                             }}
                             className="mt-4 w-full bg-primary/20 text-primary hover:bg-primary hover:text-black transition-all"
                           >
-                            Reserve now
+                            Tell me more
                           </Button>
                         </div>
                       </Card>

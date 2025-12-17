@@ -26,8 +26,8 @@ const EduSeamPage: React.FC = () => {
 
   const product = {
     id: "career-guidance",
-    name: "Career Guidance",
-    price: 999,
+    name: "Karmic guidance for students’ careers",
+    price: 499,
     description:
       "Karmic career guidance to help you discover your unique dharma and translate it into meaningful work.",
     image: careerGuidanceImg,
@@ -64,7 +64,7 @@ const EduSeamPage: React.FC = () => {
             </h1>
 
             <p className="font-inter text-xl text-primary italic mb-6">
-              The Passport to Conscious Learning
+              A karmic passport for students’ career goals
             </p>
 
             <p className="text-2xl font-semibold text-white mb-4">
@@ -73,16 +73,12 @@ const EduSeamPage: React.FC = () => {
 
             <div className="max-w-6xl mx-auto">
               <p className="font-inter text-lg text-muted-foreground leading-relaxed px-4">
-                BrahmaX Gurukul bridges karmic wisdom with real-world learning. The “Passport Concept”
-                allows you to journey through subjects — astrology, global culture, branding,
-                business, and purpose — to discover your true <em>dharma</em> through experience
-                and expansion.
+                BrahmaX Gurukul bridges karmic wisdom with real-world learning. The “Stream Passport” is customized to each student according to his/her birth and karmic chart<br></br>
+It clearly highlights which subjects the student has to focus on, academic choices that they need to make, career paths that will align with their karmic destiny – for academic and career success in future!
+
               </p>
             </div>
 
-            <p className="mt-4 text-lg italic text-primary">
-              “We don’t teach — we awaken.”
-            </p>
           </div>
 
           {/* Product Card */}
@@ -104,12 +100,27 @@ const EduSeamPage: React.FC = () => {
                       {product.name}
                     </h2>
 
-                    <p className="font-inter text-muted-foreground mb-6 leading-relaxed">
+                    <p className="font-inter text-muted-foreground mb-4 leading-relaxed">
                       {product.description}
                     </p>
 
+                    <ul className="mb-6 space-y-2 text-white/90 text-md">
+                      <li className="flex items-start gap-2">
+                        <span className="text-primary mt-1">•</span>
+                        <span>Subjects that will suit the student</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-primary mt-1">•</span>
+                        <span>Which career path to consider</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-primary mt-1">•</span>
+                        <span>How to align interests with divine destiny</span>
+                      </li>
+                    </ul>
+
                     <p className="font-playfair text-4xl font-bold bg-gradient-gold bg-clip-text text-transparent mb-6">
-                      ₹{product.price.toLocaleString()}
+                      ₹ {product.price.toLocaleString()}
                     </p>
                   </div>
 

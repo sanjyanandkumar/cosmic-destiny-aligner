@@ -32,7 +32,8 @@ import BackgroundMusic from "./components/BackgroundMusic";
 import ConsultingDetailsPage from "./pages/ConsultingDetailsPage";
 import InstallPage from "./pages/InstallPage";
 import VerticalDetails from "./pages/VerticalDetails"
-import ConsultingAdditionalPage from "./pages/ConsultingAddionalPage";
+import ConsultingAdditionalPage from "./pages/ConsultingAdditionalPage";
+import SampleReportsPage from "./pages/SampleReportsPage";
 
 const queryClient = new QueryClient();
 
@@ -69,6 +70,7 @@ const App = () => (
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/reset-password" element={<ResetPasswordPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/sample-reports" element={<SampleReportsPage />} />
             <Route
               path="/admin/products"
               element={

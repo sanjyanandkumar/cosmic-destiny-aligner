@@ -15,7 +15,6 @@ const Index = () => {
         <Navigation />
       </div>
       <KarmaKingdomsShowcase />
-      <FloatingConsultationButton />
       <div id="hero" className="m-0 p-0">
         <Hero />
       </div>

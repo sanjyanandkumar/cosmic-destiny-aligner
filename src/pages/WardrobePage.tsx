@@ -40,26 +40,21 @@ const WardrobePage: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             {/* --- Heading Section --- */}
-            <div className="text-center mb-14">
+            <div className="text-center mb-8">
               <h1 className="font-playfair text-5xl font-bold text-white mb-6 leading-tight">
                 BrahmaX Wardrobe
               </h1>
 
-              <p className="font-inter text-xl text-primary italic mb-6">
-                The Astro-Fashion Division
-              </p>
-
-              <p className="text-2xl font-semibold text-white mb-4">
-                Wear Your Planets. Live Your Power.
+              <p className="font-inter text-xl text-primary italic mb-4">
+                World’s first karmic fashion and lifestyle platform
               </p>
 
               <p className="font-inter text-lg text-white/70 leading-relaxed max-w-3xl mx-auto">
-                A fashion system aligned with your zodiac, lagna, and planetary energies.
-                Every piece is a vibrational tool — blending design, astrology, and sacred intention.
+                A fashion system aligned with your zodiac, lagna, and planetary energies. Every piece is a vibrational tool — blending design, astrology, and sacred intention.
               </p>
 
-              <p className="mt-4 text-lg italic text-primary">
-                “Style that heals. Luxury that vibrates.”
+              <p className="font-inter text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mt-4">
+                Style that heals. Luxury that vibrates
               </p>
             </div>
 

@@ -1,51 +1,58 @@
-import React, { useMemo } from "react";
+import React from "react";
 
-const GalaxyBackground = ({ className = "", starCount = 600 }) => {
-  const stars = useMemo(
-    () =>
-      Array.from({ length: starCount }).map(() => ({
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: Math.random() * 2 + 1,
-        delay: Math.random() * 3,
-        duration: Math.random() * 3 + 2
-      })),
-    [starCount]
-  );
+/**
+ * Deterministic pseudo-random generator (seeded)
+ * Ensures stars look random but are STATIC.
+ */
+function seededRandom(seed) {
+  let x = Math.sin(seed) * 10000;
+  return x - Math.floor(x);
+}
 
+/**
+ * Generate static random-looking stars ONCE
+ */
+const STATIC_STARS = (() => {
+  const stars = [];
+  const COUNT = 1000;
+  const SEED = 42; // change this number to get a different galaxy (still static)
+
+  for (let i = 0; i < COUNT; i++) {
+    const r1 = seededRandom(SEED + i * 3);
+    const r2 = seededRandom(SEED + i * 7);
+    const r3 = seededRandom(SEED + i * 11);
+
+    stars.push({
+      x: +(r1 * 100).toFixed(2),
+      y: +(r2 * 100).toFixed(2),
+      size: +(0.8 + r3 * 1.8).toFixed(2) // random size between ~0.8px–2.6px
+    });
+  }
+
+  return stars;
+})();
+
+const GalaxyBackground = ({ className = "" }) => {
   return (
-    <div className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}>
-      {/* Twinkle Animation */}
-      <style>{`
-        @keyframes galaxy-twinkle {
-          0%, 100% { opacity: .3; transform: scale(1); }
-          50%      { opacity: 1; transform: scale(1.4); }
-        }
-        @keyframes nebula-move {
-          0% { transform: translate3d(-10%, -10%, 0) scale(1.1); }
-          50% { transform: translate3d(10%, 5%, 0) scale(1.25); }
-          100% { transform: translate3d(-10%, -10%, 0) scale(1.1); }
-        }
-      `}</style>
+    <div
+      className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}
+    >
+      {/* Nebula Layers (static) */}
+      <div className="absolute -inset-1 opacity-30 blur-3xl bg-[radial-gradient(circle_at_30%_40%,rgba(255,0,180,0.35),transparent_60%)]" />
+      <div className="absolute -inset-1 opacity-25 blur-3xl bg-[radial-gradient(circle_at_70%_60%,rgba(60,120,255,0.35),transparent_60%)]" />
 
-      {/* Nebula Layers */}
-      <div className="absolute -inset-1 opacity-30 blur-3xl animate-[nebula-move_18s_ease-in-out_infinite] bg-[radial-gradient(circle_at_30%_40%,rgba(255,0,180,0.35),transparent_60%)]" />
-      <div className="absolute -inset-1 opacity-25 blur-3xl animate-[nebula-move_26s_reverse_infinite] bg-[radial-gradient(circle_at_70%_60%,rgba(60,120,255,0.35),transparent_60%)]" />
-
-      {/* Star Field */}
-      {stars.map((s, i) => (
+      {/* Static Random Star Field */}
+      {STATIC_STARS.map((s, i) => (
         <span
           key={i}
           className="absolute rounded-full bg-white"
           style={{
             top: `${s.y}%`,
             left: `${s.x}%`,
-            width: s.size,
-            height: s.size,
-            opacity: 0.6,
-            animation: `galaxy-twinkle ${s.duration}s infinite`,
-            animationDelay: `${s.delay}s`,
-            filter: "drop-shadow(0 0 6px rgba(255,255,255,0.7))"
+            width: `${s.size}px`,
+            height: `${s.size}px`,
+            opacity: 0.35 + s.size * 0.25,
+            boxShadow: "0 0 6px rgba(255,255,255,0.6)"
           }}
         />
       ))}
