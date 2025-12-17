@@ -14,9 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      founder_leads: {
+        Row: {
+          created_at: string | null
+          email: string
+          id: string
+          message: string | null
+          name: string
+          phone: string | null
+          service_id: string | null
+          service_title: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          email: string
+          id?: string
+          message?: string | null
+          name: string
+          phone?: string | null
+          service_id?: string | null
+          service_title?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          email?: string
+          id?: string
+          message?: string | null
+          name?: string
+          phone?: string | null
+          service_id?: string | null
+          service_title?: string | null
+        }
+        Relationships: []
+      }
       order_items: {
         Row: {
-          created_at: string
+          created_at: string | null
           id: string
           order_id: string
           price_at_purchase: number
@@ -24,7 +57,7 @@ export type Database = {
           quantity: number
         }
         Insert: {
-          created_at?: string
+          created_at?: string | null
           id?: string
           order_id: string
           price_at_purchase: number
@@ -32,7 +65,7 @@ export type Database = {
           quantity?: number
         }
         Update: {
-          created_at?: string
+          created_at?: string | null
           id?: string
           order_id?: string
           price_at_purchase?: number
@@ -61,82 +94,124 @@ export type Database = {
           buyer_email: string
           buyer_name: string
           buyer_phone: string | null
-          created_at: string
+          created_at: string | null
           id: string
           order_number: string
           payment_id: string | null
           razorpay_order_id: string | null
           razorpay_payment_id: string | null
           razorpay_signature: string | null
+          report_path: string | null
+          report_signed_url: string | null
+          report_url: string | null
           status: string
           total_amount: number
-          updated_at: string
+          updated_at: string | null
         }
         Insert: {
           buyer_email: string
           buyer_name: string
           buyer_phone?: string | null
-          created_at?: string
-          id?: string
-          order_number: string
-          payment_id?: string | null
-          razorpay_order_id?: string | null
-          razorpay_payment_id?: string | null
-          razorpay_signature?: string | null
-          status?: string
-          total_amount: number
-          updated_at?: string
-        }
-        Update: {
-          buyer_email?: string
-          buyer_name?: string
-          buyer_phone?: string | null
-          created_at?: string
+          created_at?: string | null
           id?: string
           order_number?: string
           payment_id?: string | null
           razorpay_order_id?: string | null
           razorpay_payment_id?: string | null
           razorpay_signature?: string | null
+          report_path?: string | null
+          report_signed_url?: string | null
+          report_url?: string | null
+          status?: string
+          total_amount: number
+          updated_at?: string | null
+        }
+        Update: {
+          buyer_email?: string
+          buyer_name?: string
+          buyer_phone?: string | null
+          created_at?: string | null
+          id?: string
+          order_number?: string
+          payment_id?: string | null
+          razorpay_order_id?: string | null
+          razorpay_payment_id?: string | null
+          razorpay_signature?: string | null
+          report_path?: string | null
+          report_signed_url?: string | null
+          report_url?: string | null
           status?: string
           total_amount?: number
-          updated_at?: string
+          updated_at?: string | null
         }
         Relationships: []
       }
       products: {
         Row: {
-          category: string | null
-          created_at: string
+          addons: Json | null
+          category: string
+          created_at: string | null
           description: string | null
+          gallery: string[] | null
+          highlights: string[] | null
           id: string
           image_url: string | null
+          metadata: Json | null
           name: string
           price: number
-          quantity_available: number
-          updated_at: string
+          pricing_tiers: Json | null
+          quantity_available: number | null
+          schedule: string[] | null
+          updated_at: string | null
         }
         Insert: {
-          category?: string | null
-          created_at?: string
+          addons?: Json | null
+          category?: string
+          created_at?: string | null
           description?: string | null
+          gallery?: string[] | null
+          highlights?: string[] | null
           id?: string
           image_url?: string | null
+          metadata?: Json | null
           name: string
           price: number
-          quantity_available?: number
-          updated_at?: string
+          pricing_tiers?: Json | null
+          quantity_available?: number | null
+          schedule?: string[] | null
+          updated_at?: string | null
         }
         Update: {
-          category?: string | null
-          created_at?: string
+          addons?: Json | null
+          category?: string
+          created_at?: string | null
           description?: string | null
+          gallery?: string[] | null
+          highlights?: string[] | null
           id?: string
           image_url?: string | null
+          metadata?: Json | null
           name?: string
           price?: number
-          quantity_available?: number
-          updated_at?: string
+          pricing_tiers?: Json | null
+          quantity_available?: number | null
+          schedule?: string[] | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      user_profiles: {
+        Row: {
+          role: string | null
+          user_id: string
+        }
+        Insert: {
+          role?: string | null
+          user_id: string
+        }
+        Update: {
+          role?: string | null
+          user_id?: string
         }
         Relationships: []
       }

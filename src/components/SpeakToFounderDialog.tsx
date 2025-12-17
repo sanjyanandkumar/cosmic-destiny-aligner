@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Sparkles } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 interface SpeakToFounderDialogProps {
   open: boolean;
@@ -36,6 +37,25 @@ export default function SpeakToFounderDialog({
       toast({
         title: "Missing details",
         description: "Please fill all fields",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const { error } = await supabase
+    .from("founder_leads")
+    .insert({
+      name,
+      email,
+      phone,
+      service_id: serviceId,
+      service_title: serviceTitle,
+    });
+
+    if (error) {
+      toast({
+        title: "Error",
+        description: "Could not save your request",
         variant: "destructive",
       });
       return;
