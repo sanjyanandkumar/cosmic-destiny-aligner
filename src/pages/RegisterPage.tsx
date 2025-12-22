@@ -85,9 +85,12 @@ export default function RegisterPage() {
         <div className="relative z-10 p-6 border border-white/20 rounded-lg shadow-lg w-full max-w-sm bg-black/70 backdrop-blur-md text-white">
           <h1 className="text-2xl font-bold mb-4 text-center">Create Account</h1>
 
-          <Input placeholder="Full Name" value={name} onChange={(e) => setName(e.target.value)} className="mb-3 text-black" />
-          <Input placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} className="mb-3 text-black" />
-          <Input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} className="mb-3 text-black" />
+          <Input placeholder="Full Name" value={name} onChange={(e) => setName(e.target.value)} className="mb-3 bg-black/40 text-white placeholder:text-white/50
+    border-white/20 focus:border-primary focus:ring-primary/40" />
+          <Input placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} className="mb-3 bg-black/40 text-white placeholder:text-white/50
+    border-white/20 focus:border-primary focus:ring-primary/40" />
+          <Input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} className=" mb-3 bg-black/40 text-white placeholder:text-white/50
+    border-white/20 focus:border-primary focus:ring-primary/40" />
 
           <Button onClick={handleRegister} className="w-full">
             Create Account
