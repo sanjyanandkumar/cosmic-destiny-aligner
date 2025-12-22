@@ -36,20 +36,20 @@ const WardrobePage: React.FC = () => {
     <CosmicPage>
       <Navigation />
 
-      <section id="wardrobe" className="py-24">
+      <section id="wardrobe" className="pt-20 pb-12">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             {/* --- Heading Section --- */}
             <div className="text-center mb-8">
-              <h1 className="font-playfair text-5xl font-bold text-white mb-6 leading-tight">
+              <h1 className="font-playfair text-5xl font-bold text-white mb-4 leading-tight">
                 BrahmaX Wardrobe
               </h1>
 
-              <p className="font-inter text-xl text-primary italic mb-4">
+              <p className="font-inter text-muted-foreground text-2xl italic mb-4">
                 World’s first karmic fashion and lifestyle platform
               </p>
 
-              <p className="font-inter text-lg text-white/70 leading-relaxed max-w-3xl mx-auto">
+              <p className="font-inter text-lg text-white leading-relaxed max-w-4xl mx-auto">
                 A fashion system aligned with your zodiac, lagna, and planetary energies. Every piece is a vibrational tool — blending design, astrology, and sacred intention.
               </p>
 
@@ -82,37 +82,52 @@ const WardrobePage: React.FC = () => {
                           <h2 className="font-playfair text-2xl font-bold text-white mb-2">
                             {product.name}
                           </h2>
-                          <p className="text-white/70 mb-4 leading-relaxed">
+                          <p className="mb-4 text-muted-foreground leading-relaxed">
                             {product.description}
                           </p>
 
-                          <p className="font-playfair text-3xl font-bold bg-gradient-gold bg-clip-text text-transparent">
-                            ₹{product.price.toLocaleString()}
+                          <p className="font-playfair text-3xl mb-4">
+                            <span className="text-white mr-1">₹</span>
+                            <span className="bg-gradient-gold bg-clip-text text-transparent">
+                              {product.price.toLocaleString()}
+                            </span>
                           </p>
 
                           {/* ⭐ Add To Cart Button */}
-                          <Button
-                            onClick={(e) => {
-                              e.preventDefault(); // prevents navigation
+                          <div className="flex justify-center mt-2">
+                            <Button
+                              onClick={(e) => {
+                                e.preventDefault(); // prevents navigation
 
-                              addToCart({
-                                id: product.id,
-                                name: product.name,
-                                price: product.price,
-                                quantity: 1,
-                                image_url: product.image,
-                                category: "Wardrobe",
-                              });
+                                addToCart({
+                                  id: product.id,
+                                  name: product.name,
+                                  price: product.price,
+                                  quantity: 1,
+                                  image_url: product.image,
+                                  category: "Wardrobe",
+                                });
 
-                              toast({
-                                title: "Added to Cart!",
-                                description: `${product.name} has been added to your cart.`,
-                              });
-                            }}
-                            className="mt-4 w-full bg-primary/20 text-primary hover:bg-primary hover:text-black transition-all"
-                          >
-                            Add to Cart
-                          </Button>
+                                toast({
+                                  title: "Added to Cart!",
+                                  description: `${product.name} has been added to your cart.`,
+                                });
+                              }}
+                              className="
+                                mt-4
+                                w-[170px]
+                                inline-block font-bold
+                                px-8 py-2
+                                rounded-lg
+                                bg-gradient-to-r from-[#FF8C00] via-[#FFB347] to-[#FFD280]
+                                text-black shadow-lg
+                                hover:shadow-[0_0_30px_rgba(255,200,100,0.8)]
+                                transition-all
+                              "
+                            >
+                              Add to Cart
+                            </Button>
+                          </div>
                         </div>
                       </Card>
                     </Link>

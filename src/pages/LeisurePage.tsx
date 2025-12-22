@@ -12,6 +12,7 @@ import CosmicPage from "@/components/CosmicPage";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
 import { toast } from "@/hooks/use-toast";
+import remediesImg from "@/assets/karmic-remedies.png";
 
 const LeisurePage: React.FC = () => {
   const { addToCart } = useCart();
@@ -21,7 +22,6 @@ const LeisurePage: React.FC = () => {
       id: "temple-run",
       name: "Temple Run",
       priceRange: "₹16,999 – ₹25,999",
-      price: 16999,
       description:
         "A planetary-aligned spiritual journey across the Navagraha temples of Kumbakonam — South India’s sacred axis of divine geometry.",
       image: kumbakonamImg,
@@ -29,42 +29,24 @@ const LeisurePage: React.FC = () => {
     {
       id: "karmic-meditation",
       name: "Customized Karmic Meditation",
-      price: 2000,
       description:
         "Personalized karmic meditation session designed to realign your energy and restore divine frequency.",
       image: karmicMeditationImg,
     },
     {
-      id: "bali-retreat",
-      name: "Bali Wellness Retreat",
-      price: 50000,
+      id: "karmic-remedies",
+      name: "Karmic Personalized Remedies",
       description:
-        "Luxurious karmic wellness retreat in Bali with spiritual temples and cosmic energy experiences.",
-      image: baliTripImg,
-    },
-    {
-      id: "bandipur-retreat",
-      name: "Bandipur Tour",
-      price: 9999,
-      description:
-        "Organic wellness retreat designed to align mind, body, and soul in the serene energy of Bandipur Forest, Karnataka.",
-      image: bandipurImg,
-    },
-    {
-      id: "sri-lanka-retreat",
-      name: "Karmic Island Experience – Sri Lanka",
-      price: 55000,
-      description:
-        "A karmic escape into the heart of Sri Lanka’s spiritual energy — lush forests, sacred temples, and coastal calm.",
-      image: sriLankaImg,
-    },
+        "Individually prescribed karmic remedies based on your birth chart — gemstones, mantras, rituals, and energy corrections designed to neutralize planetary imbalances and accelerate alignment.",
+      image: remediesImg,
+    }
   ];
 
   return (
     <CosmicPage>
       <Navigation />
 
-      <section id="leisure" className="py-24">
+      <section id="leisure" className="pt-20 pb-8">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
 
@@ -74,16 +56,12 @@ const LeisurePage: React.FC = () => {
                 BrahmaX Leisure
               </h1>
 
-              <p className="font-inter text-xl text-primary italic mb-6">
+              <p className="font-inter text-xl text-muted-foreground italic mb-6">
                 An experiential space aligned with divine frequency
               </p>
 
-              <p className="font-inter text-lg text-white/70 leading-relaxed max-w-4xl mx-auto">
+              <p className="font-inter text-lg text-white leading-relaxed max-w-4xl mx-auto">
                 BrahmaX Wellness curates divine experiences through travel, meditation, and cosmic realignment. Each offering is designed to restore spiritual harmony, awaken planetary consciousness, and return you to your divine rhythm
-              </p>
-
-              <p className="mt-4 text-lg italic text-primary">
-                “Wellness isn’t an escape — it’s a return to your cosmic essence.”
               </p>
             </div>
 
@@ -111,39 +89,59 @@ const LeisurePage: React.FC = () => {
                           <h2 className="font-playfair text-2xl font-bold text-white mb-2">
                             {exp.name}
                           </h2>
-                          <p className="text-white/70 mb-4 leading-relaxed">
+                          <p className="text-white/70 mb-4 leading-relaxed text-justify">
                             {exp.description}
                           </p>
 
                           {/* ⭐ Add to Cart Button */}
-                          <Button
-                            onClick={(e) => {
-                              e.preventDefault();
+                          <div className="flex justify-center mt-2">
+                            <Button 
+                              onClick={(e) => {
+                                e.preventDefault();
 
-                              addToCart({
-                                id: exp.id,
-                                name: exp.name,
-                                price: exp.price ?? 0,
-                                quantity: 1,
-                                image_url: exp.image,
-                                category: "Leisure Experience",
-                              });
+                                addToCart({
+                                  id: exp.id,
+                                  name: exp.name,
+                                  price: exp.price ?? 0,
+                                  quantity: 1,
+                                  image_url: exp.image,
+                                  category: "Leisure Experience",
+                                });
 
-                              toast({
-                                title: "Added to Cart!",
-                                description: `${exp.name} has been added to your cart.`,
-                              });
-                            }}
-                            className="mt-4 w-full bg-primary/20 text-primary hover:bg-primary hover:text-black transition-all"
-                          >
-                            Tell me more
-                          </Button>
+                                toast({
+                                  title: "Added to Cart!",
+                                  description: `${exp.name} has been added to your cart.`,
+                                });
+                              }}
+                              className="
+                                mt-4
+                                w-[170px]
+                                inline-block font-bold
+                                px-8 py-2
+                                rounded-lg
+                                bg-gradient-to-r from-[#FF8C00] via-[#FFB347] to-[#FFD280]
+                                text-black shadow-lg
+                                hover:shadow-[0_0_30px_rgba(255,200,100,0.8)]
+                                transition-all
+                              "
+                            >
+                              Reserve NOW
+                            </Button>
+                          </div>
                         </div>
                       </Card>
                     </Link>
                   </div>
                 ))}
               </div>
+            </div>
+            <div className="text-center mt-10">
+              <Link
+                to="/leisure/more"
+                className="text-white text-lg underline hover:text-primary/70 transition-all"
+              >
+                More Wellness Packages →
+              </Link>
             </div>
           </div>
         </div>

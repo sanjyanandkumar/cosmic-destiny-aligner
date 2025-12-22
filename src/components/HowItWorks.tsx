@@ -11,7 +11,7 @@ const steps = [
 const HowItWorks = () => {
   return (
     <CosmicPage>
-      <section id="how-it-works" className="py-10 md:py-14 bg-transparent !border-none !shadow-none">
+      <section id="how-it-works" className="pt-2 pb-10 md:pt-8 md:pb-14 bg-transparent !border-none !shadow-none">
         <div className="container mx-auto px-4">
 
           <div className="text-center mb-10">

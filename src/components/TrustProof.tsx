@@ -74,7 +74,7 @@ const TrustProof = () => {
                 ...
               </span>
               </h2>
-            <p className="font-inter text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            <p className="font-inter text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Join thousands who have unlocked their karmic potential with BrahmaX
             </p>
           </div>

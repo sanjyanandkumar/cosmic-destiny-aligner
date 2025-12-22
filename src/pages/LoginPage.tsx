@@ -70,7 +70,7 @@ export default function LoginPage() {
 
         {/* 3️⃣ Login Card */}
         <div className="relative z-[5] p-6 border border-white/20 rounded-lg shadow-lg w-full max-w-sm bg-black/70 backdrop-blur-md text-white mt-24">
-          <h1 className="text-2xl font-bold mb-4 text-center">Admin Login</h1>
+          <h1 className="text-2xl font-bold mb-4 text-center">Login</h1>
 
           <Input
             placeholder="Email"

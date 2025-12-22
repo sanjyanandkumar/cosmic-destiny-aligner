@@ -55,34 +55,29 @@ const EduSeamPage: React.FC = () => {
       <Navigation />
 
       {/* 🌌 EduSeam Section */}
-      <section id="eduseam" className="py-24">
+      <section id="eduseam" className="py-20">
         <div className="container mx-auto px-4">
           {/* Heading */}
-          <div className="max-w-6xl mx-auto text-center mb-8">
-            <h1 className="font-playfair text-5xl font-bold text-white mb-6 leading-tight">
+          <div className="max-w-6xl mx-auto text-center mb-2">
+            <h1 className="font-playfair text-5xl font-bold text-white mb-2 leading-tight">
               BrahmaX Gurukul
             </h1>
 
-            <p className="font-inter text-xl text-primary italic mb-6">
+            <p className="font-inter text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-6">
               A karmic passport for students’ career goals
             </p>
 
-            <p className="text-2xl font-semibold text-white mb-4">
-              Education Reimagined as Evolution.
-            </p>
-
             <div className="max-w-6xl mx-auto">
-              <p className="font-inter text-lg text-muted-foreground leading-relaxed px-4">
-                BrahmaX Gurukul bridges karmic wisdom with real-world learning. The “Stream Passport” is customized to each student according to his/her birth and karmic chart<br></br>
+              <p className="font-inter text-lg text-white leading-relaxed px-4 text-justify mb-8">
+                BrahmaX Gurukul bridges karmic wisdom with real-world learning. The “Stream Passport” is customized to each student according to his/her birth and karmic chart.
 It clearly highlights which subjects the student has to focus on, academic choices that they need to make, career paths that will align with their karmic destiny – for academic and career success in future!
-
               </p>
             </div>
 
           </div>
 
           {/* Product Card */}
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-4xl mx-auto">
             <Card className="overflow-hidden backdrop-blur-md bg-white/10 border border-white/20 rounded-lg shadow-lg transition-all hover:shadow-[0_0_25px_rgba(255,220,120,0.3)]">
               <div className="grid md:grid-cols-2 gap-0 items-stretch">
                 <div className="relative h-[420px] md:h-auto overflow-hidden">
@@ -119,19 +114,31 @@ It clearly highlights which subjects the student has to focus on, academic choic
                       </li>
                     </ul>
 
-                    <p className="font-playfair text-4xl font-bold bg-gradient-gold bg-clip-text text-transparent mb-6">
-                      ₹ {product.price.toLocaleString()}
+                    <p className="font-playfair text-3xl mb-6">
+                      <span className="text-white mr-1">₹</span>
+                      <span className="bg-gradient-gold bg-clip-text text-transparent">
+                        {product.price.toLocaleString()}
+                      </span>
                     </p>
                   </div>
 
-                  {/* 🛍 Updated Button */}
-                  <Button
-                    size="lg"
-                    onClick={handleCheckout}
-                    className="w-full font-semibold bg-primary/20 text-primary hover:bg-primary hover:text-black transition-all"
-                  >
-                    Consult Gurukul
-                  </Button>
+                  <div className="flex justify-center mt-6">
+                    <Button
+                      onClick={handleCheckout}
+                      className="
+                        w-[170px]
+                        inline-block font-bold
+                        px-8 py-2
+                        rounded-lg
+                        bg-gradient-to-r from-[#FF8C00] via-[#FFB347] to-[#FFD280]
+                        text-black shadow-lg
+                        hover:shadow-[0_0_30px_rgba(255,200,100,0.8)]
+                        transition-all
+                      "
+                    >
+                      Consult NOW
+                    </Button>
+                  </div>
                 </div>
               </div>
             </Card>

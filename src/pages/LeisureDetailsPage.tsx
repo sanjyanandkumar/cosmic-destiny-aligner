@@ -14,6 +14,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { Link } from "react-router-dom";
 
 import baliTripImg from "@/assets/bali-trip.jpg";
 import karmicMeditationImg from "@/assets/karmic-meditation.jpg";
@@ -28,6 +29,10 @@ import bandipurEagleImg from "@/assets/bandipur-eagle.jpg";
 import sriLankaImg from "@/assets/sri-lanka-retreat.jpg";
 import srilankaColomboImg from "@/assets/sri-lanka-colombo.jpg";
 import srilankaKandyImg from "@/assets/sri-lanka-kandy.jpg";
+import remediesMainImg from "@/assets/karmic-remedies.png";
+import remediesImg1 from "@/assets/remedies-1.png";
+import remediesImg2 from "@/assets/remedies-2.png";
+import remediesImg3 from "@/assets/remedies-3.png";
 
 const LeisureDetailsPage = () => {
   const { experienceId } = useParams();
@@ -52,8 +57,8 @@ const LeisureDetailsPage = () => {
       images: string[];
       highlights?: string[];
       schedule?: string[];
-      pricingTiers?: { tier: string; price: string; description: string }[];
-      addOns?: { name: string; desc: string; price: string }[];
+      pricingTiers?: { tier: string; price?: string; description: string }[];
+      addOns?: { name: string; desc: string; price?: string }[];
     }
   > = {
     // 🌞 Temple Run
@@ -85,17 +90,14 @@ const LeisureDetailsPage = () => {
       pricingTiers: [
         {
           tier: "Tribe Tier",
-          price: "₹16,999",
           description: "Shared stay, food, transport, rituals.",
         },
         {
           tier: "Soul Tier",
-          price: "₹19,999",
           description: "Twin stay, astro consult, premium kit.",
         },
         {
           tier: "Founder’s Circle",
-          price: "₹25,999",
           description: "Private stay, 1:1 graha decoding, exclusive pooja.",
         },
       ],
@@ -124,17 +126,14 @@ const LeisureDetailsPage = () => {
       pricingTiers: [
         {
           tier: "Tribe Tier",
-          price: "₹9,999",
           description: "Shared stay, full retreat, safari, meals.",
         },
         {
           tier: "Soul Tier",
-          price: "₹12,999",
           description: "Twin stay, astro talk, premium kit.",
         },
         {
           tier: "Founder’s Circle",
-          price: "₹17,999",
           description: "Private stay, 1:1 karmic consult with Abi.",
         },
       ],
@@ -209,6 +208,139 @@ const LeisureDetailsPage = () => {
         },
       ],
     },
+
+    // 🔮 Karmic Personalized Remedies
+    "karmic-remedies": {
+      name: "Karmic Personalized Remedies",
+      priceRange: "₹2,999 – ₹11,999",
+      tagline: "Heal the cause, not the symptom.",
+      description:
+        "Karmic Personalized Remedies are individually prescribed astrological corrections designed to neutralize planetary imbalances at the karmic root. Based on your birth chart (Kundali), these remedies work at the energetic level — restoring harmony across mind, health, relationships, and career.",
+
+      concept:
+        "This is a deeply personalized karmic intervention, not a generic puja or ritual. After analyzing your planetary placements, doshas, retrogrades, and karmic debts, a precise set of remedies is prescribed — gemstones, mantras, rituals, donations, and behavioral corrections — aligned to your chart and life phase. The goal is not prediction, but energetic correction and accelerated alignment.",
+
+      images: [
+        remediesMainImg,
+        remediesImg1,
+        remediesImg2,
+      ],
+
+      highlights: [
+        "1:1 Kundali analysis to identify karmic blocks and planetary imbalances.",
+        "Personalized gemstone and metal recommendations (if applicable).",
+        "Mantra prescriptions with exact counts, timings, and duration.",
+        "Planetary rituals (pooja / homa / sankalpa) aligned to transit windows.",
+        "Lifestyle and behavioral remedies to reinforce energetic correction.",
+        "Clear explanation of WHY each remedy is prescribed (no blind faith).",
+      ],
+
+      schedule: [
+        "🔍 Step 1 – Birth chart analysis and karmic block identification.",
+        "🪐 Step 2 – Remedy design aligned to planets, houses, and dashas.",
+        "🔥 Step 3 – Ritual execution guidance or assisted performance.",
+        "📿 Step 4 – Mantra + lifestyle correction phase (21 / 40 / 90 days).",
+        "✨ Step 5 – Integration and follow-up alignment check.",
+      ],
+
+      pricingTiers: [
+        {
+          tier: "Essential Alignment",
+          price: "₹2,999",
+          description:
+            "Basic kundali analysis + mantra and lifestyle remedies (no gemstones or rituals).",
+        },
+        {
+          tier: "Planetary Correction",
+          price: "₹5,999",
+          description:
+            "Includes gemstone guidance OR ritual prescription + detailed remedy plan.",
+        },
+        {
+          tier: "Deep Karmic Reset",
+          price: "₹11,999",
+          description:
+            "Full-spectrum remedy plan including rituals, mantras, donations, gemstones, and follow-up alignment review.",
+        },
+      ],
+
+      addOns: [
+        {
+          name: "Gemstone Procurement",
+          desc: "Energized gemstone sourced and prepared as per chart",
+        },
+        {
+          name: "Assisted Ritual Performance",
+          desc: "Ritual conducted on your behalf with sankalpa",
+        },
+        {
+          name: "Follow-up Alignment Review",
+          desc: "30-day or 90-day remedy effectiveness check",
+        },
+      ],
+    },
+    // 🧘‍♂️ Customized Karmic Meditation
+    "karmic-meditation": {
+      name: "Customized Karmic Meditation",
+      price: 2000,
+      tagline: "Meditation designed for your karma, not the crowd.",
+      description:
+        "Customized Karmic Meditation is a deeply personalized meditation experience designed using your birth chart (Kundali). Unlike generic guided meditations, this session works directly with your planetary placements, mental patterns, and karmic imprints to restore balance, clarity, and emotional stability.",
+
+      concept:
+        "Every individual carries a unique karmic rhythm shaped by planetary positions at birth. This meditation is crafted specifically for you — identifying which planet needs calming, strengthening, or balancing. Through breathwork, mantra, visualization, and silence, the session helps dissolve mental noise, emotional blocks, and subconscious resistance, allowing your natural alignment to emerge effortlessly.",
+
+      images: [
+        karmicMeditationImg
+      ],
+
+      highlights: [
+        "Personalized meditation design based on your birth chart.",
+        "Planet-specific calming or strengthening techniques.",
+        "Guided breathwork aligned to your dominant graha.",
+        "Mantra or sound frequency tailored to your karmic need.",
+        "Recorded session you can revisit post-consultation.",
+        "Suitable for beginners and advanced practitioners alike.",
+      ],
+
+      schedule: [
+        "🔍 Step 1 – Birth details analysis to identify mental and emotional patterns.",
+        "🪐 Step 2 – Planetary focus selection (Moon, Mercury, Saturn, etc.).",
+        "🧘 Step 3 – Live guided meditation session (online or in-person).",
+        "🎧 Step 4 – Delivery of personalized meditation recording.",
+        "✨ Step 5 – Guidance on daily or weekly integration practice.",
+      ],
+
+      pricingTiers: [
+        {
+          tier: "Single Session",
+          price: "₹2,000",
+          description:
+            "One personalized guided meditation session with recording.",
+        },
+        {
+          tier: "Alignment Pack",
+          price: "₹4,999",
+          description:
+            "Three-session package for sustained mental and emotional alignment.",
+        },
+      ],
+
+      addOns: [
+        {
+          name: "Mantra Prescription",
+          desc: "Personal mantra with exact count and timing guidance",
+        },
+        {
+          name: "Sleep Alignment Meditation",
+          desc: "Customized night meditation for deep rest and emotional reset",
+        },
+        {
+          name: "30-Day Practice Plan",
+          desc: "Structured meditation routine aligned to your daily schedule",
+        },
+      ],
+    }
   };
 
   const experience = experienceId ? experiences[experienceId] : null;
@@ -218,7 +350,7 @@ const LeisureDetailsPage = () => {
     <CosmicPage>
       <Navigation />
 
-      <section className="py-24">
+      <section className="pt-24 pb-12">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
             {/* Images */}
@@ -244,7 +376,7 @@ const LeisureDetailsPage = () => {
 
             {/* Details */}
             <div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">
                 {experience.name}
               </h1>
               {experience.tagline && (
@@ -253,7 +385,7 @@ const LeisureDetailsPage = () => {
                 </p>
               )}
 
-              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              <p className="text-lg text-muted-foreground mb-6 leading-relaxed text-justify">
                 {experience.description}
               </p>
 
@@ -261,7 +393,7 @@ const LeisureDetailsPage = () => {
               {experience.concept && (
                 <div className="mb-8">
                   <h2 className="text-2xl font-bold mb-3">🌿 Concept Overview</h2>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed text-justify">
                     {experience.concept}
                   </p>
                 </div>
@@ -315,7 +447,7 @@ const LeisureDetailsPage = () => {
               {experience.addOns && (
                 <div className="mb-8">
                   <h2 className="text-2xl font-bold mb-3">✨ Optional Add-ons</h2>
-                  <ul className="space-y-2 text-muted-foreground">
+                  <ul className="space-y-2 text-muted-foreground text-justify">
                     {experience.addOns.map((a, i) => (
                       <li key={i} className="flex justify-between border-b border-white/10 pb-1">
                         <span>{a.name} — {a.desc}</span>
@@ -327,7 +459,6 @@ const LeisureDetailsPage = () => {
               )}
 
               <Button
-                size="lg"
                 onClick={async () => {
                   const { data } = await supabase.auth.getUser();
                   if (!data?.user) {
@@ -341,13 +472,32 @@ const LeisureDetailsPage = () => {
                   });
                 }}
                 disabled={processing}
-                className="w-full md:w-auto bg-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all"
+                className="
+                  w-[170px]
+                  inline-block font-bold
+                  px-8 py-2
+                  rounded-lg
+                  bg-gradient-to-r from-[#FF8C00] via-[#FFB347] to-[#FFD280]
+                  text-black shadow-lg
+                  hover:shadow-[0_0_30px_rgba(255,200,100,0.8)]
+                  transition-all
+                  disabled:opacity-60 disabled:cursor-not-allowed
+                "
               >
-                Tell me more
+                {processing ? "Processing..." : "Reserve NOW"}
               </Button>
             </div>
           </div>
         </div>
+        <div className="text-center mt-10">
+          <Link
+            to="/leisure"
+            className="text-white underline text-lg hover:text-primary transition-all"
+          >
+            ← Back to Leisure
+          </Link>
+        </div>
+
       </section>
 
       <Footer />

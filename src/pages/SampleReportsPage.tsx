@@ -12,28 +12,24 @@ const reports = [
     title: "Karmic Blueprint Report",
     summary:
       "A comprehensive analysis of an individual's karmic patterns, life themes, strengths, and challenges, mapped across planetary influences.",
-    file: "/reports/karmic-blueprint-sample.pdf",
     image: reportImg,
   },
   {
     title: "Career & Purpose Alignment Report",
     summary:
       "Provides clarity on career direction, natural talents, growth phases, and decision timing aligned with karmic indicators.",
-    file: "/reports/career-alignment-sample.pdf",
     image: reportImg,
   },
   {
     title: "Relationship Harmony Report",
     summary:
       "Explores compatibility patterns, emotional dynamics, and karmic lessons influencing personal and professional relationships.",
-    file: "/reports/relationship-harmony-sample.pdf",
     image: reportImg,
   },
   {
     title: "Wellness & Energy Balance Report",
     summary:
       "Focuses on mental, emotional, and energetic well-being, highlighting imbalances and personalized practices for alignment.",
-    file: "/reports/wellness-energy-sample.pdf",
     image: reportImg,
   },
 ];
@@ -104,17 +100,6 @@ const SampleReportsPage = () => {
                       </p>
                     </div>
 
-                    <div className="mt-auto">
-                      <a href={report.file} download>
-                        <Button
-                          variant="outline"
-                          className="border-primary/50 text-primary hover:bg-primary/20 hover:text-white"
-                        >
-                          <Download className="w-4 h-4 mr-2" />
-                          Download Sample
-                        </Button>
-                      </a>
-                    </div>
                   </div>
                 </CardContent>
               </Card>

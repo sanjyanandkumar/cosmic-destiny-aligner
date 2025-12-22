@@ -81,7 +81,7 @@ const Hero = () => {
             </span>
           </h1>
 
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-2xl text-muted-foreground max-w-3xl mx-auto">
             Understand, imbibe, and master your destiny
           </p>
         </div>
@@ -201,8 +201,8 @@ const Hero = () => {
             </p>
             <Link
               to="/consulting"
-              className="inline-block font-bold mt-0 px-6 py-3 rounded-lg bg-gradient-to-r
-              from-[#FF8C00] via-[#FFB347] to-[#FFD280] text-black shadow-lg hover:scale-110 transition-transform"
+              className="inline-block font-bold mt-0 px-8 py-2 rounded-lg bg-gradient-to-r
+              from-[#FF8C00] via-[#FFB347] to-[#FFD280] text-black shadow-lg hover:shadow-[0_0_30px_rgba(255,200,100,0.8)] transition-all"
             >
               Consult NOW
             </Link>

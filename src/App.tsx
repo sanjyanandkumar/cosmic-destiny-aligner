@@ -34,6 +34,7 @@ import InstallPage from "./pages/InstallPage";
 import VerticalDetails from "./pages/VerticalDetails"
 import ConsultingAdditionalPage from "./pages/ConsultingAdditionalPage";
 import SampleReportsPage from "./pages/SampleReportsPage";
+import MoreWellnessPackages from "./pages/MoreWellnessPackages";
 
 const queryClient = new QueryClient();
 
@@ -57,6 +58,7 @@ const App = () => (
             <Route path="/wardrobe/:productId" element={<ProductDetailPage />} />
             <Route path="/leisure" element={<LeisurePage />} />
             <Route path="/leisure/:experienceId" element={<LeisureDetailsPage />} />
+            <Route path="/leisure/more" element={<MoreWellnessPackages />} />
             <Route path="/eduseam" element={<EduSeamPage />} />
             <Route path="/consulting/:experienceId" element={<ConsultingDetailsPage />} />
             {/* Additional consulting programs */}

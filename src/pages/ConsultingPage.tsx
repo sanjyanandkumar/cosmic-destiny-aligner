@@ -58,26 +58,17 @@ const ConsultingPage: React.FC = () => {
         <div className="container mx-auto px-4">
 
           {/* Heading */}
-          <div className="max-w-6xl mx-auto text-center mb-8">
+          <div className="max-w-6xl mx-auto text-center mb-6">
             <h1 className="font-playfair text-5xl font-bold text-white mb-6 leading-tight">
               BrahmaX Karmic Consulting
             </h1>
 
-            <p className="text-2xl font-semibold text-white mb-4">
-              Scaling destiny, not just business.
-            </p>
-
             <div className="max-w-6xl mx-auto">
               <p className="font-inter text-lg text-muted-foreground leading-relaxed px-4">
-                Begin your journey with the foundation — your karmic blueprint.
-                This consulting experience decodes planetary timing, personality
-                alignment, and karmic direction to help you make decisions with clarity and confidence.
+                Know your karmic blueprint; Change your destiny…
               </p>
             </div>
 
-            <p className="mt-4 text-lg italic text-primary">
-              “Your destiny has a design. We help you read it.”
-            </p>
           </div>
 
           {/* Product Card */}
@@ -86,11 +77,11 @@ const ConsultingPage: React.FC = () => {
               <div className="grid md:grid-cols-2 gap-0 items-stretch">
                 
                 {/* Image */}
-                <div className="relative h-[420px] md:h-auto overflow-hidden">
+                <div className="relative h-[380px] md:h-auto overflow-hidden">
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+                    className="w-full h-full object-cover scale-[0.9] transition-transform duration-700 hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 </div>
@@ -102,7 +93,7 @@ const ConsultingPage: React.FC = () => {
                       {product.name}
                     </h2>
 
-                    <p className="font-inter text-muted-foreground mb-4 leading-relaxed">
+                    <p className="font-inter text-muted-foreground mb-4 leading-relaxed text-justify">
                       {product.description}
                     </p>
 
@@ -112,8 +103,11 @@ const ConsultingPage: React.FC = () => {
                       <li>• Personality-fit analysis</li>
                     </ul>
 
-                    <p className="font-playfair text-4xl font-bold bg-gradient-gold bg-clip-text text-transparent mb-6">
-                      ₹ {product.price.toLocaleString()}
+                    <p className="font-playfair text-3xl mb-6">
+                      <span className="text-white mr-1">₹</span>
+                      <span className="bg-gradient-gold bg-clip-text text-transparent">
+                        {product.price.toLocaleString()}
+                      </span>
                     </p>
                   </div>
 
@@ -123,15 +117,13 @@ const ConsultingPage: React.FC = () => {
                       onClick={handleCheckout}
                       disabled={processing}
                       className="
-                        inline-flex items-center justify-center
-                        w-[200px]           /* 👈 SAME visual width as Hero */
-                        px-6 py-3
-                        font-bold
+                        inline-block font-bold
+                        px-8 py-2
                         rounded-lg
                         bg-gradient-to-r from-[#FF8C00] via-[#FFB347] to-[#FFD280]
-                        text-black
-                        shadow-lg
-                        hover:scale-110 transition-transform
+                        text-black shadow-lg
+                        hover:shadow-[0_0_30px_rgba(255,200,100,0.8)]
+                        transition-all
                         disabled:opacity-60 disabled:cursor-not-allowed
                       "
                     >
@@ -147,7 +139,7 @@ const ConsultingPage: React.FC = () => {
           <div className="text-center mt-6">
             <Link
               to="/consulting/additional"
-              className="text-primary text-lg underline hover:text-primary/70 transition-all"
+              className="text-white text-lg underline hover:text-primary/70 transition-all"
             >
               More Consulting Services →
             </Link>

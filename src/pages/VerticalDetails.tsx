@@ -63,11 +63,11 @@ export default function VerticalDetails() {
               Karmic Verticals
             </h1>
 
-            <p className="font-inter text-xl text-primary mb-2">
+            <p className="font-inter text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-2">
               “Four Paths. One Purpose — to Align Karma with Creation.”
             </p>
 
-            <p className="font-inter text-lg text-muted-foreground leading-relaxed">
+            <p className="font-inter text-lg leading-relaxed">
               Each BrahmaX vertical embodies the universal arc of evolution — from soul to system, idea to identity. Together, they represent the four karmic pillars of enterprise: Strategy, Style, Knowledge, and Experience.
             </p>
           </div>
@@ -89,25 +89,15 @@ export default function VerticalDetails() {
                     {/* Image + Button Column */}
                     <div className="relative md:w-1/3 flex flex-col items-center">
                       
-                      <div className="relative h-64 w-full">
+                      <div className="relative h-64 h-full">
                         <img
                           src={v.image}
                           alt={v.title}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover scale-[0.9] "
                         />
                         <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent"></div>
                       </div>
 
-                      {/* CTA BUTTON UNDER IMAGE */}
-                      <Link
-                        to={v.link}
-                        className="mt-6 mb-6 inline-block px-6 py-3 rounded-full text-black font-semibold
-                        bg-gradient-to-r from-[#FFB347] via-[#FFD280] to-[#FF8C00]
-                        shadow-[0_0_20px_rgba(255,200,100,0.4)] hover:shadow-[0_0_35px_rgba(255,200,100,0.8)]
-                        transition-all duration-300 hover:scale-105"
-                      >
-                        Explore →
-                      </Link>
                     </div>
 
                     {/* Text Section */}
@@ -116,9 +106,9 @@ export default function VerticalDetails() {
                         {v.title}
                       </h2>
 
-                      <p className="text-primary/80 font-inter mb-4">{v.tagline}</p>
+                      <p className="text-muted-foreground font-inter mb-4">{v.tagline}</p>
 
-                      <p className="text-muted-foreground mb-6 leading-relaxed">
+                      <p className="mb-6 leading-relaxed text-justify">
                         {v.description}
                       </p>
 
@@ -127,6 +117,23 @@ export default function VerticalDetails() {
                           “{v.quote}”
                         </blockquote>
                       )}
+                      {/* CTA BUTTON UNDER IMAGE */}
+                      <Link
+                        to={v.link}
+                        className="
+                          inline-block mt-4
+                          w-[170px]
+                          font-bold
+                          px-8 py-2
+                          rounded-lg
+                          bg-gradient-to-r from-[#FF8C00] via-[#FFB347] to-[#FFD280]
+                          text-black shadow-lg
+                          hover:shadow-[0_0_30px_rgba(255,200,100,0.8)]
+                          transition-all text-center
+                        "
+                      >
+                        Explore →
+                      </Link>
                     </div>
                   </div>
                 </Card>
