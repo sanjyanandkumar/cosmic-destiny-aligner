@@ -54,7 +54,7 @@ const ConsultingPage: React.FC = () => {
       <Navigation />
 
       {/* 🌌 Consulting Section */}
-      <section id="consulting" className="py-24">
+      <section id="consulting" className="pt-20 pb-8">
         <div className="container mx-auto px-4">
 
           {/* Heading */}
