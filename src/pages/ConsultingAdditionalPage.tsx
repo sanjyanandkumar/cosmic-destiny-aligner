@@ -36,7 +36,7 @@ const additionalStages = [
   },
   {
     id: "karmic-colors",
-    title: "Website Creation Using Karmic Colors",
+    title: "Karmic Color Lab",
     description:
       "We design your digital architecture, brand psychology and UI/UX to resonate with your planetary energies and karmic blueprint.",
     image: websiteImg,
