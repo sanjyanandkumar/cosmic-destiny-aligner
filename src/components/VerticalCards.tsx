@@ -7,6 +7,7 @@ import wardrobeImg from "@/assets/cosmic-wallet.jpg";
 import eduseamImg from "@/assets/career-guidance.png";
 import leisureImg from "@/assets/karmic-meditation.jpg";
 import bg from "@/assets/cosmic-background.png";
+import founderImg from "@/assets/founder.jpg";
 
 const verticals = [
   {
@@ -46,7 +47,7 @@ const VerticalCards = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-8">
             <h2 className="font-playfair text-4xl md:text-5xl font-bold text-white mb-4">
-              BrahmaX verticals
+              BrahmaX Verticals
             </h2>
             <p className="font-inter text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               Four Paths. One Purpose — to Align Karma with Creation
@@ -81,6 +82,84 @@ const VerticalCards = () => {
                 </Card>
               </Link>
             ))}
+          </div>
+        </div>
+        {/* ============================
+            Meet the Founder (Bottom)
+          ============================ */}
+        <div className="max-w-6xl mx-auto mt-16 mb-8">
+          <div className="bg-white/10 border border-white/20 backdrop-blur-lg rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(255,215,0,0.25)]">
+            <div className="flex flex-col md:flex-row items-stretch">
+
+              {/* Founder Image */}
+              <div className="md:w-1/3 relative">
+                <img
+                  src={founderImg}
+                  alt="Founder of BrahmaX"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent" />
+              </div>
+
+              {/* Founder Content */}
+              <div className="p-10 md:w-2/3 flex flex-col justify-between">
+                <div>
+                  <h2 className="font-playfair text-4xl text-white font-bold mb-4">
+                    Karmic Connect
+                  </h2>
+
+                  <p className="text-muted-foreground leading-relaxed mb-6">
+                    Guided by decades of spiritual study, astrological mastery, and real-world
+                    execution, the founder of BrahmaX brings karmic intelligence into practical
+                    decision-making for individuals, businesses, and institutions.
+                  </p>
+
+                  <ul className="space-y-2 text-white/90 text-sm mb-8">
+                    <li className="flex gap-2">
+                      <span className="text-primary">•</span>
+                      Trained in Vedic astrology, karmic sciences, and planetary psychology
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="text-primary">•</span>
+                      Experience with founders, leaders, and families across domains
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="text-primary">•</span>
+                      Decodes destiny patterns and timing-based decisions
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="text-primary">•</span>
+                      Practical, logic-backed, no-superstition guidance
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="text-primary">•</span>
+                      Focus on long-term alignment, not short-term predictions
+                    </li>
+                  </ul>
+                </div>
+
+                {/* CTA */}
+                <div>
+                  <Link
+                    to="/consulting"
+                    className="
+                      inline-block
+                      w-[170px]
+                      font-bold
+                      px-8 py-2
+                      rounded-lg
+                      bg-gradient-to-r from-[#FF8C00] via-[#FFB347] to-[#FFD280]
+                      text-black shadow-lg
+                      hover:shadow-[0_0_30px_rgba(255,200,100,0.8)]
+                      transition-all
+                      text-center
+                    "
+                  >
+                    Consult NOW
+                  </Link>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

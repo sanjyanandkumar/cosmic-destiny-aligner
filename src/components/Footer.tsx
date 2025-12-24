@@ -160,7 +160,7 @@ const Footer = () => {
             <p className="text-sm text-white/80">
               © 2025 DarkShadow Ventures LLP. All rights reserved.
             </p>
-            <p className="text-sm text-white/80">
+            <p className="text-sm text-white/80 text-left">
               Designer: Sanjay Anandkumar
             </p>
           </div>

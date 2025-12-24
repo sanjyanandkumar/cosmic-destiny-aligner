@@ -76,7 +76,7 @@ const ContactPage = () => {
                     <Instagram className="h-7 w-7" />
                   </a>
                   <a
-                    href="https://linkedin.com/in/KetteTalksByAbi"
+                    href="https://www.linkedin.com/in/abishek-kadambi-267692267/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-white hover:text-primary transition"

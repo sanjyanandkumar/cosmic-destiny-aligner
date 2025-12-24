@@ -18,6 +18,7 @@ interface SpeakToFounderDialogProps {
   onOpenChange: (open: boolean) => void;
   serviceId: string;
   serviceTitle: string;
+  serviceType?: string;
 }
 
 export default function SpeakToFounderDialog({
@@ -25,6 +26,7 @@ export default function SpeakToFounderDialog({
   onOpenChange,
   serviceId,
   serviceTitle,
+  serviceType,
 }: SpeakToFounderDialogProps) {
   const { toast } = useToast();
 
@@ -42,14 +44,13 @@ export default function SpeakToFounderDialog({
       return;
     }
 
-    const { error } = await supabase
-    .from("founder_leads")
-    .insert({
+    const { error } = await supabase.from("founder_leads").insert({
       name,
       email,
       phone,
       service_id: serviceId,
       service_title: serviceTitle,
+      service_type: serviceType ?? null,
     });
 
     if (error) {
@@ -61,7 +62,6 @@ export default function SpeakToFounderDialog({
       return;
     }
 
-    // TODO: Save to DB (Supabase)
     toast({
       title: "Request received",
       description: `We will contact you regarding ${serviceTitle}`,

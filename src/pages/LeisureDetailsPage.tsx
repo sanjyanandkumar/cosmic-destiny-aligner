@@ -189,22 +189,18 @@ const LeisureDetailsPage = () => {
         {
           name: "BrahmaX Wardrobe Kit",
           desc: "Custom tee + mala + copper bottle",
-          price: "₹1,999",
         },
         {
           name: "Personal Astro Report",
           desc: "Printed karmic blueprint",
-          price: "₹999",
         },
         {
           name: "Couple Karma Session",
           desc: "2-person guided reading",
-          price: "₹3,499",
         },
         {
           name: "Sri Lanka Aura Photography",
           desc: "Local collaboration",
-          price: "₹2,000",
         },
       ],
     },
@@ -239,22 +235,16 @@ const LeisureDetailsPage = () => {
         "🔍 Step 1 – Birth chart analysis and karmic block identification.",
         "🪐 Step 2 – Remedy design aligned to planets, houses, and dashas.",
         "🔥 Step 3 – Ritual execution guidance or assisted performance.",
-        "📿 Step 4 – Mantra + lifestyle correction phase (21 / 40 / 90 days).",
+        "📿 Step 4 – Mantra + lifestyle correction phase (21 / 48 / 90 days).",
         "✨ Step 5 – Integration and follow-up alignment check.",
       ],
 
       pricingTiers: [
         {
-          tier: "Essential Alignment",
+          tier: "Karmic Alignment & Planetary Correction",
           price: "₹2,999",
           description:
-            "Basic kundali analysis + mantra and lifestyle remedies (no gemstones or rituals).",
-        },
-        {
-          tier: "Planetary Correction",
-          price: "₹5,999",
-          description:
-            "Includes gemstone guidance OR ritual prescription + detailed remedy plan.",
+            "A kundali-based remedy program combining mantra and lifestyle guidance with either gemstone or ritual-based planetary corrections, delivered through a clear action plan.",
         },
         {
           tier: "Deep Karmic Reset",
@@ -335,10 +325,6 @@ const LeisureDetailsPage = () => {
           name: "Sleep Alignment Meditation",
           desc: "Customized night meditation for deep rest and emotional reset",
         },
-        {
-          name: "30-Day Practice Plan",
-          desc: "Structured meditation routine aligned to your daily schedule",
-        },
       ],
     }
   };
@@ -385,14 +371,14 @@ const LeisureDetailsPage = () => {
                 </p>
               )}
 
-              <p className="text-lg text-muted-foreground mb-6 leading-relaxed text-justify">
+              <p className="text-muted-foreground leading-relaxed text-justify mb-4">
                 {experience.description}
               </p>
 
               {/* Concept */}
               {experience.concept && (
                 <div className="mb-8">
-                  <h2 className="text-2xl font-bold mb-3">🌿 Concept Overview</h2>
+                  <h2 className="text-2xl font-bold mb-4">🌿 Concept Overview</h2>
                   <p className="text-muted-foreground leading-relaxed text-justify">
                     {experience.concept}
                   </p>
@@ -402,7 +388,7 @@ const LeisureDetailsPage = () => {
               {/* Highlights */}
               {experience.highlights && (
                 <div className="mb-8">
-                  <h2 className="text-2xl font-bold mb-3">🔱 Highlights</h2>
+                  <h2 className="text-2xl font-bold mb-4">🔱 Highlights</h2>
                   <ul className="space-y-2 text-muted-foreground">
                     {experience.highlights.map((h, i) => (
                       <li key={i}>• {h}</li>

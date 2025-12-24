@@ -10,12 +10,15 @@ import bandipurImg from "@/assets/bandipur-forest.jpg";
 import sriLankaImg from "@/assets/sri-lanka-retreat.jpg"; 
 import CosmicPage from "@/components/CosmicPage";
 import { Button } from "@/components/ui/button";
-import { useCart } from "@/contexts/CartContext";
-import { toast } from "@/hooks/use-toast";
 import remediesImg from "@/assets/karmic-remedies.png";
+import SpeakToFounderDialog from "@/components/SpeakToFounderDialog";
 
 const LeisurePage: React.FC = () => {
-  const { addToCart } = useCart();
+  const [openLeadDialog, setOpenLeadDialog] = React.useState(false);
+  const [selectedExperience, setSelectedExperience] = React.useState<{
+    id: string;
+    name: string;
+  } | null>(null);
 
   const experiences = [
     {
@@ -95,23 +98,16 @@ const LeisurePage: React.FC = () => {
 
                           {/* ⭐ Add to Cart Button */}
                           <div className="flex justify-center mt-2">
-                            <Button 
+                            <Button
                               onClick={(e) => {
-                                e.preventDefault();
+                                e.preventDefault(); // prevent <Link> navigation
 
-                                addToCart({
+                                setSelectedExperience({
                                   id: exp.id,
                                   name: exp.name,
-                                  price: exp.price ?? 0,
-                                  quantity: 1,
-                                  image_url: exp.image,
-                                  category: "Leisure Experience",
                                 });
 
-                                toast({
-                                  title: "Added to Cart!",
-                                  description: `${exp.name} has been added to your cart.`,
-                                });
+                                setOpenLeadDialog(true);
                               }}
                               className="
                                 mt-4
@@ -148,6 +144,15 @@ const LeisurePage: React.FC = () => {
       </section>
 
       <Footer />
+        {openLeadDialog && selectedExperience && (
+          <SpeakToFounderDialog
+            open={openLeadDialog}
+            onOpenChange={setOpenLeadDialog}
+            serviceId={selectedExperience.id}
+            serviceTitle={selectedExperience.name}
+            serviceType="Leisure Experience"
+          />
+        )}
     </CosmicPage>
   );
 };

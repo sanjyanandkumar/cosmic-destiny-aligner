@@ -20,21 +20,6 @@ import SpeakToFounderDialog from "@/components/SpeakToFounderDialog";
    ============================ */
 const additionalStages = [
   {
-    id: "founder-profile",
-    title: "Meet the Founder",
-    description:
-      "Guided by decades of spiritual study, astrological mastery, and real-world execution, the founder of BrahmaX brings karmic intelligence into practical decision-making for individuals, businesses, and institutions.",
-    image: founderImg,
-    bullets: [
-      "Trained in Vedic astrology, karmic sciences, and planetary psychology",
-      "Experience working with founders, leaders, and families across domains",
-      "Specializes in decoding destiny patterns and timing-based decisions",
-      "Bridges spiritual wisdom with modern business and life challenges",
-      "Known for practical, no-superstition, logic-backed guidance",
-      "Focus on long-term alignment, not short-term predictions",
-    ],
-  },
-  {
     id: "brand-architecture",
     title: "Strategic Brand Architecture",
     description:
@@ -50,6 +35,19 @@ const additionalStages = [
     ],
   },
   {
+    id: "karmic-colors",
+    title: "Website Creation Using Karmic Colors",
+    description:
+      "We design your digital architecture, brand psychology and UI/UX to resonate with your planetary energies and karmic blueprint.",
+    image: websiteImg,
+    bullets: [
+      "Website design focusing on UX, layout, and visuals",
+      "Content planning aligned to brand purpose",
+      "Development using modern frameworks",
+      "Hosting, performance & long-term maintenance",
+    ],
+  },
+  {
     id: "communication",
     title: "Communication & Positioning",
     description:
@@ -61,19 +59,6 @@ const additionalStages = [
       "Investor deck + funding guidance",
       "Monthly karmic growth alignment sessions",
       "Advisory on partnerships & global expansion",
-    ],
-  },
-  {
-    id: "karmic-colors",
-    title: "Website Creation Using Karmic Colors",
-    description:
-      "We design your digital architecture, brand psychology and UI/UX to resonate with your planetary energies and karmic blueprint.",
-    image: websiteImg,
-    bullets: [
-      "Website design focusing on UX, layout, and visuals",
-      "Content planning aligned to brand purpose",
-      "Development using modern frameworks",
-      "Hosting, performance & long-term maintenance",
     ],
   },
 ];

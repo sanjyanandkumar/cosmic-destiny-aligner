@@ -73,7 +73,7 @@ const ConsultingDetailsPage = () => {
       image: karmicConsultingImg,
     },
     "karmic-colors": {
-      title: "Stage 4 — Website Creation Using Karmic Colors",
+      title: "Stage 4 — Karmic color lab",
       price: 5000,
       goal:
         "Initiating discussion on web architecture and design aligned with karmic colors.",

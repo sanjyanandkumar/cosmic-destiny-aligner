@@ -17,14 +17,6 @@ const packages = [
     image: baliTripImg,
   },
   {
-    id: "bandipur-retreat",
-    name: "Bandipur Tour",
-    price: 9999,
-    description:
-      "Organic wellness retreat designed to align mind, body, and soul in the serene energy of Bandipur Forest, Karnataka.",
-    image: bandipurImg,
-  },
-  {
     id: "sri-lanka-retreat",
     name: "Karmic Island Experience – Sri Lanka",
     price: 55000,
@@ -53,7 +45,7 @@ export default function MoreWellnessPackages() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-10">
             {packages.map((pkg) => (
               <Link key={pkg.id} to={`/leisure/${pkg.id}`}>
                 <Card className="overflow-hidden bg-white/10 border border-white/20 hover:shadow-[0_0_25px_rgba(255,220,120,0.4)] transition-all">
