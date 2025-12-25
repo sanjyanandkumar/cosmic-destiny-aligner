@@ -52,6 +52,7 @@ const LeisureDetailsPage = () => {
       price?: number;
       priceRange?: string;
       tagline?: string;
+      startingPrice?: number,
       description: string;
       concept?: string;
       images: string[];
@@ -144,8 +145,9 @@ const LeisureDetailsPage = () => {
       name: "Karmic Island Experience – Sri Lanka",
       priceRange: "₹47,999 – ₹64,999",
       tagline: "Lose your karma, not your calm. 🌊",
+      startingPrice: 40000,
       description:
-        "A karmic escape into the heart of Sri Lanka’s spiritual energy — lush forests, sacred temples, and coastal calm.",
+        `A karmic escape into the heart of Sri Lanka’s spiritual energy — lush forests, sacred temples, and coastal calm.`,
       concept:
         "A guided karmic escape into the heart of Sri Lanka’s spiritual energy — lush forests, sacred temples, and coastal calm. Designed by Abi (BrahmaX Leisure, Darkshadow Ventures LLP.) for seekers wishing to realign the Mind, Body, and Soul through astrology, nature, and soulful experiences.",
       images: [sriLankaImg, srilankaColomboImg, srilankaKandyImg],
@@ -365,13 +367,19 @@ const LeisureDetailsPage = () => {
               <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">
                 {experience.name}
               </h1>
-              {experience.tagline && (
-                <p className="text-xl italic text-muted-foreground mb-6">
+              <div className="mb-6">
+                <p className="text-xl italic text-muted-foreground mb-1">
                   {experience.tagline}
                 </p>
-              )}
 
-              <p className="text-muted-foreground leading-relaxed text-justify mb-4">
+                {experience.startingPrice && (
+                  <p className="text-white font-semibold text-lg">
+                    Starting from ₹{experience.startingPrice.toLocaleString()} per person
+                  </p>
+                )}
+              </div>
+
+              <p className="text-muted-foreground leading-relaxed text-justify mb-4 whitespace-pre-line">
                 {experience.description}
               </p>
 
