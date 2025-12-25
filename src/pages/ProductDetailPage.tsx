@@ -8,6 +8,7 @@ import cosmicWalletImg from "@/assets/cosmic-wallet.jpg";
 import cosmicHandbagImg from "@/assets/cosmic-handbag.jpg";
 import bg from "@/assets/cosmic-background.png";
 import { supabase } from "@/integrations/supabase/client";
+import CosmicPage from "@/components/CosmicPage";
 
 import {
   Carousel,
@@ -57,15 +58,12 @@ const ProductDetailPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-transparent">
+      <div className="min-h-screen bg-transparent">
+  <CosmicPage>
       <Navigation />
 	<main
-	  className="relative py-24 bg-cover bg-center bg-no-repeat"
-	  style={{ backgroundImage: `url(${bg})` }}
+	  className="relative pt-24 pb-12 bg-cover bg-center bg-no-repeat"
 	>
-	  {/* Dark overlay */}
-	  <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
-
 	  {/* Page Content */}
 	  <div className="relative z-10 container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
@@ -124,36 +122,46 @@ const ProductDetailPage = () => {
                 </ul>
               </div>
 
-              <Button
-                size="lg"
-                onClick={async () => {
-                  const { data } = await supabase.auth.getUser();
+              <div className="flex justify-center mt-4">
+                <Button
+                  onClick={async () => {
+                    const { data } = await supabase.auth.getUser();
 
-                  // ✅ If not logged in → redirect to login with return-to link
-                  if (!data?.user) {
-                    window.location.href = `/login?redirect=/wardrobe/${productId}`;
-                    return;
-                  }
+                    if (!data?.user) {
+                      window.location.href = `/login?redirect=/wardrobe/${productId}`;
+                      return;
+                    }
 
-                  // ✅ If logged in → open checkout dialog
-                  startCheckout({
-                    name: product.name,
-                    price: product.price,
-                    description: product.description,
-                  });
-                }}
-                disabled={processing}
-                className="w-full md:w-auto bg-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all"
-              >
-                Buy Now - ₹{product.price.toLocaleString()}
-              </Button>
+                    startCheckout({
+                      name: product.name,
+                      price: product.price,
+                      description: product.description,
+                    });
+                  }}
+                  disabled={processing}
+                  className="
+                    w-[170px]
+                    inline-block font-bold
+                    px-8 py-2
+                    rounded-lg
+                    bg-gradient-to-r from-[#FF8C00] via-[#FFB347] to-[#FFD280]
+                    text-black shadow-lg
+                    hover:shadow-[0_0_30px_rgba(255,200,100,0.8)]
+                    transition-all
+                    disabled:opacity-60 disabled:cursor-not-allowed
+                  "
+                >
+                  {processing ? "Processing..." : "Buy NOW"}
+                </Button>
+              </div>
             </div>
           </div>
         </div>
         </div>
       </main>
       <Footer />
-      <CheckoutDialog
+    </CosmicPage>
+    <CheckoutDialog
         open={dialogOpen}
         onOpenChange={handleCloseDialog}
         productName={currentProduct?.name || ""}
