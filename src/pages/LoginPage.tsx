@@ -8,6 +8,7 @@ import bg from "@/assets/cosmic-background.png";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import GalaxyBackground from "@/components/GalaxyBackground";
+import { logActivity } from "@/utils/logActivity";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -44,10 +45,14 @@ export default function LoginPage() {
         variant: "destructive",
       });
     } else {
+      await logActivity({
+        activityType: "login",
+        vertical: "auth",
+      });
       toast({ title: "Success", description: "Logged in successfully!" });
 
       const params = new URLSearchParams(window.location.search);
-      const redirectTo = params.get("redirect") || "/admin";
+      const redirectTo = params.get("redirect") || "/";
       navigate(redirectTo);
     }
   };

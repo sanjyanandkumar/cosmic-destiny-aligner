@@ -4,12 +4,8 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { useCheckout } from "@/hooks/use-checkout";
 import { CheckoutDialog } from "@/components/CheckoutDialog";
-import cosmicWalletImg from "@/assets/cosmic-wallet.jpg";
-import cosmicHandbagImg from "@/assets/cosmic-handbag.jpg";
-import bg from "@/assets/cosmic-background.png";
 import { supabase } from "@/integrations/supabase/client";
 import CosmicPage from "@/components/CosmicPage";
-
 import {
   Carousel,
   CarouselContent,
@@ -17,128 +13,190 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { useEffect, useState } from "react";
 
 const ProductDetailPage = () => {
   const { productId } = useParams();
-  const { dialogOpen, currentProduct, processing, startCheckout, handleConfirmCheckout, handleCloseDialog } = useCheckout();
+  const [product, setProduct] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
-  const products = {
-    "cosmic-wallet": {
-      name: "Cosmic Wallet",
-      price: 400,
-      description: "Luxury astro-fashion wallet with cosmic patterns and zodiac symbols.",
-      images: [cosmicWalletImg, cosmicWalletImg, cosmicWalletImg],
-      details: "This premium wallet is crafted with celestial patterns and zodiac symbols, energetically aligned to enhance your financial flow. Made with high-quality materials and cosmic consciousness.",
-      features: [
-        "Zodiac-aligned design",
-        "Premium materials",
-        "Compact and elegant",
-        "Energetically charged",
-      ],
-    },
-    "celestial-handbag": {
-      name: "Celestial Handbag",
-      price: 1000,
-      description: "Premium astro-fashion handbag with celestial patterns and star symbols.",
-      images: [cosmicHandbagImg, cosmicHandbagImg, cosmicHandbagImg],
-      details: "A luxurious handbag designed with celestial patterns and star symbols, crafted to align with your planetary energies. Perfect for the conscious fashionista.",
-      features: [
-        "Celestial pattern design",
-        "Spacious interior",
-        "Premium craftsmanship",
-        "Cosmic energy alignment",
-      ],
-    },
-  };
+  const {
+    dialogOpen,
+    currentProduct,
+    processing,
+    startCheckout,
+    handleConfirmCheckout,
+    handleCloseDialog,
+  } = useCheckout();
 
-  const product = productId ? products[productId as keyof typeof products] : null;
+  useEffect(() => {
+    const loadProduct = async () => {
+      const { data, error } = await supabase
+        .from("products")
+        .select(`
+          id,
+          name,
+          price,
+          description,
+          details,
+          quantity_available,
+          product_images (
+            image_url,
+            sort_order
+          ),
+          product_features (
+            feature
+          )
+        `)
+        .eq("id", productId)
+        .single();
+
+      if (error || !data) {
+        setProduct(null);
+        setLoading(false);
+        return;
+      }
+
+      setProduct({
+        ...data,
+        product_images: (data.product_images || []).sort(
+          (a: any, b: any) => a.sort_order - b.sort_order
+        ),
+        product_features: data.product_features || [],
+      });
+
+      setLoading(false);
+    };
+
+    loadProduct();
+  }, [productId]);
+
+  /* ---------------- LOADING ---------------- */
+
+  if (loading) {
+    return (
+      <CosmicPage>
+        <Navigation />
+        <div className="pt-24 text-center text-white">
+          Loading product…
+        </div>
+        <Footer />
+      </CosmicPage>
+    );
+  }
+
+  /* ---------------- NOT FOUND ---------------- */
 
   if (!product) {
     return <Navigate to="/wardrobe" replace />;
   }
 
+  const outOfStock = product.quantity_available <= 0;
+
   return (
-      <div className="min-h-screen bg-transparent">
-  <CosmicPage>
+    <CosmicPage>
       <Navigation />
-	<main
-	  className="relative pt-24 pb-12 bg-cover bg-center bg-no-repeat"
-	>
-	  {/* Page Content */}
-	  <div className="relative z-10 container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
+
+      <main className="pt-24 pb-12">
+        <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12">
-            {/* Image Carousel */}
-            <div>
-              <Carousel className="w-full">
-                <CarouselContent>
-                  {product.images.map((image, index) => (
-                    <CarouselItem key={index}>
+
+            {/* -------- Image Carousel -------- */}
+            <Carousel>
+              <CarouselContent>
+                {product.product_images.length > 0 ? (
+                  product.product_images.map((img: any, i: number) => (
+                    <CarouselItem key={i}>
                       <div className="relative h-[500px] overflow-hidden rounded-lg">
                         <img
-                          src={image}
-                          alt={`${product.name} - Image ${index + 1}`}
+                          src={img.image_url}
+                          alt={`${product.name} image ${i + 1}`}
                           className="w-full h-full object-cover"
                         />
                       </div>
                     </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious className="left-4" />
-                <CarouselNext className="right-4" />
-              </Carousel>
-            </div>
+                  ))
+                ) : (
+                  <CarouselItem>
+                    <div className="h-[500px] flex items-center justify-center bg-black/20 text-white">
+                      No images available
+                    </div>
+                  </CarouselItem>
+                )}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
 
-            {/* Product Details */}
+            {/* -------- Product Details -------- */}
             <div className="flex flex-col">
               <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
                 {product.name}
               </h1>
-              
+
               <p className="text-xl text-muted-foreground mb-6">
                 {product.description}
               </p>
 
-              <div className="mb-8">
+              <div className="mb-6">
                 <p className="text-4xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-                  ₹{product.price.toLocaleString()}
+                  ₹{product.price}
+                </p>
+
+                <p
+                  className={`mt-2 text-sm font-semibold ${
+                    outOfStock ? "text-red-400" : "text-green-400"
+                  }`}
+                >
+                  {outOfStock
+                    ? "Out of Stock"
+                    : `In Stock (${product.quantity_available} available)`}
                 </p>
               </div>
 
-              <div className="mb-8">
-                <h2 className="text-2xl font-bold mb-4">About This Product</h2>
-                <p className="text-muted-foreground leading-relaxed mb-6">
-                  {product.details}
-                </p>
+              {/* -------- Details -------- */}
+              {product.details && (
+                <div className="mb-8">
+                  <h2 className="text-2xl font-bold mb-4">
+                    About This Product
+                  </h2>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {product.details}
+                  </p>
+                </div>
+              )}
 
-                <h3 className="text-xl font-bold mb-3">Features</h3>
-                <ul className="space-y-2">
-                  {product.features.map((feature, index) => (
-                    <li key={index} className="flex items-center text-muted-foreground">
-                      <span className="w-2 h-2 bg-primary rounded-full mr-3"></span>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              {/* -------- Features -------- */}
+              {product.product_features.length > 0 && (
+                <div className="mb-8">
+                  <h3 className="text-xl font-bold mb-3">
+                    Features
+                  </h3>
+                  <ul className="space-y-2">
+                    {product.product_features.map((f: any, i: number) => (
+                      <li
+                        key={i}
+                        className="flex items-center text-muted-foreground"
+                      >
+                        <span className="w-2 h-2 bg-primary rounded-full mr-3"></span>
+                        {f.feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
+              {/* -------- Buy Button -------- */}
               <div className="flex justify-center mt-4">
                 <Button
-                  onClick={async () => {
-                    const { data } = await supabase.auth.getUser();
-
-                    if (!data?.user) {
-                      window.location.href = `/login?redirect=/wardrobe/${productId}`;
-                      return;
-                    }
-
+                  onClick={() =>
                     startCheckout({
                       name: product.name,
                       price: product.price,
                       description: product.description,
-                    });
-                  }}
-                  disabled={processing}
+                    })
+                  }
+                  disabled={processing || outOfStock}
                   className="
                     w-[170px]
                     inline-block font-bold
@@ -151,17 +209,21 @@ const ProductDetailPage = () => {
                     disabled:opacity-60 disabled:cursor-not-allowed
                   "
                 >
-                  {processing ? "Processing..." : "Buy NOW"}
+                  {processing
+                    ? "Processing…"
+                    : outOfStock
+                    ? "Out of Stock"
+                    : "Buy NOW"}
                 </Button>
               </div>
             </div>
           </div>
         </div>
-        </div>
       </main>
+
       <Footer />
-    </CosmicPage>
-    <CheckoutDialog
+
+      <CheckoutDialog
         open={dialogOpen}
         onOpenChange={handleCloseDialog}
         productName={currentProduct?.name || ""}
@@ -169,7 +231,7 @@ const ProductDetailPage = () => {
         onConfirm={handleConfirmCheckout}
         processing={processing}
       />
-    </div>
+    </CosmicPage>
   );
 };
 

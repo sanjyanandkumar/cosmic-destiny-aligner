@@ -10,6 +10,7 @@ export default function AdminGuard({ children }: { children: React.ReactNode }) 
     async function verify() {
       const { data: { user } } = await supabase.auth.getUser();
 
+      console.log(user.id);
       if (!user) {
         navigate("/login");
         return;

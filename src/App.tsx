@@ -24,7 +24,6 @@ import NotFound from "./pages/NotFound";
 import LoginPage from "./pages/LoginPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import AdminGuard from "@/components/AdminGuard";
-import AdminProducts from "@/pages/admin/AdminProducts";
 import AdminOrders from "@/pages/admin/AdminOrders";
 import RegisterPage from "./pages/RegisterPage";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -35,6 +34,9 @@ import VerticalDetails from "./pages/VerticalDetails"
 import ConsultingAdditionalPage from "./pages/ConsultingAdditionalPage";
 import SampleReportsPage from "./pages/SampleReportsPage";
 import MoreWellnessPackages from "./pages/MoreWellnessPackages";
+import CreateProductPage from "@/pages/admin/CreateProductPage";
+import ProductListPage from "./pages/admin/AdminProductList";
+import EditProductPage from "./pages/admin/EditProductPage";
 
 const queryClient = new QueryClient();
 
@@ -74,14 +76,6 @@ const App = () => (
             <Route path="/login" element={<LoginPage />} />
             <Route path="/sample-reports" element={<SampleReportsPage />} />
             <Route
-              path="/admin/products"
-              element={
-                <AdminGuard>
-                  <AdminProducts />
-                </AdminGuard>
-              }
-            />
-            <Route
               path="/admin/orders"
               element={
                 <AdminGuard>
@@ -89,6 +83,32 @@ const App = () => (
                 </AdminGuard>
               }
             />
+            <Route
+              path="/admin/products"
+              element={
+                <AdminGuard>
+                  <ProductListPage />
+                </AdminGuard>
+              }
+            />
+
+            <Route
+              path="/admin/products/new"
+              element={
+                <AdminGuard>
+                  <CreateProductPage />
+                </AdminGuard>
+              }
+            />
+            <Route
+              path="/admin/products/:id/edit"
+              element={
+                <AdminGuard>
+                  <EditProductPage />
+                </AdminGuard>
+              }
+            />
+            
             <Route path="*" element={<NotFound />} />
           </Routes>
 

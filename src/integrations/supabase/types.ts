@@ -24,6 +24,7 @@ export type Database = {
           phone: string | null
           service_id: string | null
           service_title: string | null
+          service_type: string | null
         }
         Insert: {
           created_at?: string | null
@@ -34,6 +35,7 @@ export type Database = {
           phone?: string | null
           service_id?: string | null
           service_title?: string | null
+          service_type?: string | null
         }
         Update: {
           created_at?: string | null
@@ -44,6 +46,7 @@ export type Database = {
           phone?: string | null
           service_id?: string | null
           service_title?: string | null
+          service_type?: string | null
         }
         Relationships: []
       }
@@ -146,6 +149,64 @@ export type Database = {
         }
         Relationships: []
       }
+      product_features: {
+        Row: {
+          feature: string
+          id: string
+          product_id: string | null
+          sort_order: number | null
+        }
+        Insert: {
+          feature: string
+          id?: string
+          product_id?: string | null
+          sort_order?: number | null
+        }
+        Update: {
+          feature?: string
+          id?: string
+          product_id?: string | null
+          sort_order?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "product_features_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      product_images: {
+        Row: {
+          id: string
+          image_url: string
+          product_id: string | null
+          sort_order: number | null
+        }
+        Insert: {
+          id?: string
+          image_url: string
+          product_id?: string | null
+          sort_order?: number | null
+        }
+        Update: {
+          id?: string
+          image_url?: string
+          product_id?: string | null
+          sort_order?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "product_images_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       products: {
         Row: {
           addons: Json | null
@@ -200,18 +261,66 @@ export type Database = {
         }
         Relationships: []
       }
-      user_profiles: {
+      user_activity: {
         Row: {
-          role: string | null
+          activity_type: string
+          created_at: string
+          entity_id: string | null
+          entity_type: string | null
+          id: string
+          ip_address: unknown
+          metadata: Json | null
+          source: string | null
+          user_agent: string | null
           user_id: string
+          vertical: string | null
         }
         Insert: {
-          role?: string | null
+          activity_type: string
+          created_at?: string
+          entity_id?: string | null
+          entity_type?: string | null
+          id?: string
+          ip_address?: unknown
+          metadata?: Json | null
+          source?: string | null
+          user_agent?: string | null
           user_id: string
+          vertical?: string | null
         }
         Update: {
-          role?: string | null
+          activity_type?: string
+          created_at?: string
+          entity_id?: string | null
+          entity_type?: string | null
+          id?: string
+          ip_address?: unknown
+          metadata?: Json | null
+          source?: string | null
+          user_agent?: string | null
           user_id?: string
+          vertical?: string | null
+        }
+        Relationships: []
+      }
+      user_profiles: {
+        Row: {
+          created_at: string | null
+          full_name: string | null
+          id: string
+          role: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          full_name?: string | null
+          id: string
+          role?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          full_name?: string | null
+          id?: string
+          role?: string | null
         }
         Relationships: []
       }

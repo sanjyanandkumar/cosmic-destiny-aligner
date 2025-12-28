@@ -7,6 +7,7 @@ import { toast } from "@/hooks/use-toast";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import bg from "@/assets/cosmic-background.png";
+import CosmicPage from "@/components/CosmicPage";
 
 export default function RegisterPage() {
   const [email, setEmail] = useState("");
@@ -14,6 +15,7 @@ export default function RegisterPage() {
   const [name, setName] = useState("");
   const [showResend, setShowResend] = useState(false);
   const navigate = useNavigate();
+  const [accountCreated, setAccountCreated] = useState(false);
 
   const handleRegister = async () => {
     if (!email || !password || !name) {
@@ -25,7 +27,7 @@ export default function RegisterPage() {
       return;
     }
 
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
@@ -43,15 +45,23 @@ export default function RegisterPage() {
     }
 
     if (error) {
+      console.error("Supabase signup error:", error);
       toast({ title: "Registration Failed", description: error.message, variant: "destructive" });
       return;
     }
 
+    if (data?.user) {
+      await supabase.from("user_roles").insert({
+        user_id: data.user.id,
+        role: "user",
+      });
+    }
     toast({
       title: "Verification Email Sent",
       description: "Check your inbox and confirm your email.",
     });
 
+    setAccountCreated(true);
     setShowResend(true);
   };
 
@@ -74,13 +84,12 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen flex flex-col font-inter">
+    <CosmicPage>
       <Navigation />
 
       <main
         className="flex-1 flex justify-center items-center bg-cover bg-center relative py-32"
-        style={{ backgroundImage: `url(${bg})` }}
       >
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
 
         <div className="relative z-10 p-6 border border-white/20 rounded-lg shadow-lg w-full max-w-sm bg-black/70 backdrop-blur-md text-white">
           <h1 className="text-2xl font-bold mb-4 text-center">Create Account</h1>
@@ -92,16 +101,30 @@ export default function RegisterPage() {
           <Input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} className=" mb-3 bg-black/40 text-white placeholder:text-white/50
     border-white/20 focus:border-primary focus:ring-primary/40" />
 
-          <Button onClick={handleRegister} className="w-full">
+          <Button
+            onClick={handleRegister}
+            className="w-full"
+            disabled={accountCreated}
+          >
             Create Account
           </Button>
 
-          {showResend && (
+          {accountCreated && (
             <div className="mt-4 text-center">
-              <p className="text-sm text-white/80 mb-2">
-                Didn't receive the email?
+              <p className="text-sm text-green-400 font-semibold mb-2">
+                ✅ Account created successfully
               </p>
-              <Button variant="outline" size="sm" onClick={handleResendEmail}>
+
+              <p className="text-sm text-white/80 mb-2">
+                Didn't receive the verification email?
+              </p>
+
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleResendEmail}
+                className="border-primary text-primary hover:bg-primary hover:text-black"
+              >
                 Resend Verification Email
               </Button>
             </div>
@@ -117,6 +140,7 @@ export default function RegisterPage() {
       </main>
 
       <Footer />
+      </CosmicPage>
     </div>
   );
 }
