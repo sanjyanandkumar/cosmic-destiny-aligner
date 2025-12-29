@@ -22,10 +22,6 @@ import kumbakonamMainImg from "@/assets/kumbakonam-temple.jpg";
 import kumbakonamSunImg from "@/assets/sun-temple.jpg";
 import kumbakonamRahuImg from "@/assets/rahu-temple.jpg";
 import kumbakonamGroupImg from "@/assets/group-meditation.jpg";
-import bandipurImg from "@/assets/bandipur-forest.jpg";
-import bandipurBisonImg from "@/assets/bandipur-bison.jpg";
-import bandipurLeopardImg from "@/assets/bandipur-leopard.jpg";
-import bandipurEagleImg from "@/assets/bandipur-eagle.jpg";
 import sriLankaImg from "@/assets/sri-lanka-retreat.jpg";
 import srilankaColomboImg from "@/assets/sri-lanka-colombo.jpg";
 import srilankaKandyImg from "@/assets/sri-lanka-kandy.jpg";
@@ -103,43 +99,6 @@ const LeisureDetailsPage = () => {
         },
       ],
     },
-
-    // 🌿 Bandipur Retreat
-    "bandipur-retreat": {
-      name: "Bandipur Tour",
-      priceRange: "₹9,999 – ₹17,999",
-      tagline: "Return to your roots, realign your rhythm.",
-      description:
-        "Organic wellness retreat designed to align mind, body, and soul in the serene energy of Bandipur Forest, Karnataka.",
-      concept:
-        "A 1-night, 2-day organic wellness retreat designed to align mind, body, and soul in the serene energy of Bandipur Forest, Karnataka. Participants experience grounding meditations, sound healing, and soulful community bonding through nature and mindful experiences.",
-      images: [bandipurImg, bandipurBisonImg, bandipurLeopardImg, bandipurEagleImg],
-      highlights: [
-        "The BrahmaX Bhojana Experience – meals cooked by local homemakers using organic ingredients.",
-        "Mind–Body–Soul alignment sessions with yoga, journaling, and astrology insights.",
-        "Guided wildlife safari symbolizing connection with natural and inner wilderness.",
-        "Tribe Table Circle – shared dining fostering deep conversations and friendships.",
-      ],
-      schedule: [
-        "🌅 Day 1 – Arrival, Tribe Circle, Sound Healing, Bonfire + BrahmaX Bhojana Dinner.",
-        "🌞 Day 2 – Sunrise Yoga, Journaling, Safari, and Closing Manifestation Circle.",
-      ],
-      pricingTiers: [
-        {
-          tier: "Tribe Tier",
-          description: "Shared stay, full retreat, safari, meals.",
-        },
-        {
-          tier: "Soul Tier",
-          description: "Twin stay, astro talk, premium kit.",
-        },
-        {
-          tier: "Founder’s Circle",
-          description: "Private stay, 1:1 karmic consult with Abi.",
-        },
-      ],
-    },
-
     // 🌊 Karmic Island Experience – Sri Lanka
     "sri-lanka-retreat": {
       name: "Karmic Island Experience – Sri Lanka",
