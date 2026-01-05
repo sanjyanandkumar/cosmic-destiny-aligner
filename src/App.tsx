@@ -27,7 +27,6 @@ import AdminGuard from "@/components/AdminGuard";
 import AdminOrders from "@/pages/admin/AdminOrders";
 import RegisterPage from "./pages/RegisterPage";
 import ScrollToTop from "@/components/ScrollToTop";
-import BackgroundMusic from "./components/BackgroundMusic";
 import ConsultingDetailsPage from "./pages/ConsultingDetailsPage";
 import InstallPage from "./pages/InstallPage";
 import VerticalDetails from "./pages/VerticalDetails"
@@ -112,8 +111,6 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
 
-          {/* 🎵 Persistent Music Player */}
-          <BackgroundMusic />
         </BrowserRouter>
       </TooltipProvider>
     </CartProvider>
