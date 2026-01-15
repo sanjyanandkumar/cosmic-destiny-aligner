@@ -6,6 +6,7 @@ import consultingImg from "@/assets/karmic-consulting.jpg";
 import wardrobeImg from "@/assets/cosmic-wallet.jpg";
 import eduseamImg from "@/assets/career-guidance.png";
 import leisureImg from "@/assets/karmic-meditation.jpg";
+import tarotImg from "@/assets/Tarot reading.png";
 import bg from "@/assets/cosmic-background.png";
 import founderImg from "@/assets/founder.jpg";
 
@@ -23,6 +24,13 @@ const verticals = [
     image: wardrobeImg,
     link: "/wardrobe",
     description: "World’s first karmic fashion and lifestyle platform",
+  },
+  {
+    title: "BrahmaX Tarot Reading",
+    subtitle: "The Tarot Reading Division",
+    image: tarotImg,
+    link: "/tarot",
+    description: "Reflection-based insight experience ",
   },
   {
     title: "BrahmaX Gurukul",
@@ -54,7 +62,7 @@ const VerticalCards = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 max-w-7xl mx-auto">
             {verticals.map((item, index) => (
               <Link key={index} to={item.link}>
                 <Card

@@ -6,6 +6,7 @@ import meditationImg from "@/assets/karmic-meditation.jpg";
 import careerGuidanceImg from "@/assets/career-guidance.png";
 import karmicConsultingImg from "@/assets/karmic-consulting.jpg";
 import wardrobeImg from "@/assets/cosmic-handbag.png";
+import tarotReadingImg from "@/assets/Tarot reading.png";
 
 import CosmicPage from "@/components/CosmicPage";
 
@@ -14,6 +15,7 @@ const items = [
   { title: "BrahmaX Wardrobe", image: wardrobeImg, link: "/wardrobe" },
   { title: "BrahmaX Gurukul", image: careerGuidanceImg, link: "/eduseam" },
   { title: "BrahmaX Wellness", image: meditationImg, link: "/leisure" },
+  { title: "BrahmaX Tarot Reading", image: tarotReadingImg, link: "/tarot" },
 ];
 
 const AUTOPLAY_DELAY = 3000;

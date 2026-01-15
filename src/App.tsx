@@ -36,6 +36,7 @@ import MoreWellnessPackages from "./pages/MoreWellnessPackages";
 import CreateProductPage from "@/pages/admin/CreateProductPage";
 import ProductListPage from "./pages/admin/AdminProductList";
 import EditProductPage from "./pages/admin/EditProductPage";
+import TarotPage from "./pages/TarotPage";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +56,7 @@ const App = () => (
             <Route path="/leadership" element={<LeadershipPage />} />
             <Route path="/awards" element={<AwardsPage />} />
             <Route path="/consulting" element={<ConsultingPage />} />
+            <Route path="/tarot" element={<TarotPage />} />
             <Route path="/wardrobe" element={<WardrobePage />} />
             <Route path="/wardrobe/:productId" element={<ProductDetailPage />} />
             <Route path="/leisure" element={<LeisurePage />} />
