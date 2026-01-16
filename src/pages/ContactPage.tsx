@@ -47,7 +47,7 @@ const ContactPage = () => {
                 <div className="flex items-start gap-3">
                   <Mail className="h-5 w-5 text-primary mt-1" />
                   <p className="text-white">
-                    <span className="text-muted-foreground">Website:</span> www.brahmax.in (coming soon)
+                    <span className="text-muted-foreground">Website:</span> www.brahmax.in
                   </p>
                 </div>
 

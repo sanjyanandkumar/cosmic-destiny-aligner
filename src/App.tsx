@@ -37,6 +37,7 @@ import CreateProductPage from "@/pages/admin/CreateProductPage";
 import ProductListPage from "./pages/admin/AdminProductList";
 import EditProductPage from "./pages/admin/EditProductPage";
 import MirrorPage from "./pages/MirrorPage";
+import TermsConditions from "./components/TermsCondition";
 
 const queryClient = new QueryClient();
 
@@ -57,6 +58,7 @@ const App = () => (
             <Route path="/awards" element={<AwardsPage />} />
             <Route path="/consulting" element={<ConsultingPage />} />
             <Route path="/mirror" element={<MirrorPage />} />
+            <Route path="/terms" element={<TermsConditions />} />
             <Route path="/wardrobe" element={<WardrobePage />} />
             <Route path="/wardrobe/:productId" element={<ProductDetailPage />} />
             <Route path="/leisure" element={<LeisurePage />} />

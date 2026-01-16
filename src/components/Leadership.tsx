@@ -67,7 +67,6 @@ const Leadership = () => {
         </div>
       </section>
 
-      <Footer />
     </CosmicPage>
   );
 };

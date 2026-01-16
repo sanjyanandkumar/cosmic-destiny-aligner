@@ -33,7 +33,7 @@ const Footer = () => {
               />
             </div>
               <div className="flex space-x-4">
-                <a href="#" className="text-white/80 hover:text-primary transition-colors">
+                <a href="https://instagram.com/BrahmaX.official" className="text-white/80 hover:text-primary transition-colors">
                   <Instagram className="h-5 w-5" />
                 </a>
 
@@ -49,7 +49,7 @@ const Footer = () => {
                   </svg>
                 </a>
 
-                <a href="#" className="text-white/80 hover:text-primary transition-colors">
+                <a href="https://www.linkedin.com/in/abishek-kadambi-267692267/" className="text-white/80 hover:text-primary transition-colors">
                   <Linkedin className="h-5 w-5" />
                 </a>
 
@@ -119,6 +119,11 @@ const Footer = () => {
               <li>
                 <a href="/contact" className="hover:text-primary transition-colors">
                   Media assets
+                </a>
+              </li>
+              <li>
+                <a href="/terms" className="hover:text-primary transition-colors">
+                  Terms and Conditions
                 </a>
               </li>
             </ul>
