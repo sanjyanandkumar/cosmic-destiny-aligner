@@ -83,6 +83,11 @@ const Footer = () => {
                 </a>
               </li>
               <li>
+                <a href="/mirror" className="hover:text-primary transition-colors">
+                  BrahmaX Mirror
+                </a>
+              </li>
+              <li>
                 <a href="/eduseam" className="hover:text-primary transition-colors">
                   BrahmaX Gurukul
                 </a>

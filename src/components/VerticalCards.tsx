@@ -26,10 +26,10 @@ const verticals = [
     description: "World’s first karmic fashion and lifestyle platform",
   },
   {
-    title: "BrahmaX Tarot Reading",
+    title: "BrahmaX Mirror",
     subtitle: "The Tarot Reading Division",
     image: tarotImg,
-    link: "/tarot",
+    link: "/mirror",
     description: "Reflection-based insight experience ",
   },
   {

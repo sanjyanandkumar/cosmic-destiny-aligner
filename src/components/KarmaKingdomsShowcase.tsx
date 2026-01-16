@@ -13,9 +13,9 @@ import CosmicPage from "@/components/CosmicPage";
 const items = [
   { title: "BrahmaX Karmic Consulting", image: karmicConsultingImg, link: "/consulting" },
   { title: "BrahmaX Wardrobe", image: wardrobeImg, link: "/wardrobe" },
+  { title: "BrahmaX Mirror", image: tarotReadingImg, link: "/mirror" },
   { title: "BrahmaX Gurukul", image: careerGuidanceImg, link: "/eduseam" },
   { title: "BrahmaX Wellness", image: meditationImg, link: "/leisure" },
-  { title: "BrahmaX Tarot Reading", image: tarotReadingImg, link: "/tarot" },
 ];
 
 const AUTOPLAY_DELAY = 3000;

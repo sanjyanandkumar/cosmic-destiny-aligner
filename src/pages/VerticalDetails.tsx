@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 // Import images
 import consultingImg from "@/assets/karmic-consulting.jpg";
 import wardrobeImg from "@/assets/cosmic-wallet.jpg";
+import tarotImg from "@/assets/Tarot reading.png";
 import eduseamImg from "@/assets/career-guidance.png";
 import leisureImg from "@/assets/karmic-meditation.jpg";
 
@@ -29,6 +30,18 @@ const verticals = [
     link: "/wardrobe",
     description:
       "BrahmaX Wardrobe is the world’s first karmic fashion and lifestyle platform, curating collections that blend design, astrology, and consciousness. Each piece is energetically aligned — crafted with colors, fabrics, and symbols tuned to your zodiac, lagna, and planetary energies. More than fashion — it's cosmic alignment in wearable form.",
+  },
+  {
+    title: "BrahmaX Mirror",
+    tagline: "See Clearly. Choose Consciously.",
+    quote: "Clarity is not found in prediction, but in reflection.",
+    image: tarotImg,
+    link: "/mirror",
+    description: [
+      "BrahmaX Mirror is a reflection-based insight experience designed for individuals, leaders, and founders navigating moments of uncertainty.",
+      " Rather than forecasting outcomes or offering prescriptive answers, Mirror brings awareness to underlying patterns, internal conflicts, and decision pathways. Through guided reflection and conscious inquiry, BrahmaX Mirror helps you pause, observe, and realign — enabling decisions that are grounded, intentional, and true to your inner compass. ",
+      "Mirror is not about reacting to external noise; it is about cultivating clarity from within.",
+    ],
   },
   {
     title: "BrahmaX Gurukul",
@@ -108,9 +121,23 @@ export default function VerticalDetails() {
 
                       <p className="text-muted-foreground font-inter mb-4">{v.tagline}</p>
 
-                      <p className="mb-6 leading-relaxed text-justify">
-                        {v.description}
-                      </p>
+                      <div className="mb-6">
+                        {Array.isArray(v.description)
+                          ? v.description.map((para, idx) => (
+                              <p
+                                key={idx}
+                                className="mb-4 leading-relaxed text-justify"
+                              >
+                                {para}
+                              </p>
+                            ))
+                          : (
+                              <p className="leading-relaxed text-justify">
+                                {v.description}
+                              </p>
+                            )
+                        }
+                      </div>
 
                       {v.quote && (
                         <blockquote className="italic text-primary border-l-4 border-primary pl-4 font-playfair text-lg">
